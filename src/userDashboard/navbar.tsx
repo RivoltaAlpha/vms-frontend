@@ -1,11 +1,23 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink,useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../app/store';
+import { clearUser } from '../features/users/userSlice';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const user = useSelector((state: RootState) => state.usersAPI);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(clearUser());
+    navigate('/');
   };
 
   return (
@@ -45,23 +57,19 @@ export const Header = () => {
           className={`w-full lg:flex lg:items-center lg:w-auto ${isOpen ? 'block' : 'hidden'}`}
         >
           <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-2">
-            <NavLink to="/" className="text-red-500 hover:text-black
-             px-3 py-2">
-              Home
-            </NavLink>
-            <NavLink to="/about-us" className="text-red-500 hover:text-black
-             px-3 py-2">
-              About Us
-            </NavLink>
             <NavLink to="Explore" className="text-red-500 hover:text-black
              px-3 py-2">
               Explore
             </NavLink>
-            <NavLink to="/login" className="text-red-500 hover:text-black px-3 py-2">Book Now</NavLink>
-            <NavLink to="/Fleets" className="text-red-500 hover:text-black
-             px-3 py-2">
-              Fleets
-            </NavLink>
+            <NavLink to="/bookings" className="text-red-500 hover:text-black px-3 py-2">Book Now</NavLink>
+              {user.config ? (
+                <>
+                  <Link to="/user/dashboard" className="px-4">Dashboard</Link>
+                  <button onClick={handleLogout} className="px-4">Logout</button>
+                </>
+              ) : (
+                <Link to="/login" className="px-4">Login</Link>
+              )}
             <NavLink to="/contact" className="text-red-500 hover:text-black
              px-3 py-2">
               <button className="bg-red-500 hover:bg-red-800 text-white lg:font-bold py-2 px-4 rounded">
@@ -74,9 +82,6 @@ export const Header = () => {
                 Customer Support
               </button>
             </NavLink>
-            <Link to="/register" className="bg-red-500 hover:bg-red-800 text-white lg:font-bold py-2 px-4 lg:w-28 rounded mt-4 lg:mt-0  lg:ml-4">
-              Register
-            </Link>
           </div>
         </div>
       </nav>

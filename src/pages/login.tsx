@@ -4,7 +4,7 @@ import { setUser } from '../features/users/userSlice';
 import { useCreateUserMutation } from '../features/users/usersAPI';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import loginPic from './images/Login-cuate.png'
+import loginPic from '../../public/images/Login-cuate.png'
 export const Login  = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();

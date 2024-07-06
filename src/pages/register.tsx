@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import RegPic from './images/Mobile login-cuate.png';
+import RegPic from '../../public/images/reg.png';
 
 export default function Register() {
     return (
