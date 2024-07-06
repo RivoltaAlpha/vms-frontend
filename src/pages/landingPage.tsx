@@ -1,5 +1,5 @@
 import HeroSection from '../components/HeroSection';
-import CardsSection from '../components/mainPage';
+import CardsSection from '../components/main';
 
 
 const LandingPage = () => {
