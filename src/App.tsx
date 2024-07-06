@@ -40,5 +40,7 @@ const App: React.FC = () => {
   );
 };
 
+// Include error handling 
+
 
 export default App;
