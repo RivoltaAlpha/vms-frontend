@@ -12,6 +12,11 @@ import Explore from './pages/explore';
 import BookingForm from './userDashboard/bookingForm';
 import PaymentPage from './userDashboard/payment';
 import BookingConfirmation from './userDashboard/bookingForm';
+// import UserApp from '../src/userDashboard/app.tsx';
+import { Navigation } from './userDashboard/navigation';
+import { Dashboard } from './userDashboard/dashboard';
+import { ProfilePage } from './userDashboard/profile';
+import { ThankYou } from './userDashboard/thankyou';
 
 
 const App: React.FC = () => {
@@ -30,8 +35,13 @@ const App: React.FC = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/book/:vehicleId" element={<BookingForm />} />
-            <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/user-payment" element={<PaymentPage />} />
             <Route path="/booking-confirmation" element={<BookingConfirmation />} />
+            <Route path="/user-dashboard" element={<Dashboard />} />
+            <Route path="/user-profile" element={<ProfilePage />} />
+            <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/book/:vehicleId" element={<BookingForm />} />
+            <Route path="/thank-you" element={<ThankYou />} />
           </Routes>
         </main>
         <Footer />

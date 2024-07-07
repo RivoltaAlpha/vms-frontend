@@ -9,7 +9,7 @@ interface BookingFormData {
   return_date: string;
 }
 
-const BookingForm: React.FC = () => {
+export const BookingForm: React.FC = () => {
   const { vehicleId } = useParams<{ vehicleId: string }>();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<BookingFormData>({

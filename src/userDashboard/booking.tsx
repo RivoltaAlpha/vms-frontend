@@ -89,7 +89,7 @@ const BookNowForm: React.FC = () => {
   );
 };
 
-const BookNow: React.FC = () => {
+export const BookNow: React.FC = () => {
   return (
     <Elements stripe={stripePromise}>
       <BookNowForm />
