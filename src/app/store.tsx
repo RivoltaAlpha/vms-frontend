@@ -1,14 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
+import {persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE,  PERSIST, PURGE, REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { usersAPI } from "../features/users/usersAPI";
@@ -16,6 +8,7 @@ import { bookingsAPI } from "../features/bookings/bookingsApi";
 import { paymentsAPI } from "../features/payments/paymentsApi";
 import { registrationAPI } from '../features/registration/registrationSlice';
 import { authApi } from "../features/registration/authSlice";
+import UserAuthReducer from "../features/users/userAuthSlice";
 
 const persistConfig = {
   key: "root",
@@ -25,7 +18,10 @@ const persistConfig = {
     bookingsAPI.reducerPath,
     paymentsAPI.reducerPath,
   ],
+  // whitelist: [authApi.reducerPath],
 };
+
+
 
 const rootReducer = combineReducers({
   [usersAPI.reducerPath]: usersAPI.reducer,
@@ -33,12 +29,13 @@ const rootReducer = combineReducers({
   [paymentsAPI.reducerPath]: paymentsAPI.reducer,
   [registrationAPI.reducerPath]: registrationAPI.reducer,
   [authApi.reducerPath]: authApi.reducer,
+  userAuth: UserAuthReducer,
   // Add other reducers here
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
- const store = configureStore({
+const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -50,7 +47,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
       bookingsAPI.middleware,
       paymentsAPI.middleware,
       registrationAPI.middleware,
-      authApi.middleware
+      authApi.middleware,
     ),
 });
 
