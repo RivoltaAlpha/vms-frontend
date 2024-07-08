@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import RegPic from '../../public/images/reg.png';
 import { NavLink } from 'react-router-dom';
 import { Toaster, toast } from 'sonner';
-import { registrationAPI } from '../features/registration/registrationSlice';
+import { registrationAPI } from '../features/registration/registrationAPI';
 // Define a type for the form data
 type FormData = {
     first_name: string;

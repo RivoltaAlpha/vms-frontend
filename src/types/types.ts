@@ -14,7 +14,7 @@ export interface RUser {
       token: string;
   }
  export type TUser = {
-    id: number;
+    user_id: number;
     first_name: string;
     last_name: string;
     username: string;
@@ -22,9 +22,10 @@ export interface RUser {
     contact_phone: string;
     address: string;
     role: string;
+    token: string;
 }
 export interface TBooking {
-    id: number;
+    booking_id: number;
     userId: number;
     vehicleId: number;
     startDate: string;
@@ -33,7 +34,7 @@ export interface TBooking {
 }
 
 export interface TPayment {
-    id: number;
+    payment_id: number;
     userId: number;
     bookingId: number;
     amount: number;
@@ -48,18 +49,19 @@ export interface LoginResponse {
   }
 
 export interface TIUser {
-    id: number
+    user_id: number
     first_name: string
     last_name: string
     username: string
     email: string
     contact_phone: string
     address: string
+    
 } 
 
 
 export interface Booking {
-    id: number;
+    booking_id: number;
     tableNumber: string;
     capacity: string;
     location: string;
@@ -70,7 +72,7 @@ export interface Booking {
 
   export interface UserAuthenticatedState {
     user:{
-        id: number
+        user_id: number
         first_name: string
         last_name: string
         username: string
@@ -84,3 +86,9 @@ export interface Booking {
     loading: boolean
     error: string | null
   }
+  export interface UserState {
+    user: TUser | null;
+    loading: boolean;
+    error: string | null;
+  }
+  

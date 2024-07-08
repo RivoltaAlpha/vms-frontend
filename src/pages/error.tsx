@@ -2,7 +2,7 @@ import { Link, useRouteError } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 
 function Error() {
-const error : unknown = useRouteError()
+const error : any = useRouteError()
 
   return (
     <div className="py-10  bg:base-100">

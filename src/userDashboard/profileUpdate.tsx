@@ -1,30 +1,48 @@
-// components/ProfilePage.tsx
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../app/store';
+import { usersAPI } from '../features/users/usersAPI';
+import { setUserDetails } from "../features/registration/userAuthSlice";
+import { toast } from 'sonner';
+import { NavLink } from 'react-router-dom';
 
-interface UserDetails {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-}
-
-export const ProfilePage: React.FC = () => {
-  
-  const [userDetails, setUserDetails] = useState<UserDetails>({
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
+export  const ProfileEditPage = () => {
+  const { user } = useSelector((state: RootState) => state.userAuth);
+  const [formData, setFormData] = useState({
+    id: user?.user_id || 0,
+    first_name: user?.first_name || '',
+    last_name: user?.last_name || '',
+    username: user?.username || '',
+    email: user?.email || '',
+    contact_phone: user?.contact_phone || '',
+    address: user?.address || '',
   });
 
+  const dispatch = useDispatch();
+  const [updateUser, { isLoading }] = usersAPI.useUpdateUserMutation();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setUserDetails(prev => ({ ...prev, [name]: value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    console.log('Form Data on Change:', formData); // Log form data on change
+    if (user?.user_id !== undefined){
+      try {
+        const updatedUser = await updateUser({ id: user.user_id, data: formData }).unwrap();
+        console.log('API response:', updatedUser);
+        dispatch(setUserDetails(updatedUser));
+        toast.success('Profile updated successfully');
+      } catch (error) {
+        console.error(error);
+        toast.error('Error updating profile');
+      }
+    }
+    else {
+      console.error('Error updating profile');
+      toast.error('Error updating profile');
+    }
   };
 
   return (
@@ -32,9 +50,9 @@ export const ProfilePage: React.FC = () => {
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <div className="p-6">
           <div className="flex items-center justify-center mb-6">
-            <img 
-              src="/path-to-profile-image.jpg" 
-              alt="User Profile" 
+            <img
+              // src={user?.profile_picture || '/path/to/default-profile-picture.jpg'}
+              alt="User Profile"
               className="w-32 h-32 rounded-full object-cover"
             />
           </div>
@@ -42,24 +60,40 @@ export const ProfilePage: React.FC = () => {
             <div className="space-y-4">
               <input
                 type="text"
-                name="name"
-                value={userDetails.name}
+                name="first_name"
+                value={formData.first_name}
                 onChange={handleChange}
-                placeholder="Name"
+                placeholder="First Name"
+                className="w-full p-2 border rounded"
+              />
+              <input
+                type="text"
+                name="last_name"
+                value={formData.last_name}
+                onChange={handleChange}
+                placeholder="Last Name"
+                className="w-full p-2 border rounded"
+              />
+              <input
+                type="text"
+                name="udername"
+                value={formData.username}
+                onChange={handleChange}
+                placeholder="Last Name"
                 className="w-full p-2 border rounded"
               />
               <input
                 type="email"
                 name="email"
-                value={userDetails.email}
+                value={formData.email}
                 onChange={handleChange}
                 placeholder="Email"
                 className="w-full p-2 border rounded"
               />
               <input
                 type="tel"
-                name="phone"
-                value={userDetails.phone}
+                name="contact_phone"
+                value={formData.contact_phone}
                 onChange={handleChange}
                 placeholder="Phone"
                 className="w-full p-2 border rounded"
@@ -67,15 +101,17 @@ export const ProfilePage: React.FC = () => {
               <input
                 type="text"
                 name="address"
-                value={userDetails.address}
+                value={formData.address}
                 onChange={handleChange}
                 placeholder="Address"
                 className="w-full p-2 border rounded"
               />
             </div>
             <div className="mt-6 flex justify-end space-x-4">
-              <button type="button" className="px-4 py-2 bg-gray-300 text-gray-700 rounded">Cancel</button>
-              <button type="submit" className="px-4 py-2 bg-teal-500 text-white rounded">Save</button>
+              <NavLink to="/user-profile" type="button"  className="px-4 py-2 bg-gray-300 text-gray-700 rounded">Back</NavLink>
+              <button type="submit" disabled={isLoading} className="px-4 py-2 bg-teal-500 text-white rounded" >
+                {isLoading ? 'Saving...' : 'Save'}
+                </button>
               <button type="button" className="px-4 py-2 bg-red-500 text-white rounded">Delete</button>
             </div>
           </form>
@@ -83,6 +119,6 @@ export const ProfilePage: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
-export default ProfilePage;
+export default ProfileEditPage;

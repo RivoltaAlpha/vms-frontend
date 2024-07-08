@@ -1,14 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import {persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE,  PERSIST, PURGE, REGISTER,
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { usersAPI } from "../features/users/usersAPI";
 import { bookingsAPI } from "../features/bookings/bookingsApi";
 import { paymentsAPI } from "../features/payments/paymentsApi";
-import { registrationAPI } from '../features/registration/registrationSlice';
-import { authApi } from "../features/registration/authSlice";
-import UserAuthReducer from "../features/users/userAuthSlice";
+import { registrationAPI } from "../features/registration/registrationAPI";
+import { authApi } from "../features/registration/loginAPI";
+import UserAuthReducer from "../features/registration/userAuthSlice";
 
 const persistConfig = {
   key: "root",
@@ -20,8 +28,6 @@ const persistConfig = {
   ],
   // whitelist: [authApi.reducerPath],
 };
-
-
 
 const rootReducer = combineReducers({
   [usersAPI.reducerPath]: usersAPI.reducer,
@@ -47,7 +53,7 @@ const store = configureStore({
       bookingsAPI.middleware,
       paymentsAPI.middleware,
       registrationAPI.middleware,
-      authApi.middleware,
+      authApi.middleware
     ),
 });
 

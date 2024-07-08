@@ -15,6 +15,7 @@ import BookingConfirmation from "./userDashboard/bookingForm";
 import { Dashboard } from "./userDashboard/dashboard";
 import { ThankYou } from "./userDashboard/thankyou";
 import Profile from "./userDashboard/profile";
+import {ProfileEditPage} from "./userDashboard/profileUpdate";
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
             />
             <Route path="/user-dashboard" element={<Dashboard />} />
             <Route path="/user-profile" element={<Profile />} />
+            <Route path="/edit-profile" element={<ProfileEditPage />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/book/:vehicleId" element={<BookingForm />} />
             <Route path="/thank-you" element={<ThankYou />} />
