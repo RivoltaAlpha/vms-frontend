@@ -1,12 +1,12 @@
 // App.tsx
-import React from 'react';
-import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
-import { Navigation } from './navigation';
-import { Dashboard } from './dashboard';
-import { ProfilePage } from './profile';
-import { PaymentPage } from './payment';
-import { BookingForm } from './bookingForm'
-import { ThankYou } from './thankyou';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Navigation } from "./navigation";
+import { Dashboard } from "./dashboard";
+import { ProfilePage } from "./profileUpdate";
+import { PaymentPage } from "./payment";
+import { BookingForm } from "./bookingForm";
+import { ThankYou } from "./thankyou";
 
 export const UserApp: React.FC = () => {
   return (

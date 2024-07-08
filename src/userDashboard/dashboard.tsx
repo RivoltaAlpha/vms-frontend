@@ -1,21 +1,15 @@
 // components/Dashboard.tsx
 import React, { useState, useEffect } from 'react';
 import Navigation from './navigation';
-
-interface Booking {
-  id: number;
-  tableNumber: string;
-  capacity: string;
-  location: string;
-  type: string;
-  seats: number;
-}
+import { Booking } from  '../types/types';
 
 export const DashboardContent: React.FC = () => {
   const [totalBookings, setTotalBookings] = useState(0);
   const [currentBookings, setCurrentBookings] = useState(0);
   const [totalPayments, setTotalPayments] = useState(0);
   const [userBookings, setUserBookings] = useState<Booking[]>([]);
+
+
 
   useEffect(() => {
     // Fetch data from API here
