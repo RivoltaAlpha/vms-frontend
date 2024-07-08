@@ -1,7 +1,7 @@
 export interface RUser {
     first_name: string;
     last_name: string;
-    user_name: string;
+    username: string;
     contact_phone: string;
     email: string;
     address: string;
@@ -13,14 +13,15 @@ export interface RUser {
       role: string;
       token: string;
   }
- export interface TUser {
+ export type TUser = {
     id: number;
     first_name: string;
     last_name: string;
-    user_name: string;
+    username: string;
     email: string;
     contact_phone: string;
     address: string;
+    role: string;
 }
 export interface TBooking {
     id: number;
@@ -41,11 +42,45 @@ export interface TPayment {
 }
 
 export interface LoginResponse {
-    user: {
       username: string;
       role: string;
-      // Other user data as needed
-    };
-    role: Luser['role'];
-    token: string;
+      password: string;
+  }
+
+export interface TIUser {
+    id: number
+    first_name: string
+    last_name: string
+    username: string
+    email: string
+    contact_phone: string
+    address: string
+} 
+
+
+export interface Booking {
+    id: number;
+    tableNumber: string;
+    capacity: string;
+    location: string;
+    type: string;
+    seats: number;
+  }
+
+
+  export interface UserAuthenticatedState {
+    user:{
+        id: number
+        first_name: string
+        last_name: string
+        username: string
+        email: string
+        contact_phone: string
+        address: string
+        role: string
+    } | null
+    token: string | null
+    isAuthenticated: boolean
+    loading: boolean
+    error: string | null
   }
