@@ -19,8 +19,8 @@ export const bookingsAPI = createApi({
             invalidatesTags: ['createBooking'],
         }),
         updateBooking: builder.mutation<TBooking, Partial<TBooking>>({
-            query: ({ id, ...rest }) => ({
-                url: `/update-booking/${id}`,
+            query: ({ booking_id, ...rest }) => ({
+                url: `/update-booking/${booking_id}`,
                 method: 'PUT',
                 body: rest,
             }),
