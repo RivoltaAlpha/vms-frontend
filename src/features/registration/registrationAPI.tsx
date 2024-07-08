@@ -1,18 +1,17 @@
 // src/features/registration/registrationSlice.ts
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Luser } from '../../types/types';
+import { RUser } from '../../types/types';
 
-
-export const loginAPI = createApi({
-    reducerPath: 'loginAPI',
+export const registrationAPI = createApi({
+    reducerPath: 'registrationAPI',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000' }),
     tagTypes: ['User'],
     endpoints: (builder) => ({
-        loginUser: builder.mutation<Luser, Partial<Luser>>({
-            query: (user) => ({
-                url: 'auth/login',
+        registerUser: builder.mutation<RUser, Partial<RUser>>({
+            query: (newUser) => ({
+                url: 'auth/register',
                 method: 'POST',
-                body: user,
+                body: newUser,
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -22,4 +21,4 @@ export const loginAPI = createApi({
     }),
 });
 
-// export const { useLoginUserMutation } = loginAPI;
+export default registrationAPI;
