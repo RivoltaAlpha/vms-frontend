@@ -21,7 +21,7 @@ export const registrationAPI = createApi({
     }),
 });
 
-export const { useRegisterUserMutation } = registrationAPI;
+// export const { useRegisterUserMutation } = registrationAPI;
 
 
 // const useRegisterUserMutation: UseMutation<MutationDefinition<Partial<RUser>, BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, "User", RUser, "registrationAPI">>
