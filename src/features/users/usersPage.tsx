@@ -1,7 +1,8 @@
-import React from 'react';
 import { useGetUsersQuery } from './usersAPI';
+import { useCreateUserMutation, useUpdateUserMutation, useDeleteUserMutation } from './usersAPI';
+import { usersAPI } from './usersAPI';
 
-const UserList: React.FC = () => {
+const UserList = () => {
   const { data: users, error, isLoading } = useGetUsersQuery();
 
   if (isLoading) return <div>Loading...</div>;
