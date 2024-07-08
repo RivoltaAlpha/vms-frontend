@@ -1,21 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { useLoginUserMutation } from '../features/registration/loginSlice';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import loginPic from '../../public/images/Login-cuate.png';
-import { useLoginMutation } from '../features/registration/authSlice';
 import { Toaster, toast } from 'sonner';
+import { useDispatch } from 'react-redux';
+import { RootState } from '../app/store';
+import { useSelector } from 'react-redux';
+import { setUserData } from '../features/users/userAuthSlice';
+import authApi from '../features/registration/authSlice';
 
 type LoginForm = {
     username: string;
     password: string;
     role: string;
-}
+  }
 
 export const Login = () => {
-    const [user, setUser] = useState<LoginForm>({ username: '', password: '' , role: 'user'});
+    const [user, setUser] = useState<LoginForm>({ username: '', password: '', role: 'user' });
     const navigate = useNavigate();
-    const [loginUser, { isLoading }] = useLoginMutation();
+    const dispatch = useDispatch();
+    const {isAuthenticated} = useSelector((state: RootState) => state.userAuth)
+    const [loginUser, { isLoading }] = authApi.useLoginMutation();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/user-dashboard');
+        }
+    }, [isAuthenticated, navigate]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -28,8 +40,8 @@ export const Login = () => {
         try {
             const response = await loginUser(user).unwrap();
             console.log('Backend response:', response); // Debugging step
-            localStorage.setItem('token', response.token);
-            
+
+            dispatch(setUserData({ user: response.user, token: response.token }));
             // Display the success message before navigation
             toast.success('Logged in successfully', {
                 position: 'bottom-center',

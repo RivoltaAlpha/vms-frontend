@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRegisterUserMutation } from '../features/registration/registrationSlice';
 import RegPic from '../../public/images/reg.png';
 import { NavLink } from 'react-router-dom';
 import { Toaster, toast } from 'sonner';
-
+import { registrationAPI } from '../features/registration/registrationSlice';
 // Define a type for the form data
 type FormData = {
     first_name: string;
@@ -28,7 +27,7 @@ export default function Register() {
     });
 
     const navigate = useNavigate();
-    const [registerUser, { isLoading, isError, error }] = useRegisterUserMutation();
+    const [registerUser, { isLoading, isError, error }] = registrationAPI.useRegisterUserMutation();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
