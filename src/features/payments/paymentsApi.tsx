@@ -19,8 +19,8 @@ export const paymentsAPI = createApi({
             invalidatesTags: ['Payment'],
         }),
         updatePayment: builder.mutation<TPayment, Partial<TPayment>>({
-            query: ({ id, ...rest }) => ({
-                url: `payments/${id}`,
+            query: ({ payment_id, ...rest }) => ({
+                url: `payments/${payment_id}`,
                 method: 'PUT',
                 body: rest,
             }),
