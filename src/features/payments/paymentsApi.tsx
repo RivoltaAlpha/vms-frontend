@@ -36,9 +36,9 @@ export const paymentsAPI = createApi({
     }),
 });
 
-export const {
-    useGetPaymentsQuery,
-    useCreatePaymentMutation,
-    useUpdatePaymentMutation,
-    useDeletePaymentMutation,
-} = paymentsAPI;
+// export const {
+//     useGetPaymentsQuery,
+//     useCreatePaymentMutation,
+//     useUpdatePaymentMutation,
+//     useDeletePaymentMutation,
+// } = paymentsAPI;
