@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/header";
 import Login from "./pages/login";
+import AdminLogin from "./adminDashboard/login";
 import Contact from "./pages/contact";
 import Register from "./pages/register";
 import Footer from "./components/footer";
@@ -13,6 +14,7 @@ import PaymentPage from "./userDashboard/payment";
 import BookingConfirmation from "./userDashboard/bookingForm";
 // import UserApp from '../src/userDashboard/app.tsx';
 import { Dashboard } from "./userDashboard/dashboard";
+import {AdminDashboard } from "./adminDashboard/dashboard";
 import { ThankYou } from "./userDashboard/thankyou";
 import Profile from "./userDashboard/profile";
 import {ProfileEditPage} from "./userDashboard/profileUpdate";
@@ -31,6 +33,7 @@ const App = () => {
             <Route path="/fleets" element={<Fleets />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/book/:vehicleId" element={<BookingForm />} />
             <Route path="/user-payment" element={<PaymentPage />} />
@@ -39,10 +42,11 @@ const App = () => {
               element={<BookingConfirmation />}
             />
             <Route path="/user-dashboard" element={<Dashboard />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/user-profile" element={<Profile />} />
             <Route path="/edit-profile" element={<ProfileEditPage />} />
             <Route path="/payment" element={<PaymentPage />} />
-            <Route path="/book/:vehicleId" element={<BookingForm />} />
+            <Route path="/book/:vehicle_id" element={<BookingForm />} />
             <Route path="/thank-you" element={<ThankYou />} />
           </Routes>
         </main>

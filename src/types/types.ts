@@ -26,10 +26,12 @@ export interface RUser {
 }
 export interface TBooking {
     booking_id: number;
-    userId: number;
-    vehicleId: number;
-    startDate: string;
-    endDate: string;
+    user_id: number;
+    vehicle_id: number;
+    location_id: number;
+    booking_date: string;
+    return_date: string;
+    total_amount: number;
     status: string;
 }
 
@@ -92,3 +94,45 @@ export interface Booking {
     error: string | null;
   }
   
+  export interface BookingFormData {
+    user_id: number;
+    vehicle_id: number;
+    location_id: number;
+    booking_date: string;
+    return_date: string;
+    total_amount: number;
+    status: string;
+  }
+
+  export interface TIVehicle {
+    vehicle_id: number;
+    vehicleSpec: TIVehicleSpec;
+    // image_url: string;
+    rental_rate: number;
+    availability: boolean;
+  }
+
+  export interface TSVehicle {
+    vehicle_id: number;
+    image_url: string;
+    rental_rate: number;
+    availability: boolean;
+    vehicleSpec: [TIVehicleSpec];
+  }
+
+  export interface TIVehicleSpec {
+    vehicle_id: number;
+    vehicleSpec: TIVehicleSpec;
+    // image_url: string;
+    rental_rate: number;
+    availability: boolean;
+    manufacturer: string;
+    model: string;
+    year: number;
+    fuel_type: string;
+    engine_capacity: number;
+    transmission: string;
+    seating_capacity: number;
+    color: string;
+    features: string[];
+  }

@@ -4,7 +4,7 @@ import {
   persistStore,
   persistReducer,
   FLUSH,
-  REHYDRATE,
+  REHYDRATE, 
   PAUSE,
   PERSIST,
   PURGE,
@@ -14,6 +14,7 @@ import storage from "redux-persist/lib/storage";
 import { usersAPI } from "../features/users/usersAPI";
 import { bookingsAPI } from "../features/bookings/bookingsApi";
 import { paymentsAPI } from "../features/payments/paymentsApi";
+import { VehiclesAPI } from "../features/vehicles/vehicleAPI";
 import { registrationAPI } from "../features/registration/registrationAPI";
 import { authApi } from "../features/registration/loginAPI";
 import UserAuthReducer from "../features/registration/userAuthSlice";
@@ -25,6 +26,7 @@ const persistConfig = {
     usersAPI.reducerPath,
     bookingsAPI.reducerPath,
     paymentsAPI.reducerPath,
+    VehiclesAPI.reducerPath,
   ],
   // whitelist: [authApi.reducerPath],
 };
@@ -33,6 +35,7 @@ const rootReducer = combineReducers({
   [usersAPI.reducerPath]: usersAPI.reducer,
   [bookingsAPI.reducerPath]: bookingsAPI.reducer,
   [paymentsAPI.reducerPath]: paymentsAPI.reducer,
+  [VehiclesAPI.reducerPath]: VehiclesAPI.reducer,
   [registrationAPI.reducerPath]: registrationAPI.reducer,
   [authApi.reducerPath]: authApi.reducer,
   userAuth: UserAuthReducer,
@@ -51,6 +54,7 @@ const store = configureStore({
     }).concat(
       usersAPI.middleware,
       bookingsAPI.middleware,
+      VehiclesAPI.middleware,
       paymentsAPI.middleware,
       registrationAPI.middleware,
       authApi.middleware

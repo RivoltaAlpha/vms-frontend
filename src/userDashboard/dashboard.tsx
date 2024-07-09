@@ -18,11 +18,11 @@ export const DashboardContent: React.FC = () => {
     setCurrentBookings(10);
     setTotalPayments(5000);
     setUserBookings([
-      { id: 2, tableNumber: 'TBL-1', capacity: '1 - 4', location: 'Main Dining Room', type: 'Square - Medium', seats: 5 },
-      { id: 3, tableNumber: 'TBL-2', capacity: '1 - 4', location: 'Main Dining Room', type: 'Square - Medium', seats: 6 },
-      { id: 4, tableNumber: 'TBL-3', capacity: '1 - 4', location: 'Main Dining Room', type: 'Square - Medium', seats: 7 },
-      { id: 5, tableNumber: 'TBL-4', capacity: '1 - 4', location: 'Main Dining Room', type: 'Square - Medium', seats: 8 },
-      { id: 6, tableNumber: 'TBL-5', capacity: '1 - 2', location: 'Main Dining Room', type: 'Square - Small', seats: 1 },
+      { booking_id: 2, tableNumber: 'TBL-1', capacity: '1 - 4', location: 'Main Dining Room', type: 'Square - Medium', seats: 5 },
+      { booking_id: 3, tableNumber: 'TBL-2', capacity: '1 - 4', location: 'Main Dining Room', type: 'Square - Medium', seats: 6 },
+      { booking_id: 4, tableNumber: 'TBL-3', capacity: '1 - 4', location: 'Main Dining Room', type: 'Square - Medium', seats: 7 },
+      { booking_id: 5, tableNumber: 'TBL-4', capacity: '1 - 4', location: 'Main Dining Room', type: 'Square - Medium', seats: 8 },
+      { booking_id: 6, tableNumber: 'TBL-5', capacity: '1 - 2', location: 'Main Dining Room', type: 'Square - Small', seats: 1 },
     ]);
   }, []);
 
@@ -58,8 +58,8 @@ export const DashboardContent: React.FC = () => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {userBookings.map((booking) => (
-              <tr key={booking.id}>
-                <td className="px-6 py-4 whitespace-nowrap">{booking.id}</td>
+              <tr key={booking.booking_id}>
+                <td className="px-6 py-4 whitespace-nowrap">{booking.booking_id}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{booking.tableNumber}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{booking.capacity}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{booking.location}</td>

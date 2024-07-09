@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { useLoginUserMutation } from '../features/registration/loginSlice';
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import loginPic from "../../public/images/Login-cuate.png";
@@ -29,7 +28,11 @@ export const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/user-dashboard");
+      if (user.role === "admin") {
+        navigate("/admin-dashboard");
+      } else {
+        navigate("/user-dashboard");
+      }
     }
   }, [isAuthenticated, navigate]);
 
@@ -51,14 +54,12 @@ export const Login = () => {
         position: "bottom-center",
       });
 
-      // Redirect based on user role
-
-      if (user.role === "admin") {
-        navigate("/admin-dashboard");
-      }
-      if (user.role === "user") {
-        navigate("/user-dashboard");
-      }
+            // Navigate based on the user's role
+            if (response.user.role === "admin") {
+              navigate("/admin-dashboard");
+            } else {
+              navigate("/user-dashboard");
+            }
     } catch (error) {
       console.error("Error logging in:", error);
       toast.error("Invalid username or password");
@@ -132,7 +133,8 @@ export const Login = () => {
           </form>
           <div className="mt-6">
             <div className="text-center">
-              <p className="mt-2 text-sm text-gray-600">
+              <p className="mt-2 text-sm font-medium gap-10  text-gray-600">
+                <div>
                 Don't have an account?{" "}
                 <NavLink
                   to="/register"
@@ -140,6 +142,16 @@ export const Login = () => {
                 >
                   Register
                 </NavLink>
+                </div>
+                <div>
+                Admin?{" "}
+                <NavLink
+                  to="/admin-login"
+                  className="font-medium text-indigo-600  hover:text-indigo-500"
+                >
+                  Login
+                </NavLink>
+                </div>
               </p>
             </div>
           </div>
@@ -148,15 +160,5 @@ export const Login = () => {
     </div>
   );
 };
-// return (
-//     <form onSubmit={handleSubmit}>
-//       <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-//       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-//       <button type="submit" disabled={isLoading}>
-//         {isLoading ? 'Logging in...' : 'Login'}
-//       </button>
-//     </form>
-//   );
-// };
 
 export default Login;

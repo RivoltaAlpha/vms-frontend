@@ -25,10 +25,10 @@ export const Navigation: React.FC = () => {
     dispatch(clearUser());
     navigate("/home");
   };
+  
   return (
     <nav className="bg-teal-500 p-4  h-auto w-64">
       <ul className="space-y-10  ml-10">
-        <div className="text-xl font-bold">AniRental</div>
         <div className="block lg:hidden">
           <button
             onClick={toggleMenu}
