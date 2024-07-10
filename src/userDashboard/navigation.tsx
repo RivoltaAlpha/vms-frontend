@@ -18,6 +18,7 @@ export const Navigation: React.FC = () => {
     setIsOpen(!isOpen);
   };
   const { isAuthenticated } = useSelector((state: RootState) => state.userAuth);
+  const user = useSelector((state: RootState) => state.userAuth.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,6 +29,7 @@ export const Navigation: React.FC = () => {
   
   return (
     <nav className="bg-teal-500 p-4  h-auto w-64">
+       <h1>Welcome, {user?.username}</h1>
       <ul className="space-y-10  ml-10">
         <div className="block lg:hidden">
           <button
@@ -72,16 +74,14 @@ export const Navigation: React.FC = () => {
               </Link>
             </li>
             <li>
-              <Link
-                to="/bookings"
-                className="text-white font-bold  flex gap-3 hover:text-gray-200"
-              >
+            <Link className="text-white font-bold  flex gap-3 hover:text-gray-200"
+                to={`/user-bookings/${user?.user_id}`}>
                 <TbBrandBooking /> Bookings
               </Link>
             </li>
             <li>
               <Link
-                to="/available-cars"
+                to="/explore"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <MdOutlineEventAvailable />
