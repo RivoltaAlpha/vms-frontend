@@ -1,35 +1,27 @@
-// src/features/bookings/bookingSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { BookingState, TBooking } from '../../types/types';
 
-interface BookingState {
-  id: string;
-  userId: string;
-  vehicleId: string;
-  startDate: string;
-  endDate: string;
-  status: string;
-}
-
-const initialState: BookingState[] = [];
+const initialState: BookingState = {
+  booking: [],
+  selectedBooking: JSON.parse(localStorage.getItem('selectedBooking') || 'null'),
+};
 
 const bookingSlice = createSlice({
   name: 'booking',
   initialState,
   reducers: {
-    addBooking(state, action: PayloadAction<BookingState>) {
-      state.push(action.payload);
+    setBooking(state, action: PayloadAction<TBooking[]>) {
+      state.booking = action.payload;
     },
-    updateBooking(state, action: PayloadAction<BookingState>) {
-      const index = state.findIndex(booking => booking.id === action.payload.id);
-      if (index !== -1) {
-        state[index] = action.payload;
-      }
+    updateBooking(state, action: PayloadAction<TBooking>) {
+      state.selectedBooking = action.payload;
+      localStorage.setItem('selectedBooking', JSON.stringify(action.payload));
     },
-    removeBooking(state, action: PayloadAction<string>) {
-      return state.filter(booking => booking.id !== action.payload);
-    },
+    removeBooking(state) {
+      state.selectedBooking = null;
+      localStorage.removeItem('selectedBooking');},
   },
 });
 
-export const { addBooking, updateBooking, removeBooking } = bookingSlice.actions;
+export const { setBooking, updateBooking, removeBooking } = bookingSlice.actions;
 export default bookingSlice.reducer;

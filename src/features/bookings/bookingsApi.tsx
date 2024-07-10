@@ -4,10 +4,14 @@ import type { TBooking } from '../../types/types';
 export const bookingsAPI = createApi({
     reducerPath: 'bookingsAPI',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000' }),
-    tagTypes: ['getBookings', 'createBooking', 'updateBooking', 'deleteBooking'],
+    tagTypes: ['getBookings', 'createBooking', 'updateBooking', 'deleteBooking', 'getBookingsByUserId'],
     endpoints: (builder) => ({
         getBookings: builder.query<TBooking[], void>({
-            query: () => 'bookings',
+            query: () => '/bookings',
+            providesTags: ['getBookings'],
+        }),
+        getBooking: builder.query<TBooking[], number>({
+            query: (booking_id) => `/booking/${booking_id}`,
             providesTags: ['getBookings'],
         }),
         createBooking: builder.mutation<TBooking, Partial<TBooking>>({
@@ -32,6 +36,10 @@ export const bookingsAPI = createApi({
                 method: 'DELETE',
             }),
             invalidatesTags: ['deleteBooking'],
+        }),
+        getBookingsByUserId: builder.query<TBooking[], number>({
+            query: (id) => `/user-bookings/${id}`,
+            providesTags: ['getBookingsByUserId'],
         }),
     }),
 });
