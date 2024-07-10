@@ -19,6 +19,9 @@ import { ThankYou } from "./userDashboard/thankyou";
 import Profile from "./userDashboard/profile";
 import {ProfileEditPage} from "./userDashboard/profileUpdate";
 import BookingDetails  from "./userDashboard/bookingDetails";
+import UsersTable from "./adminDashboard/users";
+import BookingsTable from "./adminDashboard/bookings";
+import VehiclesTable from "./adminDashboard/vehicles";
 
 const App = () => {
   return (
@@ -47,6 +50,9 @@ const App = () => {
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/book/:vehicle_id" element={<BookingForm />} />
             <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/users" element={<UsersTable />} />
+            <Route path="/bookings" element={<BookingsTable />} />
+            <Route path="/vehicles" element={<VehiclesTable />} />
           </Routes>
         </main>
         <Footer />
