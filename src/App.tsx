@@ -9,15 +9,16 @@ import LandingPage from "./pages/landingPage";
 import Fleets from "./pages/fleet";
 import AboutUs from "./pages/about";
 import Explore from "./pages/explore";
-import BookingForm from "./userDashboard/bookingForm";
+import { BookingForm } from "./userDashboard/bookingForm";
 import PaymentPage from "./userDashboard/payment";
 import BookingConfirmation from "./userDashboard/bookingForm";
-// import UserApp from '../src/userDashboard/app.tsx';
+import UserBookings from "./userDashboard/user-bookings";
 import { Dashboard } from "./userDashboard/dashboard";
 import {AdminDashboard } from "./adminDashboard/dashboard";
 import { ThankYou } from "./userDashboard/thankyou";
 import Profile from "./userDashboard/profile";
 import {ProfileEditPage} from "./userDashboard/profileUpdate";
+import BookingDetails  from "./userDashboard/bookingDetails";
 
 const App = () => {
   return (
@@ -35,14 +36,12 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/book/:vehicleId" element={<BookingForm />} />
             <Route path="/user-payment" element={<PaymentPage />} />
-            <Route
-              path="/booking-confirmation"
-              element={<BookingConfirmation />}
-            />
+            <Route path="/booking-confirmation" element={<BookingConfirmation />} />
             <Route path="/user-dashboard" element={<Dashboard />} />
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/user-bookings/:user_id" element={<UserBookings />} />
+            <Route path="/booking-details/:booking_id" element={<BookingDetails />} />
             <Route path="/user-profile" element={<Profile />} />
             <Route path="/edit-profile" element={<ProfileEditPage />} />
             <Route path="/payment" element={<PaymentPage />} />
