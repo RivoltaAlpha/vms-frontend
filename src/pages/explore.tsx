@@ -2,8 +2,15 @@ import React from 'react';
 import VehiclesAPI from '../features/vehicles/vehicleAPI';
 import { TIVehicle } from '../types/types';
 import { Link } from 'react-router-dom';
+import { setSelectedVehicle } from '../features/vehicles/vehiclesSlice';
+import { useDispatch } from 'react-redux';
 
-const VehicleCard: React.FC<{ vehicle: TIVehicle }> = ({ vehicle }) => (
+interface VehicleCardProps {
+  vehicle: TIVehicle;
+  handleVehicleClick: (vehicle: TIVehicle) => void;
+}
+
+const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, handleVehicleClick }) => (
   <div className="bg-white shadow-lg  rounded-lg overflow-hidden">
     <div className="px-6 items-center py-4">
       <p className="text-gray-700">Color: {vehicle.vehicleSpec.color}</p>
@@ -18,7 +25,7 @@ const VehicleCard: React.FC<{ vehicle: TIVehicle }> = ({ vehicle }) => (
       <p className="text-gray-700">Rental Rate: ${vehicle.rental_rate}</p>
     </div>
     <Link to={`/book/${vehicle.vehicle_id}`}>
-    <button className="bg-blue-500 text-white px-4 py-2 mb-4 ml-6  rounded hover:bg-blue-800 transition duration-300">
+    <button className="bg-blue-500 text-white px-4 py-2 mb-4 ml-6  rounded hover:bg-blue-800 transition duration-300 " onClick={() => handleVehicleClick(vehicle)}>
       {vehicle.availability ? 'Book Now' : 'Not Available'}
     </button></Link>
   </div>
@@ -27,13 +34,17 @@ const VehicleCard: React.FC<{ vehicle: TIVehicle }> = ({ vehicle }) => (
 const Explore = () => {
   const { data: vehicles = [] } = VehiclesAPI.useGetVehiclesQuery();
   console.log(vehicles)
+  const dispatch = useDispatch();
+  const handleVehicleClick = (vehicle: TIVehicle) => {
+    dispatch(setSelectedVehicle(vehicle));
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8 bg-blue-500 text-white py-2 px-4">Explore Our Vehicles</h1>
       <div className="grid grid-cols-1 items-center md:grid-cols-2 lg:grid-cols-3 gap-6">
         {vehicles.map((vehicle) => (
-          <VehicleCard key={vehicle.vehicle_id} vehicle={vehicle} />
+          <VehicleCard key={vehicle.vehicle_id} vehicle={vehicle} handleVehicleClick={handleVehicleClick}/>
         ))}
       </div>
     </div>
