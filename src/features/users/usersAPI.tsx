@@ -3,7 +3,16 @@ import { TUser,TIUser } from '../../types/types';
 
 export const usersAPI = createApi({
     reducerPath: 'usersAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000',
+        prepareHeaders: (headers) => {
+            const token = localStorage.getItem('token');
+            if (token) {
+              headers.set('Authorization', `Bearer ${token}`);
+            }
+            headers.set('Content-Type', 'application/json');
+            return headers;
+          },
+     }),
     tagTypes: ['getUsers','getUser', 'createUser', 'updateUser', 'deleteUser'],
     endpoints: (builder) => ({
         getUsers: builder.query<TUser[], void>({
@@ -28,10 +37,6 @@ export const usersAPI = createApi({
             query: ({ id, data }) => ({
                 url: `/update-user/${id}`,
                 method: 'PUT',
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    'Content-Type': 'application/json',
-                },
                 body: data,
             }),
             invalidatesTags: ['getUsers', 'updateUser'],
