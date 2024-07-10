@@ -81,7 +81,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/bookings"
+                to="/users"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <TbBrandBooking /> Users
@@ -97,7 +97,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/available-cars"
+                to="/vehicles"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <MdOutlineEventAvailable />
