@@ -3,7 +3,16 @@ import type { TBooking } from '../../types/types';
 
 export const bookingsAPI = createApi({
     reducerPath: 'bookingsAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000',
+        prepareHeaders: (headers) => {
+            const token = localStorage.getItem('token');
+            if (token) {
+              headers.set('Authorization', `Bearer ${token}`);
+            }
+            headers.set('Content-Type', 'application/json');
+            return headers;
+          },
+     }),
     tagTypes: ['getBookings', 'createBooking', 'updateBooking', 'deleteBooking', 'getBookingsByUserId'],
     endpoints: (builder) => ({
         getBookings: builder.query<TBooking[], void>({
