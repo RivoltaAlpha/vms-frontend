@@ -114,7 +114,7 @@ export interface Booking {
 
   export interface TSVehicle {
     vehicle_id: number;
-    image_url: string;
+    // image_url: string;
     rental_rate: number;
     availability: boolean;
     vehicleSpec: [TIVehicleSpec];
@@ -135,4 +135,15 @@ export interface Booking {
     seating_capacity: number;
     color: string;
     features: string[];
+  }
+
+
+  export interface VehiclesState {
+    vehicle: TIVehicle[];
+    selectedVehicle: TIVehicle | null;
+  }
+
+  export interface BookingState {
+    booking: TBooking[];
+    selectedBooking: TBooking | null;
   }
