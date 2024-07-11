@@ -19,7 +19,7 @@ export const AdminLogin = () => {
   const [user, setUser] = useState<LoginForm>({
     username: "",
     password: "",
-    role: "admin",
+    role: "",
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();

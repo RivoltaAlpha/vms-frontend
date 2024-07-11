@@ -101,7 +101,7 @@ export const Navigation: React.FC = () => {
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <MdOutlineEventAvailable />
-                 Cars
+                 Vehicles
               </Link>
             </li>
             <li>

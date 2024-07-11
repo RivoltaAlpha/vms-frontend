@@ -2,6 +2,8 @@
 import React from 'react';
 import usersAPI from '../features/users/usersAPI';
 import { TUser } from '../types/types';
+import { NavLink } from 'react-router-dom';
+import { FaBackwardFast } from 'react-icons/fa6';
 
 const UsersTable: React.FC = () => {
   const { data: users, error, isLoading } = usersAPI.useGetUsersQuery();
@@ -37,6 +39,16 @@ const UsersTable: React.FC = () => {
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={7} className="text-right py-2 px-4 border-t">
+              <NavLink to="/admin-dashboard" className="px-4 py-2 mr-10  m-10 text-white rounded ">
+              <FaBackwardFast size={20} />
+              </NavLink>
+              {users?.length} {users?.length === 1 ? 'record' : 'records'}
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   );
