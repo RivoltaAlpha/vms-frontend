@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { TBooking } from '../../types/types';
+import type { Booking } from '../../types/types';
 
 export const bookingsAPI = createApi({
     reducerPath: 'bookingsAPI',
@@ -13,42 +13,41 @@ export const bookingsAPI = createApi({
             return headers;
           },
      }),
-    tagTypes: ['getBookings', 'createBooking', 'updateBooking', 'deleteBooking', 'getBookingsByUserId'],
+    tagTypes: ['getBookings'],
     endpoints: (builder) => ({
-        getBookings: builder.query<TBooking[], void>({
+        getBookings: builder.query<Booking[], void>({
             query: () => '/bookings',
             providesTags: ['getBookings'],
         }),
-        getBooking: builder.query<TBooking[], number>({
+        getBooking: builder.query<Booking[], number>({
             query: (booking_id) => `/booking/${booking_id}`,
-            providesTags: ['getBookings'],
         }),
-        createBooking: builder.mutation<TBooking, Partial<TBooking>>({
+        createBooking: builder.mutation<Booking, Partial<Booking>>({
             query: (newBooking) => ({
                 url: '/create-booking',
                 method: 'POST',
                 body: newBooking,
             }),
-            invalidatesTags: ['createBooking'],
+            invalidatesTags: [ 'getBookings'],
         }),
-        updateBooking: builder.mutation<TBooking, Partial<TBooking>>({
+        updateBooking: builder.mutation<Booking, Partial<Booking>>({
             query: ({ booking_id, ...rest }) => ({
                 url: `/update-booking/${booking_id}`,
                 method: 'PUT',
                 body: rest,
             }),
-            invalidatesTags: ['updateBooking'],
+            invalidatesTags: [ 'getBookings'],
         }),
         deleteBooking: builder.mutation<{ success: boolean; id: number }, number>({
             query: (id) => ({
                 url: `/delete-booking/${id}`,
                 method: 'DELETE',
+
             }),
-            invalidatesTags: ['deleteBooking'],
+            invalidatesTags: ['getBookings'],
         }),
-        getBookingsByUserId: builder.query<TBooking[], number>({
+        getBookingsByUserId: builder.query<Booking[], number>({
             query: (id) => `/user-bookings/${id}`,
-            providesTags: ['getBookingsByUserId'],
         }),
     }),
 });
