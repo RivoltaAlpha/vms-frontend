@@ -8,11 +8,8 @@ import { bookingsAPI } from '../features/bookings/bookingsApi';
 import { removeBooking, setBooking } from '../features/bookings/bookingSlice';
 
 const BookingDetails: React.FC = () => {
-  const {selectedBooking: booking } = useSelector((state: RootState) => state.booking);
-  console.log('booking:', booking)
-  const vehicleId = useSelector((state: RootState) => state.booking.selectedBooking?.vehicle_id);
+  const { booking } = useSelector((state: RootState) => state.booking);
   const { vehicleRate }: any = useSelector((state: RootState) => state.vehicles.selectedVehicle?.rental_rate);
-  console.log('vehicle:', vehicleId)
 
   const [updateBooking, { isLoading }] = bookingsAPI.useUpdateBookingMutation();
   const dispatch = useDispatch();
@@ -25,36 +22,42 @@ const BookingDetails: React.FC = () => {
     return_date: booking?.return_date || '',
     location_id:booking?.location_id || 0,
     total_amount: booking?.total_amount || 0,
-    status: booking?.status || '',
+    booking_status: booking?.booking_status || '',
   });
-  console.log('Form Data:', formData);
+
   useEffect(() => {
     const storedBooking = JSON.parse(localStorage.getItem('selectedBooking') || '{}');
-    console.log('Stored booking:', storedBooking);
     setFormData(storedBooking);
     dispatch(setBooking(storedBooking));
   }, []);
   
-  const storedBooking = localStorage.getItem('selectedBooking');
-  console.log('Stored booking:', storedBooking);
+// calcaulate total amount &&& change date formart from: 2022-07-21T00:00:00.000Z to 07/21/2022
 
-// calcaulate total amount
+
+  // Calculate total amount
   const calculateTotalAmount = () => {
     if (!booking || !vehicleRate) return 0;
-    const bookingDate = new Date(vehicleRate.booking_date);
-    const returnDate = new Date(vehicleRate.return_date);
+    const bookingDate = new Date(booking.booking_date);
+    const returnDate = new Date(booking.return_date);
     if (isNaN(bookingDate.getTime()) || isNaN(returnDate.getTime())) {
       return 0;
     }
     const diffTime = Math.abs(returnDate.getTime() - bookingDate.getTime());
-    const diffDays = Math.ceil(diffTime / (2000 * 60 * 60 * 24));
-    const totalAmount = vehicleRate.rental_rate * diffDays;
+    const diffDays = Math.ceil(diffTime / (5000 * 60 * 60 * 24));
+    const totalAmount = vehicleRate * diffDays;
     setFormData(prev => ({ ...prev, total_amount: totalAmount }));
   };
 
   useEffect(() => {
-    calculateTotalAmount();
+    const totalAmount = calculateTotalAmount();
+    setFormData(prev => ({ ...prev, total_amount: totalAmount }));
   }, [booking, vehicleRate]);
+
+  // Format dates to mm/dd/yyyy
+  const formatDate = (dateString: string) => {
+    const currentDate = new Date().toISOString().split('T')[0];
+  
+  };
 
   const handleCancel = () => {
     dispatch(removeBooking());
@@ -95,7 +98,12 @@ const BookingDetails: React.FC = () => {
           }}
         />
         <h2 className="text-2xl font-bold mb-5">Edit Booking</h2>
-        <p>Please fill in the form below to edit your booking.</p>
+        <p>{booking?.user_id}</p>
+        <p>{booking?.booking_status}</p>
+        <p>{booking?.total_amount}</p>
+        <p>{booking?.booking_date}</p>
+        <p>{booking?.return_date}</p>
+        <p>{booking?.location_id}</p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="location_id" className="block mb-2">Pickup Location</label>

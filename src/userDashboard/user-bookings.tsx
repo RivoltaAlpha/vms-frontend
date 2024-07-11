@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { bookingsAPI } from "../features/bookings/bookingsApi";
 import { RootState } from '../app/store';
 import { Toaster, toast } from 'sonner';
-import { TBooking } from '../types/types';
+import { Booking  } from '../types/types';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBooking } from '../features/bookings/bookingSlice';
@@ -25,12 +25,12 @@ const UserBookings: React.FC = () => {
         }
     };
 
-   const  handleViewDetails = (booking: TBooking[] ) => {
+   const  handleViewDetails = (booking: Booking ) => {
     dispatch(setBooking(booking)); 
     console.log('Dispatch:', booking);
      };
 
-  const handleUpdate = async (booking_id: number, data: Partial<TBooking>) => {
+  const handleUpdate = async (booking_id: number, data: Partial<Booking>) => {
     try {
       await updateBooking({booking_id, ...data }).unwrap();
       toast.success('Booking updated successfully');
@@ -53,16 +53,16 @@ const UserBookings: React.FC = () => {
       />
       <div className="overflow-x-auto m-[100px] text-base-content bg-base rounded-lg p-4">
         <h1 className='text-3xl text-cyan-50 my-4'>{user?.username} Bookings Data</h1>
-        <table className="table table-xs w-full ml-12 px-4">
+        <table className="table table-xs w-full ml-[100px] px-4">
           <thead>
             <tr className='text-lg'>
-              <th>Location</th>
-              <th>Booking Date</th>
-              <th>Return Date</th>
-              <th>Total Amount</th>
-              <th>Status</th>
-              <th>Vehicle ID</th>
-              <th>Options</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Booking Id</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Booking Date</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Return Date</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Total Amount</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Status</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Vehicle ID</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Options</th>
             </tr>
           </thead>
           <tbody>
@@ -71,25 +71,26 @@ const UserBookings: React.FC = () => {
             ) : isError ? (
               <tr><td colSpan={7}>Error loading bookings</td></tr>
             ) : (
-              bookings && bookings.map((booking) => (
-                <tr key={booking.booking_id}>
-                  <td>{booking.location_id}</td>
-                  <td>{new Date(booking.booking_date).toLocaleString()}</td>
-                  <td>{new Date(booking.return_date).toLocaleString()}</td>
-                  <td>${booking.total_amount}</td>
-                  <td>{booking.status}</td>
-                  <td>{booking.vehicle_id}</td>
-                  <td className='flex py-4 gap-4'>
+              bookings && bookings?.map((booking) => (
+                <tr key={booking?.booking_id}>
+                  <td className="py-2 px-4 border-b border-gray-300">{booking?.booking_id}</td>
+                  {/* <td>{booking?.location.name}</td> */}
+                  <td className="py-2 px-4 border-b border-gray-300">{new Date(booking?.booking_date).toLocaleString()}</td>
+                  <td className="py-2 px-4 border-b border-gray-300">{new Date(booking?.return_date).toLocaleString()}</td>
+                  <td className="py-2 px-4 border-b border-gray-300">${booking?.total_amount}</td>
+                  <td className="py-2 px-4 border-b border-gray-300">{booking?.booking_status}</td>
+                  <td className="py-2 px-4 border-b border-gray-300">{booking?.vehicle_id}</td>
+                  <td className='flex items-center py-2 px-4 border-b border-gray-300 gap-4'>
                     <NavLink
                       className='btn px-6 py-3 bg-teal-400 btn-sm btn-outline btn-success'
-                      onClick={() => handleViewDetails([booking])}
-                      to={`/booking-details/${booking.booking_id}`}
+                      onClick={() => handleViewDetails(booking)}
+                      to={`/booking-details/${booking?.booking_id}`}
                     >
                       View Details
                     </NavLink>
                     <button
                       className='btn px-6 py-3 bg-teal-400 btn-sm btn-outline btn-success'
-                      onClick={() => handleUpdate(booking.booking_id, booking)}
+                      onClick={() => handleUpdate(booking?.booking_id, booking)}
                     >
                       Update
                     </button>
@@ -101,7 +102,8 @@ const UserBookings: React.FC = () => {
                     </button>
                   </td>
                 </tr>
-              ))
+              )
+            )
             )}
           </tbody>
           <tfoot className='text-lg flex-col justify-end'>
