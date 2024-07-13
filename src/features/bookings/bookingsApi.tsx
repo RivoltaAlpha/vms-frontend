@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { Booking } from '../../types/types';
+import type { Booking, BookingDetails } from '../../types/types';
 
 export const bookingsAPI = createApi({
     reducerPath: 'bookingsAPI',
@@ -19,9 +19,11 @@ export const bookingsAPI = createApi({
             query: () => '/bookings',
             providesTags: ['getBookings'],
         }),
-        getBooking: builder.query<Booking[], number>({
+
+        getBooking: builder.query<BookingDetails, number>({
             query: (booking_id) => `/booking/${booking_id}`,
         }),
+
         createBooking: builder.mutation<Booking, Partial<Booking>>({
             query: (newBooking) => ({
                 url: '/create-booking',
@@ -30,6 +32,7 @@ export const bookingsAPI = createApi({
             }),
             invalidatesTags: [ 'getBookings'],
         }),
+
         updateBooking: builder.mutation<Booking, Partial<Booking>>({
             query: ({ booking_id, ...rest }) => ({
                 url: `/update-booking/${booking_id}`,
@@ -38,6 +41,7 @@ export const bookingsAPI = createApi({
             }),
             invalidatesTags: [ 'getBookings'],
         }),
+        
         deleteBooking: builder.mutation<{ success: boolean; id: number }, number>({
             query: (id) => ({
                 url: `/delete-booking/${id}`,
