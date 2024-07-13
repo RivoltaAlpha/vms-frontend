@@ -7,6 +7,8 @@ import { Booking  } from '../types/types';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBooking } from '../features/bookings/bookingSlice';
+import { FaBackwardFast } from 'react-icons/fa6';
+
 
 const UserBookings: React.FC = () => {
   const dispatch = useDispatch();
@@ -51,9 +53,13 @@ const UserBookings: React.FC = () => {
           },
         }}
       />
-      <div className="overflow-x-auto m-[100px] text-base-content bg-base rounded-lg p-4">
+      <div className="overflow-y-auto m-[100px] text-base-content bg-base rounded-lg p-4">
+        <div className='flex flex-wrap justify-between'>
         <h1 className='text-3xl text-cyan-50 my-4'>{user?.username} Bookings Data</h1>
-        <table className="table table-xs w-full ml-[100px] px-4">
+        <NavLink to="/user-dashboard" className=" text-white rounded mr-2"><FaBackwardFast size={20} /> </NavLink>
+        </div>
+        <div>
+        <table className="table table-xs w-full ml-[10px] px-4">
           <thead>
             <tr className='text-lg'>
               <th className="py-2 px-4 border-b-2 border-gray-300">Booking Id</th>
@@ -82,20 +88,20 @@ const UserBookings: React.FC = () => {
                   <td className="py-2 px-4 border-b border-gray-300">{booking?.vehicle_id}</td>
                   <td className='flex items-center py-2 px-4 border-b border-gray-300 gap-4'>
                     <NavLink
-                      className='btn px-6 py-3 bg-teal-400 btn-sm btn-outline btn-success'
+                      className='btn px-6 py-3 bg-teal-400 btn-sm rounded btn-outline btn-success'
                       onClick={() => handleViewDetails(booking)}
                       to={`/booking-details/${booking?.booking_id}`}
                     >
                       View Details
                     </NavLink>
                     <button
-                      className='btn px-6 py-3 bg-teal-400 btn-sm btn-outline btn-success'
+                      className='btn px-6 py-3 bg-teal-400 rounded btn-sm btn-outline btn-success'
                       onClick={() => handleUpdate(booking?.booking_id, booking)}
                     >
                       Update
                     </button>
                     <button
-                      className='btn px-6 py-3 bg-red-500 btn-sm btn-outline btn-error'
+                      className='btn px-6 py-3 bg-red-500 btn-sm rounded  btn-outline btn-error'
                       onClick={() => handleDelete(booking.booking_id)}
                     >
                       Delete
@@ -106,13 +112,13 @@ const UserBookings: React.FC = () => {
             )
             )}
           </tbody>
-          <tfoot className='text-lg flex-col justify-end'>
+          <tfoot className='text-lg py-4 flex-col justify-end'>
             <tr>
               <td colSpan={7}>{bookings ? `${bookings.length} records` : '0 records'}</td>
-              <NavLink to="/user-dashboard" className="px-4 py-2 bg-teal-500 text-white rounded mr-2">Dashboard</NavLink>
             </tr>
           </tfoot>
         </table>
+      </div>
       </div>
     </>
   );

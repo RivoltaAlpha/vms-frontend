@@ -1,88 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from '../app/store';
 import { useNavigate } from 'react-router-dom';
 import { Toaster, toast } from 'sonner';
-import { BookingFormData } from '../types/types';
 import { bookingsAPI } from '../features/bookings/bookingsApi';
-import { removeBooking, setBooking } from '../features/bookings/bookingSlice';
 
 const BookingDetails: React.FC = () => {
-  const { booking } = useSelector((state: RootState) => state.booking);
+  const [ booking, isLoading,error ] = bookingsAPI.useGetBookingQuery(booking_id);
   const { vehicleRate }: any = useSelector((state: RootState) => state.vehicles.selectedVehicle?.rental_rate);
 
-  const [updateBooking, { isLoading }] = bookingsAPI.useUpdateBookingMutation();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  console.log(booking);
 
-  const [formData, setFormData] = useState<Partial<BookingFormData>>({
-    user_id: booking?.user_id || 0,
-    vehicle_id: booking?.vehicle_id || 0,
-    booking_date: booking?.booking_date || '',
-    return_date: booking?.return_date || '',
-    location_id:booking?.location_id || 0,
-    total_amount: booking?.total_amount || 0,
-    booking_status: booking?.booking_status || '',
-  });
-
-  useEffect(() => {
-    const storedBooking = JSON.parse(localStorage.getItem('selectedBooking') || '{}');
-    setFormData(storedBooking);
-    dispatch(setBooking(storedBooking));
-  }, []);
-  
-// calcaulate total amount &&& change date formart from: 2022-07-21T00:00:00.000Z to 07/21/2022
-
-
-  // Calculate total amount
-  const calculateTotalAmount = () => {
-    if (!booking || !vehicleRate) return 0;
-    const bookingDate = new Date(booking.booking_date);
-    const returnDate = new Date(booking.return_date);
-    if (isNaN(bookingDate.getTime()) || isNaN(returnDate.getTime())) {
-      return 0;
-    }
-    const diffTime = Math.abs(returnDate.getTime() - bookingDate.getTime());
-    const diffDays = Math.ceil(diffTime / (5000 * 60 * 60 * 24));
-    const totalAmount = vehicleRate * diffDays;
-    setFormData(prev => ({ ...prev, total_amount: totalAmount }));
-  };
-
-  useEffect(() => {
-    const totalAmount = calculateTotalAmount();
-    setFormData(prev => ({ ...prev, total_amount: totalAmount }));
-  }, [booking, vehicleRate]);
-
-  // Format dates to mm/dd/yyyy
-  const formatDate = (dateString: string) => {
-    const currentDate = new Date().toISOString().split('T')[0];
-  
-  };
-
-  const handleCancel = () => {
-    dispatch(removeBooking());
-    navigate(`/user-bookings/${booking?.user_id}`);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(formData);
-    try {
-      await updateBooking(formData).unwrap();
-      toast.success('Booking updated successfully');
-      localStorage.removeItem('selectedBooking');
-      navigate('/user-bookings');
-    } catch (error) {
-      console.error('Error updating booking:', error);
-      toast.error('Error updating booking');
-    }
-    console.log('Form Data:', formData);
-  };
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading bookings.</p>;
 
   return (
     <>
@@ -97,76 +27,29 @@ const BookingDetails: React.FC = () => {
             },
           }}
         />
-        <h2 className="text-2xl font-bold mb-5">Edit Booking</h2>
-        <p>{booking?.user_id}</p>
-        <p>{booking?.booking_status}</p>
-        <p>{booking?.total_amount}</p>
-        <p>{booking?.booking_date}</p>
-        <p>{booking?.return_date}</p>
-        <p>{booking?.location_id}</p>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="location_id" className="block mb-2">Pickup Location</label>
-            <select
-              id="location_id"
-              name="location_id"
-              value={formData.location_id}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            >
-              <option value="">Select a location</option>
-              <option value="1">Location 1</option>
-              <option value="2">Location 2</option>
-              <option value="3">Location 3</option>
-              <option value="4">Location 4</option>
-              <option value="5">Location 5</option>
-              <option value="6">Location 6</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="booking_date" className="block mb-2">Pickup Date</label>
-            <input
-              type="datetime-local"
-              id="booking_date"
-              name="booking_date"
-              value={formData.booking_date}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="return_date" className="block mb-2">Return Date</label>
-            <input
-              type="datetime-local"
-              id="return_date"
-              name="return_date"
-              value={formData.return_date}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="total_amount" className="block mb-2">Total Amount</label>
-            <input
-              type="number"
-              id="total_amount"
-              name="total_amount"
-              value={formData.total_amount}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-            {isLoading ? 'Updating...' : 'Update Booking'}
-          </button>
-          <button type="button" onClick={handleCancel} className="w-full bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
-            Cancel
-          </button>
-        </form>
+
+          <ul className='py'>
+          <h2 className="text-2xl font-bold mb-5">Booking Details</h2>
+          
+          <p> Booking Id:</p>
+            <li className='w-full p-2  mb-6 border rounded'> {booking?.booking_id}</li>
+
+          <p> User Details:</p>
+            <li className='w-full p-2  mb-6 border rounded'> {booking?.user_id}</li>
+            <p> Vehicle Details:</p>
+            <li className='w-full p-2  mb-6 border rounded'> {booking?.vehicle_id}</li>
+            <p> Booking Status:</p>
+            <li className='w-full p-2  mb-6 border rounded'> {booking?.booking_status} </li>
+            <p> Cost:</p>
+            <li className='w-full p-2  mb-6 border rounded'> {booking?.total_amount} </li>
+            <p> Pick Up Date:</p>
+            <li className='w-full p-2  mb-6 border rounded'> {new Date (booking?.booking_date).toDateString() } </li>
+            <p> Return Date:</p>
+            <li className='w-full p-2  mb-6 border rounded'> {new Date (booking?.return_date).toDateString() } </li>
+            <p> Pick-up Location:</p>
+            <li className='w-full p-2  mb-6 border rounded'>  {booking?.location_id}</li>
+          </ul>
+
       </div>
     </>
   );
