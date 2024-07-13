@@ -23,6 +23,7 @@ const BookingsTable: React.FC = () => {
             <th className="py-2 px-4 border-b-2 border-gray-300">Total Amount</th>
             <th className="py-2 px-4 border-b-2 border-gray-300">Status</th>
             <th className="py-2 px-4 border-b-2 border-gray-300">Vehicle ID</th>
+            <th className="py-2 px-4 border-b-2 border-gray-300">Vehicle Rate</th>
             <th className="py-2 px-4 border-b-2 border-gray-300">Availability</th>
             <th className="py-2 px-4 border-b-2 border-gray-300">Vehicle Model</th>
             <th className="py-2 px-4 border-b-2 border-gray-300">Vehicle Manufacturer</th>
@@ -39,6 +40,7 @@ const BookingsTable: React.FC = () => {
               <td className="py-2 px-4 border-b">{booking.booking_status}</td>
               <td className="py-2 px-4 border-b">{booking.vehicle?.vehicle_id}</td>
               <td className="py-2 px-4 border-b">{booking.vehicle?.rental_rate}</td>
+              <td className="py-2 px-4 border-b">{booking.vehicle?.availability? 'Available' : 'Not Available'}</td>
               <td className="py-2 px-4 border-b">{booking.vehicle?.vehicleSpec?.model}</td>
               <td className="py-2 px-4 border-b">{booking.vehicle?.vehicleSpec?.manufacturer}</td>
               

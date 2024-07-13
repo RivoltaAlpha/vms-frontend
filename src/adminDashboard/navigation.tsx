@@ -114,7 +114,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/user-profile"
+                to="/admin-profile"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 {" "}
