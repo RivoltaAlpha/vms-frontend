@@ -22,8 +22,8 @@ const Slide: React.FC<SlideProps> = ({ title, description, imageUrl }) => (
     <div className="relative z-10 flex flex-col justify-center items-center h-full text-white text-center px-4">
       <h1 className="text-5xl font-bold mb-4">{title}</h1>
       <p className="text-xl mb-8 max-w-2xl">{description}</p>
-      <button className="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-        LEARN MORE
+      <button className="bg-red-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+        Explore
       </button>
     </div>
   </div>

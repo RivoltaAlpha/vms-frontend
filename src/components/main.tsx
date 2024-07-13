@@ -53,7 +53,7 @@ const CardsSection = () => {
         <p className="text-xl mb-12">
           Discover the range of services we offer to make your vehicle rental experience smooth and enjoyable.
         </p>
-        <div className="grid grig-cols-1 sm:grid-cols-1 gap-8">
+        <div className="flex flex-col sm:grid-cols-1 gap-8">
           {cardData.map((card, index) => (
             <div key={index} className="card">
               <Card {...card} />
