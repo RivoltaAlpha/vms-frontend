@@ -22,6 +22,8 @@ import BookingDetails  from "./userDashboard/bookingDetails";
 import UsersTable from "./adminDashboard/users";
 import BookingsTable from "./adminDashboard/bookings";
 import VehiclesTable from "./adminDashboard/vehicles";
+import AdminProfile from "./adminDashboard/profile"
+import UpdateBooking from "./userDashboard/updateBooking"
 
 const App = () => {
   return (
@@ -45,7 +47,9 @@ const App = () => {
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/user-bookings/:user_id" element={<UserBookings />} />
             <Route path="/booking-details/:booking_id" element={<BookingDetails />} />
+            <Route path="/update-details/:booking_id" element={<UpdateBooking />} />
             <Route path="/user-profile" element={<Profile />} />
+            <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/edit-profile" element={<ProfileEditPage />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/book/:vehicle_id" element={<BookingForm />} />
