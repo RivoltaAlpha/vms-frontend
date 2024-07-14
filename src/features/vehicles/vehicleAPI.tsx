@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TSVehicle, TIVehicle, TIVehicleSpec } from '../../types/types';
+import { TSVehicle, TIVehicleSpec } from '../../types/types';
 
 export const VehiclesAPI = createApi({
     reducerPath: 'VehiclesAPI',
@@ -14,7 +14,7 @@ export const VehiclesAPI = createApi({
             return headers;
           },
     }),
-    tagTypes: ['getVehicles','getVehicle', 'createVehicle', 'updateVehicle', 'deleteVehicle'],
+    tagTypes: ['getVehicles'],
     endpoints: (builder) => ({
         getVehicles: builder.query<TIVehicleSpec[], void>({
             query: () => '/vehicles',
@@ -23,24 +23,24 @@ export const VehiclesAPI = createApi({
 
         getvehicle: builder.query<TSVehicle, number>({
             query: (id) => `/vehicle/${id}`,        
-            providesTags: ['getVehicle', 'getVehicles'],
+            providesTags: ['getVehicles'],
         }),
 
-        createvehicle: builder.mutation<TSVehicle, Partial<TIVehicle>>({
+        createvehicle: builder.mutation<TSVehicle, Partial<TSVehicle>>({
             query: (newVehicle) => ({
                 url: '/vehicle',
                 method: 'POST',
                 body: newVehicle,
             }),
-            invalidatesTags: ['getVehicles', 'createVehicle'],
+            invalidatesTags: ['getVehicles'],
         }),
-        updatevehicle: builder.mutation<TSVehicle, { id: number; data: Partial<TIVehicle> }>({
+        updatevehicle: builder.mutation<TSVehicle, { id: number; data: Partial<TSVehicle> }>({
             query: ({ id, data }) => ({
                 url: `/update-vehicle/${id}`,
                 method: 'PUT',
                 body: data,
             }),
-            invalidatesTags: ['getVehicles', 'updateVehicle'],
+            invalidatesTags: ['getVehicles'],
         }),
         deletevehicle: builder.mutation<{ success: boolean; id: number }, number>({
             query: (id) => ({
@@ -51,7 +51,7 @@ export const VehiclesAPI = createApi({
                     'Content-Type': 'application/json',
                 },
             }),
-            invalidatesTags: ['getVehicles', 'deleteVehicle'],
+            invalidatesTags: ['getVehicles'],
         }),
     }),
 });
