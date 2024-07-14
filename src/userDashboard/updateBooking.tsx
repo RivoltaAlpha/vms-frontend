@@ -65,7 +65,7 @@ const UpdateBooking: React.FC = () => {
     e.preventDefault();
     console.log(formData);
     try {
-      await updateBooking(formData).unwrap();
+      await updateBooking({booking_id: booking?.booking_id, data:formData}).unwrap();
       toast.success('Booking updated successfully');
       localStorage.removeItem('selectedBooking');
       navigate('/user-bookings');

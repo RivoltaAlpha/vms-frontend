@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { bookingsAPI } from "../features/bookings/bookingsApi";
 import { RootState } from '../app/store';
 import { Toaster, toast } from 'sonner';
-import { Booking  } from '../types/types';
-import { NavLink } from 'react-router-dom';
+import { Booking, BookingDetails, TIBookings  } from '../types/types';
+import { Navigate, NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBooking } from '../features/bookings/bookingSlice';
 import { FaBackwardFast } from 'react-icons/fa6';
@@ -27,20 +27,22 @@ const UserBookings: React.FC = () => {
         }
     };
 
-   const  handleViewDetails = (booking: Booking ) => {
-    dispatch(setBooking(booking)); 
-    console.log('Dispatch:', booking);
-     };
+    const handleViewDetails = (BookingDetails: BookingDetails) => {
+      dispatch(setBooking(BookingDetails));
+      localStorage.setItem('selectedBooking', JSON.stringify(BookingDetails));
+      Navigate({
+        to: `/booking-details/${BookingDetails.booking_id}`
+      });
+    };
 
-  const handleUpdate = async (booking_id: number, data: Partial<Booking>) => {
-    try {
-      await updateBooking({booking_id, ...data }).unwrap();
-      toast.success('Booking updated successfully');
-    } catch (error) {
-      toast.error('Error updating booking');
-    }
-  };
-
+    const handleUpdate = async (booking_id: number, data: BookingDetails) => {
+      try {
+        await updateBooking(booking_id, data).unwrap();
+        toast.success('Booking updated successfully');
+      } catch (error) {
+        toast.error('Error updating booking');
+      }
+    };
   return (
     <>
       <Toaster
