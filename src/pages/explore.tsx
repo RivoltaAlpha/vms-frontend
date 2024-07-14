@@ -1,13 +1,13 @@
 import React from 'react';
 import VehiclesAPI from '../features/vehicles/vehicleAPI';
-import { TIVehicle } from '../types/types';
+import { TIVehicleSpec } from '../types/types';
 import { Link } from 'react-router-dom';
 import { setSelectedVehicle } from '../features/vehicles/vehiclesSlice';
 import { useDispatch } from 'react-redux';
 
 interface VehicleCardProps {
-  vehicle: TIVehicle;
-  handleVehicleClick: (vehicle: TIVehicle) => void;
+  vehicle: TIVehicleSpec;
+  handleVehicleClick: (vehicle: TIVehicleSpec) => void;
 }
 
 const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, handleVehicleClick }) => (
@@ -35,7 +35,7 @@ const Explore = () => {
   const { data: vehicles = [] } = VehiclesAPI.useGetVehiclesQuery();
   console.log(vehicles)
   const dispatch = useDispatch();
-  const handleVehicleClick = (vehicle: TIVehicle) => {
+  const handleVehicleClick = (vehicle: TIVehicleSpec) => {
     dispatch(setSelectedVehicle(vehicle));
   };
 
