@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { Booking, BookingDetails } from '../../types/types';
+import type { Booking, BookingDetails, TIBookings } from '../../types/types';
 
 export const bookingsAPI = createApi({
     reducerPath: 'bookingsAPI',
@@ -15,7 +15,7 @@ export const bookingsAPI = createApi({
      }),
     tagTypes: ['getBookings'],
     endpoints: (builder) => ({
-        getBookings: builder.query<Booking[], void>({
+        getBookings: builder.query<BookingDetails[], void>({
             query: () => '/bookings',
             providesTags: ['getBookings'],
         }),
@@ -24,7 +24,7 @@ export const bookingsAPI = createApi({
             query: (booking_id) => `/booking/${booking_id}`,
         }),
 
-        createBooking: builder.mutation<Booking, Partial<Booking>>({
+        createBooking: builder.mutation<Booking, Partial<TIBookings>>({
             query: (newBooking) => ({
                 url: '/create-booking',
                 method: 'POST',
@@ -33,15 +33,15 @@ export const bookingsAPI = createApi({
             invalidatesTags: [ 'getBookings'],
         }),
 
-        updateBooking: builder.mutation<Booking, Partial<Booking>>({
-            query: ({ booking_id, ...rest }) => ({
+        updateBooking: builder.mutation<Booking, { booking_id: number; data:Partial<Booking>}>({
+            query: ({ booking_id, data }) => ({
                 url: `/update-booking/${booking_id}`,
                 method: 'PUT',
-                body: rest,
+                body: data,
             }),
             invalidatesTags: [ 'getBookings'],
         }),
-        
+
         deleteBooking: builder.mutation<{ success: boolean; id: number }, number>({
             query: (id) => ({
                 url: `/delete-booking/${id}`,
@@ -50,6 +50,7 @@ export const bookingsAPI = createApi({
             }),
             invalidatesTags: ['getBookings'],
         }),
+        
         getBookingsByUserId: builder.query<Booking[], number>({
             query: (id) => `/user-bookings/${id}`,
         }),
