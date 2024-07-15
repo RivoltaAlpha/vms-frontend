@@ -27,7 +27,7 @@ export const Navigation: React.FC = () => {
   };
   
   return (
-    <nav className="bg-base p-4  h-auto w-64">
+    <nav className="bg-base p-4 h-screen w-52">
       <ul className="space-y-10  ml-10">
         <div className="block lg:hidden">
           <button
@@ -64,7 +64,7 @@ export const Navigation: React.FC = () => {
           <ul className="pt-4 text-pretty text-rose-800 lg:flex flex-col gap-12 lg:justify-between lg:pt-0">
             <li>
               <Link
-                to="/user-dashboard"
+                to="/admin-dashboard"
                 className="text-white flex gap-3 font-bold hover:text-gray-200 "
               >
                 <MdDashboardCustomize />
@@ -106,7 +106,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/user-payment"
+                to="/payments"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <FaStripe /> Payments
