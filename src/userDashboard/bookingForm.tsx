@@ -21,8 +21,8 @@ export const BookingForm = () => {
     booking_date: '',
     return_date: '',
     total_amount: 0,
-    booking_status: 'pending',
-  });
+    booking_status: 'Pending',
+  } as BookingFormData);
 
   const calculateTotalAmount = () => {
     if (!vehicle) return 0;
@@ -35,7 +35,7 @@ export const BookingForm = () => {
     }
 
     const diffTime = Math.abs(returnDate.getTime() - bookingDate.getTime());
-    const diffDays = Math.ceil(diffTime / (5000 * 60 * 60 * 24));
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     return diffDays * vehicle.rental_rate;
   };

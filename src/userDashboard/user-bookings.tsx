@@ -3,20 +3,21 @@ import { useSelector } from "react-redux";
 import { bookingsAPI } from "../features/bookings/bookingsApi";
 import { RootState } from '../app/store';
 import { Toaster, toast } from 'sonner';
-import { Booking, BookingDetails, TIBookings  } from '../types/types';
-import { Navigate, NavLink } from 'react-router-dom';
+import { BookingDetails  } from '../types/types';
+import {  NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBooking } from '../features/bookings/bookingSlice';
 import { FaBackwardFast } from 'react-icons/fa6';
 
 
 const UserBookings: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user }: any = useSelector((state: RootState) => state.userAuth.user?.user_id && state.userAuth);
   const userId = user?.user_id;
   const { data: bookings, isLoading, isError } = bookingsAPI.useGetBookingsByUserIdQuery(userId);
-  const [updateBooking] = bookingsAPI.useUpdateBookingMutation();
   const [deleteBooking] = bookingsAPI.useDeleteBookingMutation();  
+
   
   const handleDelete = async (id: number) => {
       try {
@@ -27,22 +28,14 @@ const UserBookings: React.FC = () => {
         }
     };
 
-    const handleViewDetails = (BookingDetails: BookingDetails) => {
-      dispatch(setBooking(BookingDetails));
-      localStorage.setItem('selectedBooking', JSON.stringify(BookingDetails));
-      Navigate({
-        to: `/booking-details/${BookingDetails.booking_id}`
-      });
+    const handleViewDetails = (booking: BookingDetails) => {
+      dispatch(setBooking(booking));
+      localStorage.setItem('selectedBooking', JSON.stringify(booking));
+      navigate( `/booking-details/${booking.booking_id}`);
     };
 
-    const handleUpdate = async (booking_id: number, data: BookingDetails) => {
-      try {
-        await updateBooking(booking_id, data).unwrap();
-        toast.success('Booking updated successfully');
-      } catch (error) {
-        toast.error('Error updating booking');
-      }
-    };
+
+
   return (
     <>
       <Toaster
@@ -96,13 +89,7 @@ const UserBookings: React.FC = () => {
                     >
                       View Details
                     </NavLink>
-                    <button
-                      className='btn px-6 py-3 bg-teal-400 rounded btn-sm btn-outline btn-success'
-                      onClick={() => handleUpdate(booking?.booking_id, booking)}
-                    >
-                      Update
-                    </button>
-                    <button
+                                        <button
                       className='btn px-6 py-3 bg-red-500 btn-sm rounded  btn-outline btn-error'
                       onClick={() => handleDelete(booking.booking_id)}
                     >

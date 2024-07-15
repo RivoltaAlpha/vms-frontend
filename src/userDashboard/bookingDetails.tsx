@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../app/store';
+import {  useDispatch } from 'react-redux';
 import { Toaster } from 'sonner';
 import bookingsAPI from '../features/bookings/bookingsApi';
 import { removeBooking } from '../features/bookings/bookingSlice';
@@ -8,25 +7,19 @@ import { NavLink } from 'react-router-dom';
 
 const BookingDetails: React.FC = () => {
   const dispatch = useDispatch();
-  const selectedBooking = useSelector((state: RootState) => state.booking.selectedBooking);
-  const { bookingId} : any = selectedBooking?.booking_id;
-
-  const { data: booking, isLoading, error } = bookingsAPI.useGetBookingQuery(bookingId, {
-    skip: !bookingId, // Skip the query if no bookingId
-  });
+  const selectedBookingString = localStorage.getItem('selectedBooking');
+  const booking = JSON.parse(selectedBookingString || '{}');
 
   const [deleteBooking] = bookingsAPI.useDeleteBookingMutation();
-
   const handleDelete = async (id: number) => {
     await deleteBooking(id);
     dispatch(removeBooking());
   };
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading bookings.</p>;
+  if (!booking) return <p>No booking selected</p>;
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <div className="max-w-2xl mx-auto mt-10 p-6 bg-base shadow-lg rounded-lg">
       <Toaster
         toastOptions={{
           classNames: {
@@ -38,20 +31,17 @@ const BookingDetails: React.FC = () => {
         }}
       />
       <div className="booking-list">
-        <h2 className="text-2xl font-bold mb-5">Bookings</h2>
+        <h2 className="text-2xl font-bold mb-5"> Vehicle Details</h2>
         {booking && (
           <div key={booking.booking_id} className="booking-item">
             <p>Booking ID: {booking.booking_id}</p>
             <p>Booking Date: {new Date(booking.booking_date).toLocaleDateString()}</p>
             <p>Return Date: {new Date(booking.return_date).toLocaleDateString()}</p>
-            <p>Total Amount: ${booking.total_amount.toFixed(2)}</p>
-            <p>Vehicle: {booking.vehicle.vehicleSpec.manufacturer} {booking.vehicle.vehicleSpec.model}</p>
-            <p>Location: {booking.location.name}</p>
-            <p>User: {booking.user.username}</p>
-            <button className="px-4 py-2 mr-10 bg-teal-500 m-10 text-white rounded " onClick={() => handleDelete(booking.booking_id)}>Delete</button>
-            <NavLink to="/update-details"  >
-            <button className="px-4 py-2 mr-10 bg-teal-500 m-10 text-white rounded "></button>
-            </NavLink>
+            <p>Total Amount: ${booking.total_amount}</p>
+            {/* <p>Vehicle: {booking.vehicle.vehicleSpec.manufacturer} {booking.vehicle.vehicleSpec.model}</p> */}
+            {/* <p>Location: {booking.location.name}</p> */}
+            {/* <p>User: {booking.user.username}</p> */}
+
           </div>
         )}
       </div>
@@ -68,7 +58,17 @@ const BookingDetails: React.FC = () => {
           <li className="w-full p-2 mb-6 border rounded">Return Date: {new Date(booking.return_date).toDateString()}</li>
           <li className="w-full p-2 mb-6 border rounded">Pick-up Location: {booking.location_id}</li>
         </ul>
+        
       )}
+      <div>
+          <NavLink to="/user-bookings/:user_id"  >
+            <button className="px-4 py-2 mr-10 bg-teal-600 m-10 text-white rounded " >Back</button>
+          </NavLink>
+          <NavLink to = {`/update-details/${booking?.booking_id}`} >
+            <button className="px-4 py-2 mr-10 bg-teal-500 m-10 text-white rounded " >Update</button>
+          </NavLink>
+            <button className="px-4 py-2 mr-10 bg-red-500 m-10 text-white rounded " onClick={() => handleDelete(booking.booking_id)}>Delete</button>
+      </div>
     </div>
   );
 };
