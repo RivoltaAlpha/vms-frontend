@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { BookingState, Booking, BookingDetails } from '../../types/types';
+import { BookingState, BookingDetails } from '../../types/types';
 
 const initialState: BookingState = {
   selectedBooking: JSON.parse(localStorage.getItem('selectedBooking') || 'null'),
@@ -12,9 +12,9 @@ const bookingSlice = createSlice({
   reducers: {
     setBooking(state, action: PayloadAction<BookingDetails>) {
       state.booking = action.payload;
-      localStorage.setItem('booking', JSON.stringify(action.payload));
+      localStorage.setItem('selectedBooking', JSON.stringify(action.payload));
     },
-    updateBooking(state, action: PayloadAction<Booking>) {
+    updateBooking(state, action: PayloadAction<BookingDetails | null>) {
       state.selectedBooking = action.payload;
       localStorage.setItem('selectedBooking', JSON.stringify(action.payload));
     },

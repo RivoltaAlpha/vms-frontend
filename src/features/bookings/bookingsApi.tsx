@@ -34,7 +34,7 @@ export const bookingsAPI = createApi({
         }),
 
         updateBooking: builder.mutation<Booking, { booking_id: number; data:Partial<Booking>}>({
-            query: ({ booking_id, data }) => ({
+            query: ({ booking_id, data }: { booking_id: number; data:Partial<Booking>}) => ({
                 url: `/update-booking/${booking_id}`,
                 method: 'PUT',
                 body: data,
@@ -51,7 +51,7 @@ export const bookingsAPI = createApi({
             invalidatesTags: ['getBookings'],
         }),
         
-        getBookingsByUserId: builder.query<Booking[], number>({
+        getBookingsByUserId: builder.query<BookingDetails[], number>({
             query: (id) => `/user-bookings/${id}`,
         }),
     }),
