@@ -109,7 +109,19 @@ export interface Booking {
   booking_status: string;
 }
 
+export interface TIBookings{
+  booking_id: number;
+  user_id: [TIUser];
+  vehicle_id: [TSVehicle];
+  location_id: [Location];
+  booking_date: string;
+  return_date: string;
+  total_amount: number;
+  booking_status: string;
+}
+
 export interface BookingFormData {
+  booking_id: number;
   user_id: number;
   vehicle_id: number;
   location_id: number;
@@ -125,17 +137,11 @@ export interface BookingDetails {
   return_date: string;
   total_amount: number;
   booking_status: string;
-
-  user:{
-    user_id: number
-    first_name: string
-    last_name: string
-    username: string
-    email: string
-    contact_phone: string
-    address: string
-    role: string
-  }
+  location_id: number
+  vehicle_id: number
+  user_id: number
+  user: TUser
+  location: Location
   vehicle:{
     vehicle_id: number
     rental_rate: number
@@ -153,34 +159,11 @@ export interface BookingDetails {
       model: string;
     };
   };
-  location:{
-    location_id: number
-    name: string
-  } ;
   }
 
   export interface BookingState {
-    booking: {
-      booking_id: number;
-      user_id: number;
-      vehicle_id: number;
-      location_id: number;
-      booking_date: string;
-      return_date: string;
-      total_amount: number;
-      booking_status: string;
-    };
-    selectedBooking: 
-    {
-      booking_id: number;
-      user_id: number;
-      vehicle_id: number;
-      location_id: number;
-      booking_date: string;
-      return_date: string;
-      total_amount: number;
-      booking_status: string;
-    }| null;
+    booking: BookingDetails | null;
+    selectedBooking: BookingDetails| null;
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -210,7 +193,18 @@ export interface BookingDetails {
 //////////// Vehicle/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   export interface TIVehicle {
     vehicle_id: number;
-    vehicleSpec: TIVehicleSpec;
+    vehicleSpec: {
+      manufacturer: string;
+      model: string;
+      year: number;
+      fuel_type: string;
+      engine_capacity: number;
+      transmission: string;
+      seating_capacity: number;
+      color: string;
+      features: string[];
+      body_type: string;
+    }
     // image_url: string;
     rental_rate: number;
     availability: boolean;
