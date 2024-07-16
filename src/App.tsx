@@ -24,12 +24,17 @@ import BookingsTable from "./adminDashboard/bookings";
 import VehiclesTable from "./adminDashboard/vehicles";
 import AdminProfile from "./adminDashboard/profile"
 import UpdateBooking from "./userDashboard/updateBooking"
+import VehicleSpec from "./adminDashboard/VehicleSpec";
+import CreateVspecForm from "./adminDashboard/createVSpec";
+import CreateVehicleForm from "./adminDashboard/createVehicle";
+// import Navigation from "./adminDashboard/navigation";
 
 const App = () => {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex bg-gray-200 flex-col min-h-screen">
         <Header />
+        {/* <Navigation /> */}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -57,6 +62,9 @@ const App = () => {
             <Route path="/users" element={<UsersTable />} />
             <Route path="/bookings" element={<BookingsTable />} />
             <Route path="/vehicles" element={<VehiclesTable />} />
+            <Route path="/addVehicle" element={<CreateVehicleForm />} />
+            <Route path="/vspec" element={<VehicleSpec />} />
+            <Route path="/addVspec" element={<CreateVspecForm />} />
           </Routes>
         </main>
         <Footer />
