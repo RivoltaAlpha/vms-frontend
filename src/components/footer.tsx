@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-red-100 py-8">
+    <footer className="bg-cyan-600 py-2">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between items-start">
           {/* Organization Info */}
