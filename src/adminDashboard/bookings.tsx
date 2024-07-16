@@ -15,7 +15,7 @@ const BookingsTable: React.FC = () => {
        <Navigation/> 
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-5">Bookings Data</h2>
-        <table className="min-w-full bg-base">
+        <table className="min-w-full bg-cards">
           <thead>
             <tr>
               <th className="py-2 px-4 border-b-2 border-gray-300">Location</th>
