@@ -212,7 +212,7 @@ export interface BookingDetails {
 
   export interface TSVehicle {
     vehicle_id: number;
-    // image_url: string;
+    image_url: string;
     rental_rate: number;
     availability: boolean;
     vehicleSpec: [TIVehicleSpec];
@@ -242,3 +242,17 @@ export interface BookingDetails {
     selectedVehicle: TIVehicle | null;
   }
 
+//////////////////////////////////////////////////////////////////////////////////
+export interface Vspec {
+  vehicleSpec_id: number;
+  manufacturer: string;
+  model: string;
+  year: number;
+  fuel_type: string;
+  engine_capacity: number;
+  transmission: string;
+  seating_capacity: number;
+  color: string;
+  features: string[];
+  body_type: string;
+}
