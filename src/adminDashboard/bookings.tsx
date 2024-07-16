@@ -1,8 +1,6 @@
 // components/BookingsTable.tsx
 import React from 'react';
 import bookingsAPI from '../features/bookings/bookingsApi';
-import { NavLink } from 'react-router-dom';
-import { FaBackwardFast } from 'react-icons/fa6';
 import Navigation from './navigation';
 
 const BookingsTable: React.FC = () => {
@@ -48,17 +46,14 @@ const BookingsTable: React.FC = () => {
                 <td className="py-2 px-4 border-b">{booking.vehicle?.vehicleSpec?.manufacturer}</td>
                 
                 <td className="py-2 px-4 border-b">
-                  <button className="bg-teal-500 text-white py-1 px-3 rounded hover:bg-blue-600">View Details</button>
+                  <button className="bg-secondary text-white py-1 px-3 rounded hover:bg-blue-600">View Details</button>
                 </td>
               </tr>
             ))}
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan={7} className="text-right py-4 px-4 border-t">
-                <NavLink to="/admin-dashboard" className="px-4 py-2 mr-10  m-10 text-white rounded ">
-                <FaBackwardFast size={20} /> 
-                </NavLink>
+              <td colSpan={7} className=" py-4 px-4 ">
                 {bookings?.length} {bookings?.length === 1 ? 'record' : 'records'}
               </td>
             </tr>

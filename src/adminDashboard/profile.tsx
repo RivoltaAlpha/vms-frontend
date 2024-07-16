@@ -14,9 +14,9 @@ export default function AdminProfile() {
                 <div className="p-6 w-[600px]">
                     <div className="flex items-center justify-center mb-6">
                         <img 
-                            // src={user?.profile_picture || '/path/to/default-profile-picture.jpg'} 
+                            src={'./images/Social media-cuate.png'} 
                             alt="User Profile" 
-                            className="w-32 h-32 rounded-full object-cover"
+                            className="w-[300px] h-[300px] object-cover"
                         />
                     </div>
                     <h2 className="text-2xl font-bold mb-4 text-center">User Details</h2>
@@ -39,10 +39,7 @@ export default function AdminProfile() {
                     </div>
                     <div className="mt-6 flex flex-row justify-between" >
                         <div className="mt-6 ">
-                            <NavLink to="/admin-dashboard" className="px-4 py-2 bg-teal-500 text-white rounded mr-2">Dashboard</NavLink>
-                        </div>
-                        <div className="mt-6 ">
-                            <NavLink to="/edit-profile" className="px-4 py-2 bg-red-400 text-white rounded mr-2">Edit Profile</NavLink>
+                            <NavLink to="/edit-profile" className="px-4 py-2 bg-secondary text-white rounded mr-2">Edit Profile</NavLink>
                         </div>
                     </div>
                 </div>
