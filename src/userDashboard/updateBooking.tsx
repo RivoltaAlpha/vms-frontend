@@ -86,8 +86,8 @@ const UpdateBooking: React.FC = () => {
     // Convert dates to ISO strings
     const formattedData = {
       ...formData,
-      booking_date:  bookingDate.toLocaleString(),
-      return_date: returnDate .toLocaleString(),
+      booking_date:  bookingDate.toString(),
+      return_date: returnDate .toString(),
     };
     
     try {
