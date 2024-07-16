@@ -9,6 +9,18 @@ export interface RUser {
     password: string;
   }
 
+  // create User
+  export interface User {
+    first_name: string;
+    last_name: string;
+    username: string;
+    contact_phone: string;
+    email: string;
+    address: string;
+    password: string;
+    role: string;
+}
+
   // Login User
   export interface Luser {
       username: string;
