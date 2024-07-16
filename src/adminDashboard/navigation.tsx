@@ -27,7 +27,7 @@ export const Navigation: React.FC = () => {
   };
   
   return (
-    <nav className="bg-base p-4 h-screen w-52">
+    <nav className="bg-cards p-4 h-screen w-52">
       <ul className="space-y-10  ml-10">
         <div className="block lg:hidden">
           <button
