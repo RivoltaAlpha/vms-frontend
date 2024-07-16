@@ -9,7 +9,7 @@ export const Header = () => {
   };
 
   return (
-    <header className=" text-black">
+    <header className="bg-red-50 text-black">
       <nav className="container mx-auto px-6 py-3 flex flex-wrap justify-between items-center">
         <div className="text-xl font-bold">
         AniRent
