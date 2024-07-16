@@ -50,11 +50,11 @@ export  const ProfileEditPage = () => {
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <div className="p-6">
           <div className="flex items-center justify-center mb-6">
-            <img
-              // src={user?.profile_picture || '/path/to/default-profile-picture.jpg'}
-              alt="User Profile"
-              className="w-32 h-32 rounded-full object-cover"
-            />
+          <img 
+                            src={'./images/Social media-cuate.png'} 
+                            alt="User Profile" 
+                            className="w-[300px] h-[300px] object-cover"
+                        />
           </div>
           <form onSubmit={handleSubmit}>
             <div className="space-y-4">
@@ -108,8 +108,8 @@ export  const ProfileEditPage = () => {
               />
             </div>
             <div className="mt-6 flex justify-end space-x-4">
-              <NavLink to="/user-profile" type="button"  className="px-4 py-2 bg-gray-300 text-gray-700 rounded">Back</NavLink>
-              <button type="submit" disabled={isLoading} className="px-4 py-2 bg-teal-500 text-white rounded" >
+              <NavLink to="/user-profile" type="button"  className="px-4 py-2 bg-secondary text-white rounded">Back</NavLink>
+              <button type="submit" disabled={isLoading} className="px-4 py-2 bg-base text-white rounded" >
                 {isLoading ? 'Saving...' : 'Save'}
                 </button>
               <button type="button" className="px-4 py-2 bg-red-500 text-white rounded">Delete</button>
