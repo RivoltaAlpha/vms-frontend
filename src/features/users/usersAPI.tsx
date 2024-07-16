@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TUser,TIUser } from '../../types/types';
+import { TUser,TIUser, User } from '../../types/types';
 
 export const usersAPI = createApi({
     reducerPath: 'usersAPI',
@@ -25,7 +25,7 @@ export const usersAPI = createApi({
             providesTags: ['getUser', 'getUsers'],
         }),
 
-        createUser: builder.mutation<TUser, Partial<TIUser>>({
+        createUser: builder.mutation<User, Partial<User>>({
             query: (newUser) => ({
                 url: '/user',
                 method: 'POST',
