@@ -27,6 +27,7 @@ import UpdateBooking from "./userDashboard/updateBooking"
 import VehicleSpec from "./adminDashboard/VehicleSpec";
 import CreateVspecForm from "./adminDashboard/createVSpec";
 import CreateVehicleForm from "./adminDashboard/createVehicle";
+import CreateUserForm from "./adminDashboard/createAdmin";
 // import Navigation from "./adminDashboard/navigation";
 
 const App = () => {
@@ -65,6 +66,7 @@ const App = () => {
             <Route path="/addVehicle" element={<CreateVehicleForm />} />
             <Route path="/vspec" element={<VehicleSpec />} />
             <Route path="/addVspec" element={<CreateVspecForm />} />
+            <Route path="/addAdmin" element={<CreateUserForm />} />
           </Routes>
         </main>
         <Footer />
