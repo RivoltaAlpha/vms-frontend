@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-wrap justify-between items-start">
           {/* Organization Info */}
           <div className="w-full md:w-1/4 mb-6 md:mb-0">
-            <h3 className="text-xl font-bold mb-2">AniRental</h3>
+            <h3 className="text-xl font-bold mb-2">AniRent</h3>
             <p className="text-sm">Reach Us at</p>
             <p className="text-sm mt-2">Email: info@anirental.com</p>
             <p className="text-sm">Phone: +245797677629 </p>

@@ -12,7 +12,7 @@ export const Header = () => {
     <header className=" text-black">
       <nav className="container mx-auto px-6 py-3 flex flex-wrap justify-between items-center">
         <div className="text-xl font-bold">
-        AniRental
+        AniRent
         </div>
         <div className="block lg:hidden">
           <button
