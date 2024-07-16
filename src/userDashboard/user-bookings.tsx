@@ -8,6 +8,7 @@ import {  NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBooking } from '../features/bookings/bookingSlice';
 import { FaBackwardFast } from 'react-icons/fa6';
+import Navigation from './navigation';
 
 
 const UserBookings: React.FC = () => {
@@ -48,6 +49,8 @@ const UserBookings: React.FC = () => {
           },
         }}
       />
+     <div className='flex  gap-10'>
+          <Navigation/> 
       <div className="overflow-y-auto m-[100px] text-base-content bg-base rounded-lg p-4">
         <div className='flex flex-wrap justify-between'>
         <h1 className='text-3xl text-cyan-50 my-4'>{user?.username} Bookings Data</h1>
@@ -107,6 +110,7 @@ const UserBookings: React.FC = () => {
             </tr>
           </tfoot>
         </table>
+      </div>
       </div>
       </div>
     </>
