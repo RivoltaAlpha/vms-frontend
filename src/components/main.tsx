@@ -24,7 +24,9 @@ const CardsSection = () => {
       title: "Vehicle Booking",
       description: "Book the vehicle of your choice easily and quickly through our seamless online booking system.Experience the convenience of booking your desired vehicle online with our user-friendly system. Select from a diverse range of cars, SUVs, and trucks, all available at competitive rates. Our platform ensures a quick, secure, and seamless booking process.",
       imageUrl: "./images/bookCar.png",
-      buttonText: "Explore Vehicles"
+      buttonText: "Explore Vehicles",
+      onclick : "window.location.href = '/explore'"
+
     },
     {
       title: "24/7 Customer Support",
@@ -36,7 +38,8 @@ const CardsSection = () => {
       title: "Flexible Rental Plans",
       description: "Choose from a variety of rental plans that fit your schedule and budget.",
       imageUrl: "./images/management.png",
-      buttonText: "View Plans"
+      buttonText: "View Plans",
+      onclick : "window.location.href = '/plans'"
     },
     {
       title: "Vehicle Maintenance",
