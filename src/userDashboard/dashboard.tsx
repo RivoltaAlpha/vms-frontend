@@ -4,22 +4,29 @@ import Navigation from './navigation';
 import { RootState } from '../app/store';
 import { FaCalendarAlt, FaCar } from 'react-icons/fa';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { BookingDetails } from '../types/types';
 
 export const DashboardContent = () => {
   const { user }: any = useSelector((state: RootState) => state.userAuth.user?.user_id && state.userAuth);
   const userId = user?.user_id;
-  const { data: bookings, isLoading, isError } = bookingsAPI.useGetBookingsByUserIdQuery(userId);
+  const { data, isLoading, isError } = bookingsAPI.useGetBookingsByUserIdQuery(userId);
+
+  const bookings = data?.[0]?.bookings || []; // Access nested bookings array
+  console.log(bookings);
 
   // Prepare data for the line chart
   interface BookingData {
     date: string;
     count: number;
+    acc : number;
+    current : number;
+    items: BookingDetails[];
   }
 
-  const bookingsData: BookingData[] = bookings?.map(booking => ({
+  const bookingsData: BookingData[] = Array.isArray(bookings) && bookings?.map((booking: BookingDetails) => ({
     date: new Date(booking.booking_date).toLocaleDateString(),
     count: 1,
-  })).reduce<BookingData[]>((acc, current) => {
+  })).reduce<BookingData[]>((acc, current: any ) => {
     const existing = acc.find(item => item.date === current.date);
     if (existing) {
       existing.count += 1;
@@ -33,9 +40,10 @@ export const DashboardContent = () => {
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error loading data.</p>;
 
-  // Calculate total bookings and vehicles
-  const totalBookings = bookings?.length || 0;
 
+  // Calculate total bookings and vehicles
+  const totalBookings = Array.isArray(bookings) ? bookings.length : 0;
+  
   return (
     <div className="flex-grow">
       <h1 className="text-4xl font-bold mb-4">Hello, {user?.username} ...</h1>
@@ -71,33 +79,39 @@ export const DashboardContent = () => {
       </div>
       {/* Bookings Data Table */}
       <div className="container mx-auto mb-10  mt-10 text-base-content bg-cards rounded-lg p-4">
-        <h1 className="text-3xl text-cyan-50 my-4">{user?.username} Bookings Data</h1>
+        <h1 className="text-3xl text-cyan-50 my-4"> Bookings Summary</h1>
         <table className="table table-xs w-full ml-4">
           <thead>
             <tr className="text-lg">
-              <th className="py-2 px-4 border-b-2 border-gray-300">Booking Id</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Booking Date</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Return Date</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Location</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Vehicle </th>
               <th className="py-2 px-4 border-b-2 border-gray-300">Total Amount</th>
               <th className="py-2 px-4 border-b-2 border-gray-300">Status</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Vehicle ID</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Booking Date</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Return Date</th>
             </tr>
           </thead>
           <tbody>
-            {bookings?.map((booking) => (
+          {isLoading ? (
+                  <tr><td colSpan={8}>Loading...</td></tr>
+                ) : isError ? (
+                  <tr><td colSpan={8}>Error loading bookings</td></tr>
+                ) : (
+              Array.isArray(bookings) &&  bookings?.map((booking: BookingDetails ) => (
               <tr key={booking?.booking_id}>
-                <td className="py-2 px-4 border-b border-gray-300">{booking?.booking_id}</td>
-                <td className="py-2 px-4 border-b border-gray-300">{new Date(booking?.booking_date).toLocaleString()}</td>
-                <td className="py-2 px-4 border-b border-gray-300">{new Date(booking?.return_date).toLocaleString()}</td>
+                <td className="py-2 px-4 border-b border-gray-300">{booking?.location.name}</td>             
+                <td className="py-2 px-4 border-b border-gray-300">{booking?.vehicle.vehicleSpec.model}</td>
                 <td className="py-2 px-4 border-b border-gray-300">${booking?.total_amount}</td>
                 <td className="py-2 px-4 border-b border-gray-300">{booking?.booking_status}</td>
-                <td className="py-2 px-4 border-b border-gray-300">{booking?.vehicle_id}</td>
-              </tr>
-            ))}
+                <td className="py-2 px-4 border-b border-gray-300">{new Date(booking?.booking_date).toLocaleString()}</td>
+                <td className="py-2 px-4 border-b border-gray-300">{new Date(booking?.return_date).toLocaleString()}</td>
+                 </tr>
+            ))
+            )}
           </tbody>
           <tfoot className="text-lg py-4">
             <tr>
-              <td colSpan={6}>{bookings ? `${bookings.length} records` : '0 records'}</td>
+            <td colSpan={8}>{Array.isArray(bookings) ? `${bookings.length} records` : '0 records'}</td>
             </tr>
           </tfoot>
         </table>
