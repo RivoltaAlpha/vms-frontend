@@ -7,11 +7,14 @@ import { FaUsers, FaCar, FaCalendarAlt } from "react-icons/fa";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, LineChart, Line
 } from 'recharts';
+import { RootState } from '../app/store';
+import { useSelector } from 'react-redux';
 
 export const Dashboard: React.FC = () => {
   const { data: bookings, error: bookingsError, isLoading: bookingsLoading } = bookingsAPI.useGetBookingsQuery();
   const { data: users, error: usersError, isLoading: usersLoading } = usersAPI.useGetUsersQuery(); 
   const { data: vehicles, error: vehiclesError, isLoading: vehiclesLoading } = VehiclesAPI.useGetVehiclesQuery(); 
+  const { user } = useSelector((state: RootState) => state.userAuth);
   console.log('Bookings:', bookings);
 
   if (bookingsLoading || usersLoading || vehiclesLoading) return <p>Loading...</p>;
@@ -42,11 +45,13 @@ export const Dashboard: React.FC = () => {
   }, []).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()) || [];
 
 
+
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
   return (
     <div className="container mx-auto py-8 mr-12">
-      <h2 className="text-2xl font-bold mb-5">Summary</h2>
+          <h1 className="text-4xl font-bold mb-4">Hello, {user?.username} ...</h1>
+          <h2 className=" mb-5">Welcome to your Vehicle Management System</h2>
       <div className='flex justify-center font-bold text-2xl gap-10'>
         {/* Cards */}
         <div className='flex flex-col items-center bg-cards text-white hover:bg-cyan-500 py-10 px-4 rounded mb-10 h-[200px] w-[300px]'>
@@ -126,28 +131,30 @@ export const Dashboard: React.FC = () => {
         <table className="min-w-full rounded text-white bg-cards">
           <thead>
             <tr>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Location</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Booking Date</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Return Date</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Status</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Vehicle Model</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Vehicle Manufacturer</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Actions</th>
+              <th className="py-2 border-b-2 border-gray-300">Location</th>
+              <th className="py-2 border-b-2 border-gray-300">Booking Date</th>
+              <th className="py-2 border-b-2 border-gray-300">Return Date</th>
+              <th className="py-2 border-b-2 border-gray-300">Total Amount</th>
+              <th className="py-2 border-b-2 border-gray-300">Status</th>
+              <th className="py-2 border-b-2 border-gray-300">Vehicle Model</th>
+              <th className="py-2  border-b-2 border-gray-300">Vehicle Manufacturer</th>
+              {/* <th className="py-2 border-b-2 border-gray-300">Actions</th> */}
             </tr>
           </thead>
           <tbody>
             {bookings?.map((booking) => (
               <tr key={booking.booking_id} className="hover:bg-cyan-500 cursor-pointer">
-                <td className="py-2 px-4 border-b">{booking.location?.name}</td>
-                <td className="py-2 px-4 border-b">{new Date(booking.booking_date).toLocaleDateString()}</td>
-                <td className="py-2 px-4 border-b">{new Date(booking.return_date).toLocaleDateString()}</td>
-                <td className="py-2 px-4 border-b">{booking.booking_status}</td>
-                <td className="py-2 px-4 border-b">{booking.vehicle?.vehicleSpec?.model}</td>
-                <td className="py-2 px-4 border-b">{booking.vehicle?.vehicleSpec?.manufacturer}</td>
+                <td className="py-2 px-[50px] border-b">{booking.location?.name}</td>
+                <td className="py-2 border-b">{new Date(booking.booking_date).toLocaleDateString()}</td>
+                <td className="py-2 border-b">{new Date(booking.return_date).toLocaleDateString()}</td>
+                <td className="py-2 border-b">{booking.total_amount}</td>
+                <td className="py-2 border-b">{booking.booking_status}</td>
+                <td className="py-2 border-b">{booking.vehicle?.vehicleSpec?.model}</td>
+                <td className="py-2 border-b">{booking.vehicle?.vehicleSpec?.manufacturer}</td>
                 
-                <td className="py-2 px-4 border-b">
+                {/* <td className="py-2 px-4 border-b">
                   <button className="bg-blue-100 text-black py-1 px-3 rounded hover:bg-blue-600">View Details</button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>
