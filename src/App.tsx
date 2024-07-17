@@ -19,6 +19,7 @@ import { ThankYou } from "./userDashboard/thankyou";
 import Profile from "./userDashboard/profile";
 import {ProfileEditPage} from "./userDashboard/profileUpdate";
 import BookingDetails  from "./userDashboard/bookingDetails";
+import ViewDetails  from "./adminDashboard/bookingDetails";
 import UsersTable from "./adminDashboard/users";
 import BookingsTable from "./adminDashboard/bookings";
 import VehiclesTable from "./adminDashboard/vehicles";
@@ -35,7 +36,6 @@ const App = () => {
     <Router>
       <div className="flex bg-gray-200 flex-col min-h-screen">
         <Header />
-        {/* <Navigation /> */}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -63,10 +63,11 @@ const App = () => {
             <Route path="/users" element={<UsersTable />} />
             <Route path="/bookings" element={<BookingsTable />} />
             <Route path="/vehicles" element={<VehiclesTable />} />
-            <Route path="/addVehicle" element={<CreateVehicleForm />} />
             <Route path="/vspec" element={<VehicleSpec />} />
+            <Route path="/addVehicle" element={<CreateVehicleForm />} />
             <Route path="/addVspec" element={<CreateVspecForm />} />
             <Route path="/addAdmin" element={<CreateUserForm />} />
+            <Route path="/viewDetails/:booking_id" element={<ViewDetails />} />
           </Routes>
         </main>
         <Footer />
