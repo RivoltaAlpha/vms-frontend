@@ -52,7 +52,7 @@ export const bookingsAPI = createApi({
         }),
         
         getBookingsByUserId: builder.query<BookingDetails[], number>({
-            query: (id) => `/user-bookings/${id}`,
+            query: (id) => `/all-user-bookings/${id}`,
         }),
     }),
 });
