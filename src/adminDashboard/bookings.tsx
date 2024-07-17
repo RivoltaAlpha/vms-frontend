@@ -2,22 +2,36 @@
 import React from 'react';
 import bookingsAPI from '../features/bookings/bookingsApi';
 import Navigation from './navigation';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { BookingDetails } from '../types/types';
+import { setBooking } from '../features/bookings/bookingSlice';
 
 const BookingsTable: React.FC = () => {
   const { data: bookings, error, isLoading } = bookingsAPI.useGetBookingsQuery();
-  console.log('Bookings:', bookings);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
+  
+  const handleViewDetails = (booking: BookingDetails) => {
+    dispatch(setBooking(booking));
+    localStorage.setItem('selectedBooking', JSON.stringify(booking));
+    navigate(`/viewDetails/${booking.booking_id}`);
+  };
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading bookings.</p>;
 
   return (
-    <div className='flex  gap-10'>
+    <div className='flex'>
        <Navigation/> 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mt-10  mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-5">Bookings Data</h2>
         <table className="min-w-full bg-cards">
           <thead>
             <tr>
+              <th className="py-2 px-4 border-b-2 border-gray-300">User</th>
               <th className="py-2 px-4 border-b-2 border-gray-300">Location</th>
               <th className="py-2 px-4 border-b-2 border-gray-300">Booking Date</th>
               <th className="py-2 px-4 border-b-2 border-gray-300">Return Date</th>
@@ -34,6 +48,7 @@ const BookingsTable: React.FC = () => {
           <tbody>
             {bookings?.map((booking) => (
               <tr key={booking.booking_id}>
+                <td className="py-2 px-4 border-b">{booking.user?.username}</td>
                 <td className="py-2 px-4 border-b">{booking.location?.name}</td>
                 <td className="py-2 px-4 border-b">{new Date(booking.booking_date).toLocaleDateString()}</td>
                 <td className="py-2 px-4 border-b">{new Date(booking.return_date).toLocaleDateString()}</td>
@@ -46,7 +61,8 @@ const BookingsTable: React.FC = () => {
                 <td className="py-2 px-4 border-b">{booking.vehicle?.vehicleSpec?.manufacturer}</td>
                 
                 <td className="py-2 px-4 border-b">
-                  <button className="bg-secondary text-white py-1 px-3 rounded hover:bg-blue-600">View Details</button>
+                  <button className="bg-secondary text-white py-1 px-3 rounded hover:bg-blue-600"
+                   onClick={() => handleViewDetails(booking)}>View Details</button>
                 </td>
               </tr>
             ))}
