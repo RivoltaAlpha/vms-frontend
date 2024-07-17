@@ -7,7 +7,6 @@ import { BookingDetails  } from '../types/types';
 import {  NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBooking } from '../features/bookings/bookingSlice';
-import { FaBackwardFast } from 'react-icons/fa6';
 import Navigation from './navigation';
 
 
@@ -54,7 +53,6 @@ const UserBookings: React.FC = () => {
       <div className="overflow-y-auto m-[100px] text-base-content bg-base rounded-lg p-4">
         <div className='flex flex-wrap justify-between'>
         <h1 className='text-3xl text-cyan-50 my-4'>{user?.username} Bookings Data</h1>
-        <NavLink to="/user-dashboard" className=" text-white rounded mr-2"><FaBackwardFast size={20} /> </NavLink>
         </div>
         <div>
         <table className="table table-xs w-full ml-[10px] px-4">

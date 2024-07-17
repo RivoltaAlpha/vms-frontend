@@ -27,8 +27,8 @@ export const Navigation: React.FC = () => {
   };
   
   return (
-    <nav className="bg-cards p-4 h-screen w-52">
-      <ul className="space-y-10  ml-10">
+    <nav className="bg-cards p-4 h-screen-full w-72">
+      <ul className="space-y-20  ml-10">
         <div className="block lg:hidden">
           <button
             onClick={toggleMenu}
@@ -61,7 +61,7 @@ export const Navigation: React.FC = () => {
             isOpen ? "block" : "hidden"
           }`}
         >
-          <ul className="pt-4 text-pretty text-rose-800 lg:flex flex-col gap-12 lg:justify-between lg:pt-0">
+          <ul className="pt-4 text-pretty text-rose-800 lg:flex flex-col gap-16 lg:justify-between lg:pt-0">
             <li>
               <Link
                 to="/admin-dashboard"
