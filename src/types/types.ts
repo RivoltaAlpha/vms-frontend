@@ -144,6 +144,7 @@ export interface BookingFormData {
 }
 
 export interface BookingDetails {
+  bookings: TBooking;
   booking_id: number;
   booking_date: string;
   return_date: string;
