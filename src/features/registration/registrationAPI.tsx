@@ -4,7 +4,7 @@ import { RUser } from '../../types/types';
 
 export const registrationAPI = createApi({
     reducerPath: 'registrationAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://anirent.azurewebsites.net/' }),
     tagTypes: ['User'],
     endpoints: (builder) => ({
         registerUser: builder.mutation<RUser, Partial<RUser>>({
