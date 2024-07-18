@@ -4,7 +4,7 @@ import { TSVehicle, TIVehicleSpec } from '../../types/types';
 export const VehiclesAPI = createApi({
     reducerPath: 'VehiclesAPI',
     baseQuery: fetchBaseQuery({ 
-        baseUrl: 'http://localhost:8000',
+        baseUrl: 'https://anirent.azurewebsites.net/',
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('token');
             if (token) {

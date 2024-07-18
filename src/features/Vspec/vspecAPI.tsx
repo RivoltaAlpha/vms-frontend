@@ -3,7 +3,7 @@ import {  Vspec } from '../../types/types';
 
 export const VspecAPI = createApi({
     reducerPath: 'VspecAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000',
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://anirent.azurewebsites.net/',
 
      prepareHeaders: (headers) => {
         const token = localStorage.getItem('token');

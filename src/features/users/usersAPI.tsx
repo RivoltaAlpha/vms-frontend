@@ -3,7 +3,7 @@ import { TUser,TIUser, User } from '../../types/types';
 
 export const usersAPI = createApi({
     reducerPath: 'usersAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000',
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://anirent.azurewebsites.net/',
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('token');
             if (token) {
