@@ -13,8 +13,7 @@ export const DashboardContent = () => {
   const { data, isLoading, isError } = bookingsAPI.useGetBookingsByUserIdQuery(userId);
   const { data: payments } = paymentsAPI.useGetUserPaymentsQuery(userId);
   console.log('Payments:',payments);
-  const totalPayments = payments?.length || 0;
-
+  
   const bookings = data?.[0]?.bookings || []; // Access nested bookings array
   // console.log(bookings);
   
@@ -47,6 +46,8 @@ export const DashboardContent = () => {
 
   // Calculate total bookings and vehicles
   const totalBookings = Array.isArray(bookings) ? bookings.length : 0;
+  
+  const totalPayments = Array.isArray(payments) ? payments.length : 0;
   
   return (
     <div className="flex-grow">

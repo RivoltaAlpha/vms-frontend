@@ -38,6 +38,7 @@ export interface RUser {
   export interface Location{
     location_id: number;
     name: string;
+    address: string;
   }
 
   // User

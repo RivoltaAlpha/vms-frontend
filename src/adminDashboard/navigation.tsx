@@ -115,6 +115,15 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
+                to="/branches"
+                className="text-white font-bold  flex gap-3 hover:text-gray-200"
+              >
+                <MdOutlineEventAvailable />
+                 Branches
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/payments"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
