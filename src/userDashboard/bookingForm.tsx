@@ -5,6 +5,7 @@ import { RootState } from '../app/store';
 import { useSelector } from 'react-redux';
 import { bookingsAPI } from '../features/bookings/bookingsApi';
 import { toast, Toaster } from 'sonner';
+import locationsAPI from '../features/locations/locationsAPI';
 
 export const BookingForm = () => {
   const { location_id } = useParams<{ location_id: string }>();
@@ -13,6 +14,7 @@ export const BookingForm = () => {
   const navigate = useNavigate();
   
   const [bookVehicle, { isLoading }] = bookingsAPI.useCreateBookingMutation();
+  const{ data: locationsData, isLoading: loadingLocations} = locationsAPI.useGetLocationsQuery();
 
   const [formData, setFormData] = useState<BookingFormData>({
     user_id: user?.user_id || 0,
@@ -39,6 +41,7 @@ export const BookingForm = () => {
 
     return diffDays * vehicle.rental_rate;
   };
+
 
   useEffect(() => {
     const totalAmount = calculateTotalAmount();
@@ -67,7 +70,7 @@ export const BookingForm = () => {
       return;
     }
     try {
-      await bookVehicle(formData).unwrap();
+      await bookVehicle(formData ).unwrap();
       toast.success('Booking successful');
       localStorage.removeItem('selectedVehicle');
       navigate('/user-dashboard');
@@ -103,13 +106,16 @@ export const BookingForm = () => {
             className="w-full p-2 border rounded"
             required
           >
-            <option value="">Select a location</option>
-            <option value="1">Location 1</option>
-            <option value="2">Location 2</option>
-            <option value="3">Location 3</option>
-            <option value="4">Location 4</option>
-            <option value="5">Location 5</option>
-            <option value="6">Location 6</option>
+ <option value="">Select a location</option>
+            {loadingLocations ? (
+              <option>Loading locations...</option>
+            ) : (
+              locationsData?.map((location: { location_id: number, name: string }) => (
+                <option key={location.location_id} value={location.location_id}>
+                  {location.name}
+                </option>
+              ))
+            )}
           </select>
         </div>
         <div>
@@ -144,7 +150,7 @@ export const BookingForm = () => {
           <div className="mt-6 bg-gray-100 p-4 rounded-lg">
             <h3 className="text-lg font-semibold mb-2">Booking Summary</h3>
             <p>Vehicle: {vehicle.vehicleSpec.manufacturer} {vehicle.vehicleSpec.model}</p>
-            {/* <p>Rental Rate: ${vehicle.rental_rate.toFixed(2)}/day</p> */}
+            <p>Rental Rate: ${vehicle.rental_rate}/day</p>
             <p>Total Amount: ${formData.total_amount.toFixed(2)}</p>
           </div>
         )}

@@ -13,11 +13,11 @@ export const bookingsAPI = createApi({
             return headers;
           },
      }),
-    tagTypes: ['getBookings'],
+    tagTypes: ['getBookings', 'userBookings'],
     endpoints: (builder) => ({
         getBookings: builder.query<BookingDetails[], void>({
             query: () => '/bookings',
-            providesTags: ['getBookings'],
+            providesTags: ['getBookings'], 
         }),
 
         getBooking: builder.query<BookingDetails, number>({
@@ -30,7 +30,7 @@ export const bookingsAPI = createApi({
                 method: 'POST',
                 body: newBooking,
             }),
-            invalidatesTags: [ 'getBookings'],
+            invalidatesTags: [ 'getBookings', 'userBookings'],
         }),
 
         updateBooking: builder.mutation<Booking, { booking_id: number; data:Partial<Booking>}>({
@@ -53,8 +53,9 @@ export const bookingsAPI = createApi({
         
         getBookingsByUserId: builder.query<BookingDetails[], number>({
             query: (id) => `/all-user-bookings/${id}`,
+            providesTags: ['userBookings'],
         }),
-    }),
+        }),
 });
 
 export default bookingsAPI;
