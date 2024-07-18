@@ -30,6 +30,7 @@ import CreateVspecForm from "./adminDashboard/createVSpec";
 import CreateVehicleForm from "./adminDashboard/createVehicle";
 import CreateUserForm from "./adminDashboard/createAdmin";
 import Payments from "./adminDashboard/payments";
+import LocationsTable from "./adminDashboard/locations";
 // import Navigation from "./adminDashboard/navigation";
 
 const App = () => {
@@ -60,6 +61,7 @@ const App = () => {
             <Route path="/edit-profile" element={<ProfileEditPage />} />
             <Route path="/payments" element={<Payments />} />
             <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/branches" element={<LocationsTable />} />
             <Route path="/book/:vehicle_id" element={<BookingForm />} />
             <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/users" element={<UsersTable />} />
