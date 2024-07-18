@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-const stripePromise = loadStripe('pk_test_51PZNFqC2i6Qs2Q6ajp8zHmlssmFAd3WyX85dVs1isOEkwkov9TRtpdMsufCxf06kcfaQpqretsAQCodkcl9hzaz000NDjOls7R');
+const stripePromise = loadStripe('sk_test_51PZNFqC2i6Qs2Q6aoMbwknX3566echS3CAYLr6vmzRFlU5NkOV0C1RzsikRl4ndYkvOGZVNgvRW1qzb8yVotENWJ00tC7oaT32');
 
 // const PaymentForm: React.FC<{ amount: number, onSuccess: () => void }> = ({ amount, onSuccess }) => {
 //   // ... (keep the existing PaymentForm component as is)

@@ -3,27 +3,30 @@ import bookingsAPI from '../features/bookings/bookingsApi';
 import Navigation from './navigation';
 import usersAPI from '../features/users/usersAPI';
 import VehiclesAPI from '../features/vehicles/vehicleAPI';
-import { FaUsers, FaCar, FaCalendarAlt } from "react-icons/fa";
+import { FaUsers, FaCar, FaCalendarAlt, FaCashRegister } from "react-icons/fa";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, LineChart, Line
 } from 'recharts';
 import { RootState } from '../app/store';
 import { useSelector } from 'react-redux';
+import paymentsAPI from '../features/payments/paymentsApi';
 
 export const Dashboard: React.FC = () => {
   const { data: bookings, error: bookingsError, isLoading: bookingsLoading } = bookingsAPI.useGetBookingsQuery();
   const { data: users, error: usersError, isLoading: usersLoading } = usersAPI.useGetUsersQuery(); 
   const { data: vehicles, error: vehiclesError, isLoading: vehiclesLoading } = VehiclesAPI.useGetVehiclesQuery(); 
+  const { data: payments, error: paymentsError, isLoading: paymentsLoading } = paymentsAPI.useGetPaymentsQuery();
   const { user } = useSelector((state: RootState) => state.userAuth);
   console.log('Bookings:', bookings);
 
-  if (bookingsLoading || usersLoading || vehiclesLoading) return <p>Loading...</p>;
-  if (bookingsError || usersError || vehiclesError) return <p>Error loading data.</p>;
+  if (bookingsLoading || usersLoading || vehiclesLoading || paymentsLoading) return <p>Loading...</p>;
+  if (bookingsError || usersError || vehiclesError || paymentsError) return <p>Error loading data.</p>;
 
   const data = [
     { name: 'Bookings', value: bookings?.length || 0 },
     { name: 'Users', value: users?.length || 0 },
     { name: 'Vehicles', value: vehicles?.length || 0 },
+    { name: 'Payments', value: payments?.length || 0 },
   ];
 
 // Prepare data for the line chart
@@ -65,6 +68,10 @@ export const Dashboard: React.FC = () => {
         <div className='flex flex-col items-center bg-cards text-white hover:bg-cyan-500 py-10 px-4 rounded mb-10 h-[200px] w-[300px]'>
           <FaCar /> <br/>
           {vehicles?.length} {vehicles?.length === 1 ? 'vehicle' : 'Vehicles'}
+        </div>
+        <div className='flex flex-col items-center bg-cards text-white hover:bg-cyan-500 py-10 px-4 rounded mb-10 h-[200px] w-[300px]'>
+          <FaCashRegister /> <br/>
+          {payments?.length} {payments?.length === 1 ? 'payment' : 'Payments'}
         </div>
         
       </div>

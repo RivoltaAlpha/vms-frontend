@@ -2,18 +2,22 @@ import { useSelector } from 'react-redux';
 import bookingsAPI from '../features/bookings/bookingsApi';
 import Navigation from './navigation';
 import { RootState } from '../app/store';
-import { FaCalendarAlt, FaCar } from 'react-icons/fa';
+import { FaCalendarAlt, FaCar, FaCashRegister } from 'react-icons/fa';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import { BookingDetails } from '../types/types';
+import paymentsAPI from '../features/payments/paymentsApi';
 
 export const DashboardContent = () => {
   const { user }: any = useSelector((state: RootState) => state.userAuth.user?.user_id && state.userAuth);
   const userId = user?.user_id;
   const { data, isLoading, isError } = bookingsAPI.useGetBookingsByUserIdQuery(userId);
+  const { data: payments } = paymentsAPI.useGetUserPaymentsQuery(userId);
+  console.log('Payments:',payments);
+  const totalPayments = payments?.length || 0;
 
   const bookings = data?.[0]?.bookings || []; // Access nested bookings array
-  console.log(bookings);
-
+  // console.log(bookings);
+  
   // Prepare data for the line chart
   interface BookingData {
     date: string;
@@ -66,14 +70,18 @@ export const DashboardContent = () => {
           </LineChart>
         </div>
         {/* Cards */}
-        <div className="flex flex-wrap gap-6">
-          <div className="flex flex-col items-center justify-center bg-secondary text-white hover:bg-cyan-500 py-6 px-4 rounded-lg w-full md:w-[300px]">
-            <FaCalendarAlt size={48} className="mb-2" />
+        <div className="flex flex-wrap gap-8">
+          <div className="flex flex-col items-center justify-center bg-secondary text-white hover:bg-cyan-500 py-4 px-4 rounded-lg w-full md:w-[300px]">
+            <FaCalendarAlt size={40} className="mb-2" />
             <p className="text-3xl">Total: {totalBookings} {totalBookings === 1 ? 'Booking' : 'Bookings'}</p>
           </div>
-          <div className="flex flex-col items-center justify-center bg-secondary text-white hover:bg-cyan-500 py-6 px-4 rounded-lg w-full md:w-[300px]">
+          <div className="flex flex-col items-center justify-center bg-secondary text-white hover:bg-cyan-500 py-4 px-4 rounded-lg w-full md:w-[300px]">
             <FaCar size={48} className="mb-2" />
             <p className="text-3xl"> Total: {totalBookings} {totalBookings === 1 ? 'Vehicle' : 'Vehicles'}</p>
+          </div>
+          <div className="flex flex-col items-center justify-center bg-secondary text-white hover:bg-cyan-500 py-4 px-4 rounded-lg w-full md:w-[300px]">
+            <FaCashRegister size={48} className="mb-2" />
+            <p className="text-3xl">Total: {totalPayments} {totalPayments === 1 ? 'Payment' : 'Payments'}</p>
           </div>
         </div>
       </div>

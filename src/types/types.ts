@@ -101,11 +101,13 @@ export interface TBooking {
 // Payment//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export interface TPayment {
     payment_id: number;
-    userId: number;
-    bookingId: number;
+    user_id: number;
+    booking_id: number;
     amount: number;
-    status: string;
-    paymentDate: string;
+    payment_status: string;
+    payment_date: string;
+    payment_method: string;
+    transaction_id: string;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -268,4 +270,11 @@ export interface Vspec {
   color: string;
   features: string[];
   body_type: string;
+}
+
+
+export interface TLocation {
+  location_id: number;
+  name: string;
+  address: string;
 }

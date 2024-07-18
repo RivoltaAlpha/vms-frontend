@@ -18,6 +18,7 @@ import { VehiclesAPI } from "../features/vehicles/vehicleAPI";
 import { registrationAPI } from "../features/registration/registrationAPI";
 import { authApi } from "../features/registration/loginAPI";
 import { VspecAPI } from "../features/Vspec/vspecAPI";
+import { locationsAPI } from "../features/locations/locationsAPI";
 import UserAuthReducer from "../features/registration/userAuthSlice";
 import vehicleReducer from '../features/vehicles/vehiclesSlice';
 import bookingReducer from '../features/bookings/bookingSlice';
@@ -30,7 +31,7 @@ const persistConfig = {
     bookingsAPI.reducerPath,
     paymentsAPI.reducerPath,
     VehiclesAPI.reducerPath,
-
+    locationsAPI.reducerPath,
   ],
   // whitelist: [authApi.reducerPath],
 };
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
   [registrationAPI.reducerPath]: registrationAPI.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [VspecAPI.reducerPath]: VspecAPI.reducer,
+  [locationsAPI.reducerPath]: locationsAPI.reducer,
   userAuth: UserAuthReducer,
   vehicles: vehicleReducer,
   booking: bookingReducer
@@ -65,7 +67,8 @@ const store = configureStore({
       paymentsAPI.middleware,
       registrationAPI.middleware,
       VspecAPI.middleware,
-      authApi.middleware
+      authApi.middleware,
+      locationsAPI.middleware
       // Add other middleware here
     ),
 });

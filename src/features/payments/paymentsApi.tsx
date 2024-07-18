@@ -33,12 +33,12 @@ export const paymentsAPI = createApi({
             }),
             invalidatesTags: ['Payment'],
         }),
+        // get user payments by user id
+        getUserPayments: builder.query<TPayment[], number>({
+            query: (user_id) => `user-payments/${user_id}`,
+            providesTags: ['Payment'],
+        }),
     }),
 });
 
-// export const {
-//     useGetPaymentsQuery,
-//     useCreatePaymentMutation,
-//     useUpdatePaymentMutation,
-//     useDeletePaymentMutation,
-// } = paymentsAPI;
+export default paymentsAPI;
