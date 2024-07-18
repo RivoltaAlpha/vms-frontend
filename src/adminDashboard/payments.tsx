@@ -14,6 +14,11 @@ const Payments = () => {
         return <p>Error loading payments: {isError}</p>;
       }
 
+      // calculate total amount
+      const calculateTotalAmount = (payments: TPayment[]) => {
+        return payments.reduce((total, payment) => total + payment.amount, 0);
+      };
+
       return (
         <div className="flex">
           <Navigation />
