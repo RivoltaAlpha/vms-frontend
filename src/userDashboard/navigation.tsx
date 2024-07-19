@@ -91,7 +91,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/user-payment"
+                to= {`/paymentHistory/${user?.user_id}`}
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <FaStripe /> Payment History
