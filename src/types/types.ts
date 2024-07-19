@@ -110,6 +110,9 @@ export interface TPayment {
     payment_date: string;
     payment_method: string;
     transaction_id: string;
+    booking: TBooking;
+    user: TUser;
+    vehicle : TIVehicle;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,6 +177,7 @@ export interface BookingDetails {
       features: string[];
       manufacturer: string;
       model: string;
+      image_url: string;
     };
   };
   }
@@ -221,8 +225,8 @@ export interface BookingDetails {
       color: string;
       features: string[];
       body_type: string;
+      image_url: string;
     }
-    // image_url: string;
     rental_rate: number;
     availability: boolean;
   }
@@ -273,6 +277,7 @@ export interface Vspec {
   color: string;
   features: string[];
   body_type: string;
+  image_url: string;
 }
 
 
