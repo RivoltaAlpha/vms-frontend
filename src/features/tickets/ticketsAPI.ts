@@ -14,7 +14,7 @@ export const ticketsAPI = createApi({
       return headers;
     },
   }),
-  tagTypes: ['tickets'],
+  tagTypes: ['tickets', 'userTickets'],
   endpoints: (builder) => ({
     getTickets: builder.query<Tickets[], void>({
       query: () => '/tickets',
@@ -29,7 +29,7 @@ export const ticketsAPI = createApi({
         method: 'POST',
         body: newTicket,
       }),
-      invalidatesTags: ['tickets'],
+      invalidatesTags: ['tickets', 'userTickets'],
     }),
     reviewTicket: builder.mutation<Tickets, Partial<Tickets>>({
       query: ({ ticket_id, ...data }) => ({
@@ -39,29 +39,23 @@ export const ticketsAPI = createApi({
       }),
       invalidatesTags: ['tickets'],
     }),
+    deleteTicket: builder.mutation<Tickets, number>({
+      query: (ticket_id) => ({
+        url: `/delete-ticket/${ticket_id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['tickets'],
+    }),
     getUserTickets: builder.query<Tickets[], number>({
       query: (user_id) => `/user-tickets/${user_id}`,
       providesTags: ['tickets'],
+
     }),
     getTicketById: builder.query<Tickets, number>({
       query: (ticket_id) => `/ticket/${ticket_id}`,
-      providesTags: ['tickets'],
+      providesTags: ['userTickets'],
     }),
   }),
 });
 
 export default ticketsAPI;
-
-
-
-
-
-// Ticket updated successfully {
-//     ticket_id: 5,
-//     user_id: 1,
-//     subject: 'Vehicle Damage',
-//     description: 'The car I rented has a dent on the door.',
-//     ticket_status: 'Closed',
-//     created_at: 2024-07-19T11:30:23.525Z,
-//     updated_at: 2024-07-19T20:51:47.727Z
-//   }

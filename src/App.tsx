@@ -32,6 +32,7 @@ import CreateUserForm from "./adminDashboard/createAdmin";
 import Payments from "./adminDashboard/payments";
 import LocationsTable from "./adminDashboard/locations";
 import Tickets from "./adminDashboard/tickets";
+import UserTickets from "./userDashboard/userTickets";
 import CreateTicket from "./userDashboard/ticket";
 import TicketReview from "./adminDashboard/reviewTicket";
 // import Navigation from "./adminDashboard/navigation";
@@ -76,6 +77,7 @@ const App = () => {
             <Route path="/addAdmin" element={<CreateUserForm />} />
             <Route path="/viewDetails/:booking_id" element={<ViewDetails />} />
             <Route path="/tickets" element={<Tickets />} />
+            <Route path="/user-tickets" element={<UserTickets />} />
             <Route path="/createTicket" element={<CreateTicket />} />
             <Route path="/ticketReview/:ticket_id" element={<TicketReview />} />
           </Routes>

@@ -250,6 +250,7 @@ export interface BookingDetails {
       color: string;
       features: string[];
       body_type: string;
+      image_url: string;
     }
   }
 

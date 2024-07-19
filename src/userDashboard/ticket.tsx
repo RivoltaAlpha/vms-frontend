@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ticketsAPI from '../features/tickets/ticketsAPI';
 import Navigation from './navigation';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
 
 const CreateTicket: React.FC = () => {
+  const { user } = useSelector((state: RootState) => state.userAuth);
+  const user_id = user?.user_id;
   const navigate = useNavigate();
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
@@ -12,9 +16,9 @@ const CreateTicket: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const newTicket = { subject, description };
+      const newTicket = {user_id, subject, description };
       await createTicket(newTicket).unwrap();
-      navigate('/tickets'); // Navigate to tickets page after successful creation
+      navigate('/user-tickets'); // Navigate to tickets page after successful creation
     } catch (error) {
       console.error('Error creating ticket:', error);
     }

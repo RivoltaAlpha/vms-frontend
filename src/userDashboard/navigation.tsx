@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
 import { clearUser } from "../features/registration/userAuthSlice";
+import { FaTicket } from "react-icons/fa6";
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -94,6 +95,14 @@ export const Navigation: React.FC = () => {
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <FaStripe /> Payment History
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/user-tickets"
+                className="text-white font-bold  flex gap-3 hover:text-gray-200"
+              >
+                <FaTicket /> Tickets
               </Link>
             </li>
             <li>
