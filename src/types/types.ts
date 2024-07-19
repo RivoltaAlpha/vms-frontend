@@ -39,6 +39,7 @@ export interface RUser {
     location_id: number;
     name: string;
     address: string;
+    contact_phone: number;
   }
 
   // User
@@ -278,4 +279,14 @@ export interface TLocation {
   location_id: number;
   name: string;
   address: string;
+  contact_phone: number;
+  city: string;
+}
+
+export interface Tickets {
+  ticket_id: number;
+  user: TUser;
+  subject: string;
+  description: string;
+  ticket_status: string;
 }
