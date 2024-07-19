@@ -15,9 +15,9 @@ const Payments = () => {
       }
 
       // calculate total amount
-      const calculateTotalAmount = (payments: TPayment[]) => {
-        return payments.reduce((total, payment) => total + payment.amount, 0);
-      };
+      // const calculateTotalAmount = (payments: TPayment[]) => {
+      //   return payments.reduce((total, payment) => total + payment.amount, 0);
+      // };
 
       return (
         <div className="flex">

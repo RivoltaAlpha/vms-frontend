@@ -1,4 +1,3 @@
-// src/features/payments/paymentSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface PaymentState {
@@ -27,7 +26,7 @@ const paymentSlice = createSlice({
     },
     removePayment(state, action: PayloadAction<string>) {
       return state.filter(payment => payment.id !== action.payload);
-    },
+      },
   },
 });
 
