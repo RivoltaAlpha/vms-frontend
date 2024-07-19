@@ -31,6 +31,9 @@ import CreateVehicleForm from "./adminDashboard/createVehicle";
 import CreateUserForm from "./adminDashboard/createAdmin";
 import Payments from "./adminDashboard/payments";
 import LocationsTable from "./adminDashboard/locations";
+import Tickets from "./adminDashboard/tickets";
+import CreateTicket from "./userDashboard/ticket";
+import TicketReview from "./adminDashboard/reviewTicket";
 // import Navigation from "./adminDashboard/navigation";
 
 const App = () => {
@@ -72,6 +75,9 @@ const App = () => {
             <Route path="/addVspec" element={<CreateVspecForm />} />
             <Route path="/addAdmin" element={<CreateUserForm />} />
             <Route path="/viewDetails/:booking_id" element={<ViewDetails />} />
+            <Route path="/tickets" element={<Tickets />} />
+            <Route path="/createTicket" element={<CreateTicket />} />
+            <Route path="/ticketReview/:ticket_id" element={<TicketReview />} />
           </Routes>
         </main>
         <Footer />
