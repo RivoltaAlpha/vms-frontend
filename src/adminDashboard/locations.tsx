@@ -22,12 +22,14 @@ const LocationsTable: React.FC = () => {
   return (
     <div className='flex'>
        <Navigation/> 
-      <div className="container mt-10  mx-auto px-4 py-8">
+      <div className="container mt-10 p-[200px]  mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-5">Locations Data</h2>
-        <table className="min-w-full bg-cards">
+        <table className="min-w-full  bg-cards">
           <thead>
             <tr>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Location Name</th>
+
+              <th className="py-2 px- border-b-2 border-gray-300"> Location ID </th>
+              <th className="py-2 px- border-b-2 border-gray-300">Location Name</th>
               <th className="py-2 px-4 border-b-2 border-gray-300">City</th>
               <th className="py-2 px-4 border-b-2 border-gray-300">Address</th>
               <th className="py-2 px-4 border-b-2 border-gray-300">Contact Phone</th> 
@@ -36,6 +38,7 @@ const LocationsTable: React.FC = () => {
           <tbody>
             {locations?.map((location) => (
               <tr key={location.location_id}>
+                <td className="py-2 px-4 border-b">{location.location_id}</td>
                 <td className="py-2 px-4 border-b">{location.name}</td>
               <td className="py-2 px-4 border-b">{location.city}</td>
                 <td className="py-2 px-4 border-b">{location.address}</td>
@@ -51,8 +54,8 @@ const LocationsTable: React.FC = () => {
             </tr>
           </tfoot>
         </table>
-        <button className="bg-secondary text-white py-1 px-3 rounded hover:bg-blue-600"
-                >View Details</button>
+        <button className="bg-secondary mt-10 text-white py-1 px-3 rounded hover:bg-blue-600"
+                >Add Location</button>
       </div>
     </div>
   );

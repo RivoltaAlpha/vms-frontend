@@ -61,7 +61,7 @@ export const Navigation: React.FC = () => {
             isOpen ? "block" : "hidden"
           }`}
         >
-          <ul className="pt-4 text-pretty text-rose-800 lg:flex flex-col gap-16 lg:justify-between lg:pt-0">
+          <ul className="pt-4 text-pretty text-rose-800 lg:flex flex-col gap-14 lg:justify-between lg:pt-0">
             <li>
               <Link
                 to="/admin-dashboard"
@@ -128,6 +128,14 @@ export const Navigation: React.FC = () => {
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <FaStripe /> Payments
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/tickets"
+                className="text-white font-bold  flex gap-3 hover:text-gray-200"
+              >
+                <FaStripe /> Tickets
               </Link>
             </li>
             <li>
