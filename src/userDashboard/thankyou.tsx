@@ -1,13 +1,47 @@
 import React from 'react';
+import { FaCheckDouble } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
-export const ThankYou: React.FC = () => {
+const ThankYou: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleGoHome = () => {
+    navigate('/user-dashboard');
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-4">Thank You!</h1>
-      <p className="text-lg">
-        Your booking has been confirmed. Thank you for choosing AniRental. We look forward to serving you.
-      </p>
+  <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+  <div className="bg-white shadow-lg rounded-lg overflow-hidden w-[1200px] max-w-20xl mx-auto flex">
+    <div className="w-3/4 flex items-center justify-center p-8">
+      <div className="text-center flex-row text-white">
+        <h2 className="text-3xl text-black font-bold mb-4">Payment Complete       <FaCheckDouble/>
+        </h2> 
+        <img
+          src="./images/thanks.png" 
+          alt="Thank You"
+          className="max-w-full h-auto"
+        />
+      </div>
     </div>
+    <div className="w-1/2 bg-white p-8 flex items-center justify-center relative">
+      <div className="absolute top-4 right-4">
+      </div>
+      <img
+        src="./images/payment.png" 
+        alt="Payment Success"
+        className="max-w-full h-auto"
+      />
+    </div>
+    </div>
+    <button
+          onClick={handleGoHome}
+          className="bg-cards text-white px-4 py-2 mt-10 rounded"
+        >
+          Go to Home
+        </button>
+</div>
+  
+
   );
 };
 

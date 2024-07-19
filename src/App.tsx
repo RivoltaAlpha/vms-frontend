@@ -15,7 +15,7 @@ import BookingConfirmation from "./userDashboard/bookingForm";
 import UserBookings from "./userDashboard/user-bookings";
 import { Dashboard } from "./userDashboard/dashboard";
 import {AdminDashboard } from "./adminDashboard/dashboard";
-import { ThankYou } from "./userDashboard/thankyou";
+import  ThankYou  from "./userDashboard/thankyou";
 import Profile from "./userDashboard/profile";
 import {ProfileEditPage} from "./userDashboard/profileUpdate";
 import BookingDetails  from "./userDashboard/bookingDetails";
@@ -35,6 +35,7 @@ import Tickets from "./adminDashboard/tickets";
 import UserTickets from "./userDashboard/userTickets";
 import CreateTicket from "./userDashboard/ticket";
 import TicketReview from "./adminDashboard/reviewTicket";
+import PaymentHistory from "./userDashboard/payment";
 // import Navigation from "./adminDashboard/navigation";
 
 const App = () => {
@@ -67,7 +68,7 @@ const App = () => {
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/branches" element={<LocationsTable />} />
             <Route path="/book/:vehicle_id" element={<BookingForm />} />
-            <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/thankyou" element={<ThankYou />} />
             <Route path="/users" element={<UsersTable />} />
             <Route path="/bookings" element={<BookingsTable />} />
             <Route path="/vehicles" element={<VehiclesTable />} />
@@ -80,6 +81,7 @@ const App = () => {
             <Route path="/user-tickets" element={<UserTickets />} />
             <Route path="/createTicket" element={<CreateTicket />} />
             <Route path="/ticketReview/:ticket_id" element={<TicketReview />} />
+            <Route path="/paymentHistory/:user_id" element={<PaymentHistory />} />
           </Routes>
         </main>
         <Footer />
