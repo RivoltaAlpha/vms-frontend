@@ -17,7 +17,6 @@ export const Dashboard: React.FC = () => {
   const { data: vehicles, error: vehiclesError, isLoading: vehiclesLoading } = VehiclesAPI.useGetVehiclesQuery(); 
   const { data: payments, error: paymentsError, isLoading: paymentsLoading } = paymentsAPI.useGetPaymentsQuery();
   const { user } = useSelector((state: RootState) => state.userAuth);
-  console.log('Bookings:', bookings);
 
   if (bookingsLoading || usersLoading || vehiclesLoading || paymentsLoading) return <p>Loading...</p>;
   if (bookingsError || usersError || vehiclesError || paymentsError) return <p>Error loading data.</p>;

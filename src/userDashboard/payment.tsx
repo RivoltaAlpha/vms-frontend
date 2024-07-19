@@ -1,66 +1,61 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import React from 'react';
+import Navigation from './navigation';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
+import paymentsAPI from '../features/payments/paymentsApi';
 
-const stripePromise = loadStripe('sk_test_51PZNFqC2i6Qs2Q6aoMbwknX3566echS3CAYLr6vmzRFlU5NkOV0C1RzsikRl4ndYkvOGZVNgvRW1qzb8yVotENWJ00tC7oaT32');
 
-// const PaymentForm: React.FC<{ amount: number, onSuccess: () => void }> = ({ amount, onSuccess }) => {
-//   // ... (keep the existing PaymentForm component as is)
-// };
+const PaymentHistory: React.FC = () => {
+  const { user }: any = useSelector((state: RootState) => state.userAuth.user?.user_id && state.userAuth);
+  const user_id = user?.user_id;
+  const { data: payments, error, isLoading } = paymentsAPI.useGetUserPaymentsQuery(user_id);
+  console.log ('Payments:', payments);
 
-export const PaymentPage: React.FC = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { bookingData, vehicle } = location.state as any;
-
-  const calculateTotalAmount = () => {
-    const startDate = new Date(bookingData.booking_date);
-    const endDate = new Date(bookingData.return_date);
-    const days = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
-    return days * vehicle.rental_rate;
-  };
-
-  const handlePaymentSuccess = async () => {
-    // ... (keep the existing handlePaymentSuccess function as is)
-  };
-
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading payments.</p>;
   return (
-    <div className="max-w-6xl mx-auto mt-10 p-6">
-      <div className="flex">
-        <div className="w-1/2 pr-8">
-          <div className="bg-white shadow-lg rounded-lg p-6">
-            <h2 className="text-2xl font-bold mb-5">Complete Your Booking</h2>
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-2">Booking Summary</h3>
-              <p>Vehicle: {vehicle.vehicleSpec.manufacturer} {vehicle.vehicleSpec.model}</p>
-              <p>Pickup Date: {new Date(bookingData.booking_date).toLocaleDateString()}</p>
-              <p>Return Date: {new Date(bookingData.return_date).toLocaleDateString()}</p>
-              <p className="font-bold mt-2">Total Amount: ${calculateTotalAmount().toFixed(2)}</p>
-            </div>
-            <Elements stripe={stripePromise}>
-              <PaymentForm amount={calculateTotalAmount()} onSuccess={handlePaymentSuccess} />
-            </Elements>
-          </div>
-        </div>
-        <div className="w-1/2 pl-8">
-          <div className="bg-gray-100 rounded-lg p-6 h-full flex items-center justify-center">
-            <div className="w-64 h-128 bg-white rounded-3xl shadow-lg p-4">
-              <div className="bg-teal-500 text-white p-4 rounded-t-2xl">
-                <h3 className="text-lg font-bold">Payment Preview</h3>
+    <div className='flex'>
+      <Navigation />
+      <div className="container mt-10 mx-auto px-4 py-8">
+        <h2 className="text-2xl font-bold mb-5">My Payments</h2>
+        <div className="bg-cards p-4 rounded">
+          {payments && payments.length > 0 ? (
+            payments.map((payment) => (
+              <div key={payment.payment_id} className="mb-4 p-4 border rounded">
+                <p><strong>Payment ID:</strong> {payment.payment_id}</p>
+                <p><strong>Amount:</strong> ${payment.amount}</p>
+                <p><strong>Status:</strong> {payment.payment_status}</p>
+                <p><strong>Date:</strong> {new Date(payment.payment_date).toLocaleDateString()}</p>
+                <p><strong>Method:</strong> {payment.payment_method}</p>
+                <p><strong>Transaction ID:</strong> {payment.transaction_id}</p>
+                <div className="mt-4">
+                  <h3 className="text-lg font-semibold">Booking Details</h3>
+                  <p><strong>Booking ID:</strong> {payment.booking.booking_id}</p>
+                  <div className="mt-2">
+                    <h4 className="font-medium">Vehicle Details</h4>
+                    <p><strong>Vehicle ID:</strong> {payment.booking.vehicle.vehicle_id}</p>
+                    <p><strong>Manufacturer:</strong> {payment.booking.vehicle.vehicleSpec.manufacturer}</p>
+                    <p><strong>Model:</strong> {payment.booking.vehicle.vehicleSpec.model}</p>
+                    <p><strong>Year:</strong> {payment.booking.vehicle.vehicleSpec.year}</p>
+                    <p><strong>Fuel Type:</strong> {payment.booking.vehicle.vehicleSpec.fuel_type}</p>
+                    <p><strong>Engine Capacity:</strong> {payment.booking.vehicle.vehicleSpec.engine_capacity}</p>
+                    <p><strong>Transmission:</strong> {payment.booking.vehicle.vehicleSpec.transmission}</p>
+                    <p><strong>Seating Capacity:</strong> {payment.booking.vehicle.vehicleSpec.seating_capacity}</p>
+                    <p><strong>Color:</strong> {payment.booking.vehicle.vehicleSpec.color}</p>
+                    <p><strong>Features:</strong> {payment.booking.vehicle.vehicleSpec.features}</p>
+                    {/* <img src={payment.booking.vehicle.vehicleSpec.image_url} alt="Vehicle" className="mt-2 w-64 h-48 object-cover" /> */}
+                  </div>
+                </div>
               </div>
-              <div className="p-4">
-                <p className="text-sm">Amount: ${calculateTotalAmount().toFixed(2)}</p>
-                <p className="text-sm">Date: {new Date().toLocaleDateString()}</p>
-                <p className="text-sm">Vehicle: {vehicle.vehicleSpec.manufacturer} {vehicle.vehicleSpec.model}</p>
-                <p className="text-sm">Status: Pending</p>
-              </div>
-            </div>
-          </div>
+            ))
+          ) : (
+            <p>No payments found.</p>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default PaymentPage;
+
+export default PaymentHistory;

@@ -35,7 +35,7 @@ export const paymentsAPI = createApi({
         }),
         // get user payments by user id
         getUserPayments: builder.query<TPayment[], number>({
-            query: (user_id) => `user-payments/${user_id}`,
+            query: (user_id) => `userPayments/${user_id}`,
             providesTags: ['Payment'],
         }),
     }),

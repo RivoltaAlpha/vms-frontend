@@ -31,16 +31,4 @@ const userSlice = createSlice({
 });
 
 export const { updateUserStart, updateUserSuccess, updateUserFailure } = userSlice.actions;
-
-// export const updateUserAsync = (id: number, data: TIUser) => async (dispatch: Dispatch) => {
-//   try {
-//     dispatch(updateUserStart());
-//     const updatedUser = await usersAPI.useUpdateUserMutation(id, data);
-//     dispatch(updateUserSuccess(updatedUser));
-//     // Optionally update local storage here
-//   } catch (error) {
-//     dispatch(updateUserFailure(error.message || 'Failed to update user'));
-//   }
-// };
-
 export default userSlice.reducer;
