@@ -28,28 +28,18 @@ const LocationsTable: React.FC = () => {
           <thead>
             <tr>
               <th className="py-2 px-4 border-b-2 border-gray-300">Location Name</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">City</th>
               <th className="py-2 px-4 border-b-2 border-gray-300">Address</th>
-              {/* <th className="py-2 px-4 border-b-2 border-gray-300">City</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">State</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Zip Code</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300">Contact Number</th> */}
-              <th className="py-2 px-4 border-b-2 border-gray-300">Actions</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Contact Phone</th> 
             </tr>
           </thead>
           <tbody>
             {locations?.map((location) => (
               <tr key={location.location_id}>
                 <td className="py-2 px-4 border-b">{location.name}</td>
+              <td className="py-2 px-4 border-b">{location.city}</td>
                 <td className="py-2 px-4 border-b">{location.address}</td>
-                {/* <td className="py-2 px-4 border-b">{location.city}</td>
-                <td className="py-2 px-4 border-b">{location.state}</td>
-                <td className="py-2 px-4 border-b">{location.zip_code}</td>
-                <td className="py-2 px-4 border-b">{location.contact_number}</td> */}
-                <td className="py-2 px-4 border-b">
-                  <button className="bg-secondary text-white py-1 px-3 rounded hover:bg-blue-600"
-                //    onClick={() => handleViewDetails(location)}
-                >View Details</button>
-                </td>
+                <td className="py-2 px-4 border-b">{location.contact_phone}</td> 
               </tr>
             ))}
           </tbody>
@@ -61,6 +51,8 @@ const LocationsTable: React.FC = () => {
             </tr>
           </tfoot>
         </table>
+        <button className="bg-secondary text-white py-1 px-3 rounded hover:bg-blue-600"
+                >View Details</button>
       </div>
     </div>
   );
