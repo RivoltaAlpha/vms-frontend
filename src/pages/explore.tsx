@@ -14,6 +14,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, handleVehicleClick }
   <div className="bg-white shadow-lg  rounded-lg overflow-hidden">
     <div className="px-6 items-center py-4">
       <img src='./images/car3.png' className="w-full h-64 object-cover" alt="Car Image" />
+      <p className="text-gray-700">Image URL: {vehicle.vehicleSpec.image_url}</p>
       <p className="text-gray-700">Color: {vehicle.vehicleSpec.color}</p>
       <p className="text-gray-700">Engine Capacity: {vehicle.vehicleSpec.engine_capacity}</p>
       <p className="text-gray-700">Fuel Type: {vehicle.vehicleSpec.fuel_type}</p>
