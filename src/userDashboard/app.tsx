@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Navigation } from "./navigation";
 import { Dashboard } from "./dashboard";
 import { ProfilePage } from "./profileUpdate";
-import { PaymentPage } from "./payment";
+import { PaymentPage } from "./userPayments";
 import { BookingForm } from "./bookingForm";
 import { ThankYou } from "./thankyou";
 

@@ -11,6 +11,8 @@ const PaymentHistory: React.FC = () => {
   const { data: payments, error, isLoading } = paymentsAPI.useGetUserPaymentsQuery(user_id);
   console.log ('Payments:', payments);
 
+
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading payments.</p>;
   return (
@@ -27,13 +29,10 @@ const PaymentHistory: React.FC = () => {
                 <p><strong>Status:</strong> {payment.payment_status}</p>
                 <p><strong>Date:</strong> {new Date(payment.payment_date).toLocaleDateString()}</p>
                 <p><strong>Method:</strong> {payment.payment_method}</p>
-                <p><strong>Transaction ID:</strong> {payment.transaction_id}</p>
                 <div className="mt-4">
-                  <h3 className="text-lg font-semibold">Booking Details</h3>
-                  <p><strong>Booking ID:</strong> {payment.booking.booking_id}</p>
+                  <h3 className="text-lg font-bold">Booked Vehicle Details</h3>
                   <div className="mt-2">
-                    <h4 className="font-medium">Vehicle Details</h4>
-                    <p><strong>Vehicle ID:</strong> {payment.booking.vehicle.vehicle_id}</p>
+                    <img src={payment.booking.vehicle.vehicleSpec.image_url} alt="Vehicle" className="mt-2 w-64 h-48 object-cover" />
                     <p><strong>Manufacturer:</strong> {payment.booking.vehicle.vehicleSpec.manufacturer}</p>
                     <p><strong>Model:</strong> {payment.booking.vehicle.vehicleSpec.model}</p>
                     <p><strong>Year:</strong> {payment.booking.vehicle.vehicleSpec.year}</p>
@@ -43,7 +42,6 @@ const PaymentHistory: React.FC = () => {
                     <p><strong>Seating Capacity:</strong> {payment.booking.vehicle.vehicleSpec.seating_capacity}</p>
                     <p><strong>Color:</strong> {payment.booking.vehicle.vehicleSpec.color}</p>
                     <p><strong>Features:</strong> {payment.booking.vehicle.vehicleSpec.features}</p>
-                    {/* <img src={payment.booking.vehicle.vehicleSpec.image_url} alt="Vehicle" className="mt-2 w-64 h-48 object-cover" /> */}
                   </div>
                 </div>
               </div>

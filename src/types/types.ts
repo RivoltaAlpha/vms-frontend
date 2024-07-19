@@ -91,7 +91,8 @@ export interface TBooking {
             year: number;
             features: string[];
             manufacturer: string;
-            model: string;  };
+            model: string;
+            image_url: string;};
     };
     booking_date: string;
     return_date: string;
@@ -112,7 +113,23 @@ export interface TPayment {
     transaction_id: string;
     booking: TBooking;
     user: TUser;
-    vehicle : TIVehicle;
+    vehicle : {
+      vehicle_id: number;
+      rental_rate: number;
+      availability: boolean;
+      vehicleSpec: {
+          body_type: string;
+          fuel_type: string;
+          transmission: string;
+          color: string;
+          engine_capacity: number;
+          seating_capacity: number;
+          year: number;
+          features: string[];
+          manufacturer: string;
+          model: string;
+          image_url: string;};
+  };
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
