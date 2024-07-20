@@ -34,13 +34,7 @@ export interface RUser {
         password: string;
     }
 
-  // Location
-  export interface Location{
-    location_id: number;
-    name: string;
-    address: string;
-    contact_phone: number;
-  }
+ 
 
   // User
  export type TUser = {
@@ -130,6 +124,15 @@ export interface TPayment {
           model: string;
           image_url: string;};
   };
+}
+
+export interface PaymentState {
+  id: string;
+  userId: string;
+  bookingId: string;
+  amount: number;
+  status: string;
+  date: string;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -304,6 +307,20 @@ export interface TLocation {
   address: string;
   contact_phone: string;
   city: string;
+}
+
+ // Location
+ export interface Location{
+  location_id: number;
+  name: string;
+  address: string;
+  contact_phone: number;
+  city: string;
+}
+
+export interface LocationState {
+  location: TLocation[];
+  selectedLocation: TLocation | null;
 }
 
 export interface Tickets {

@@ -12,7 +12,7 @@ export const BookingForm = () => {
   const { user, isAuthenticated } = useSelector((state: RootState) => state.userAuth);
   const { selectedVehicle: vehicle } = useSelector((state: RootState) => state.vehicles);
   const navigate = useNavigate();
-  
+
   const [bookVehicle, { isLoading }] = bookingsAPI.useCreateBookingMutation();
   const{ data: locationsData, isLoading: loadingLocations} = locationsAPI.useGetLocationsQuery();
 
@@ -70,7 +70,7 @@ export const BookingForm = () => {
       return;
     }
     try {
-      await bookVehicle(formData ).unwrap();
+      await bookVehicle(formData as any).unwrap();
       toast.success('Booking successful');
       localStorage.removeItem('selectedVehicle');
       navigate('/user-dashboard');

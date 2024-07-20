@@ -22,7 +22,8 @@ const BookingDetails: React.FC = () => {
 
   // handle checkout
   const handleCheckout = async (booking_id: number) => {
-     try {    console.log('Booking ID:', booking_id);
+     try {    
+          console.log('Booking ID:', booking_id);
           const selectedBookingString = localStorage.getItem('selectedBooking');
           const booking = JSON.parse(selectedBookingString || '{}');
           console.log('Selected booking:',booking);
