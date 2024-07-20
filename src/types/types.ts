@@ -302,7 +302,7 @@ export interface TLocation {
   location_id: number;
   name: string;
   address: string;
-  contact_phone: number;
+  contact_phone: string;
   city: string;
 }
 

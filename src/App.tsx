@@ -31,6 +31,7 @@ import CreateVehicleForm from "./adminDashboard/createVehicle";
 import CreateUserForm from "./adminDashboard/createAdmin";
 import Payments from "./adminDashboard/payments";
 import LocationsTable from "./adminDashboard/locations";
+import CreateLocationForm from "./adminDashboard/addLocation";
 import Tickets from "./adminDashboard/tickets";
 import UserTickets from "./userDashboard/userTickets";
 import CreateTicket from "./userDashboard/ticket";
@@ -67,6 +68,7 @@ const App = () => {
             <Route path="/payments" element={<Payments />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/branches" element={<LocationsTable />} />
+            <Route path="/addBranch" element={<CreateLocationForm />} />
             <Route path="/book/:vehicle_id" element={<BookingForm />} />
             <Route path="/thankyou" element={<ThankYou />} />
             <Route path="/users" element={<UsersTable />} />

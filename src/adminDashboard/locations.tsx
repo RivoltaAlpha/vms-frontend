@@ -1,20 +1,15 @@
 import React from 'react';
 import locationsAPI from '../features/locations/locationsAPI';
 import Navigation from './navigation';
-// import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-// import { Location } from '../types/types';
+import { useNavigate } from 'react-router-dom';
+import { RiApps2AddFill } from 'react-icons/ri';
 
 const LocationsTable: React.FC = () => {
   const { data: locations, error, isLoading } = locationsAPI.useGetLocationsQuery();
-//   const navigate = useNavigate();
-//   const dispatch = useDispatch();
+  const navigation = useNavigate();
 
-//   const handleViewDetails = (location: Location) => {
-//     dispatch(setLocation(location));
-//     localStorage.setItem('selectedLocation', JSON.stringify(location));
-//     navigate(`/location/${location.location_id}`);
-//   };
+  //
+
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading locations.</p>;
@@ -54,8 +49,8 @@ const LocationsTable: React.FC = () => {
             </tr>
           </tfoot>
         </table>
-        <button className="bg-secondary mt-10 text-white py-1 px-3 rounded hover:bg-blue-600"
-                >Add Location</button>
+        <button className="bg-secondary mt-10 text-white py-3 gap-2 px-3 flex  rounded hover:bg-blue-600"
+        onClick={() => navigation('/addBranch')} >  <RiApps2AddFill /> New branch</button>
       </div>
     </div>
   );
