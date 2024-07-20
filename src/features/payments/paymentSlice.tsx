@@ -1,13 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PaymentState } from '../../types/types';
 
-interface PaymentState {
-  id: string;
-  userId: string;
-  bookingId: string;
-  amount: number;
-  status: string;
-  date: string;
-}
 
 const initialState: PaymentState[] = [];
 

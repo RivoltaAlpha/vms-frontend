@@ -20,10 +20,10 @@ const PaymentHistory: React.FC = () => {
       <Navigation />
       <div className="container mt-10 mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-5">My Payments</h2>
-        <div className="bg-cards p-4 rounded">
+        <div className=" p-4 rounded">
           {payments && payments.length > 0 ? (
             payments.map((payment) => (
-              <div key={payment.payment_id} className="mb-4 p-4 border rounded">
+              <div key={payment.payment_id} className="bg-cards mb-4 p-4 border rounded">
                 <p><strong>Payment ID:</strong> {payment.payment_id}</p>
                 <p><strong>Amount:</strong> ${payment.amount}</p>
                 <p><strong>Status:</strong> {payment.payment_status}</p>
