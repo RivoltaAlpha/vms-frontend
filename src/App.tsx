@@ -37,6 +37,7 @@ import UserTickets from "./userDashboard/userTickets";
 import CreateTicket from "./userDashboard/ticket";
 import TicketReview from "./adminDashboard/reviewTicket";
 import PaymentHistory from "./userDashboard/userPayments";
+import UpdateLocationForm from "./adminDashboard/updateLocation";
 // import Navigation from "./adminDashboard/navigation";
 
 const App = () => {
@@ -69,6 +70,7 @@ const App = () => {
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/branches" element={<LocationsTable />} />
             <Route path="/addBranch" element={<CreateLocationForm />} />
+            <Route path="/updateBranch/:location_id" element={<UpdateLocationForm />} />
             <Route path="/book/:vehicle_id" element={<BookingForm />} />
             <Route path="/thankyou" element={<ThankYou />} />
             <Route path="/users" element={<UsersTable />} />

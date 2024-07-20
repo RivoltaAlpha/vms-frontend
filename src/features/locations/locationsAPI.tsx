@@ -23,7 +23,7 @@ export const locationsAPI = createApi({
             query: (location_id) => `/location/${location_id}`,
             providesTags: ['Location'],
         }),
-        createLocation: builder.mutation<void, Partial<TLocation>>({
+        createLocation: builder.mutation<TLocation, Partial<TLocation>>({
             query: (newLocation) => ({
                 url: '/location',
                 method: 'POST',
@@ -31,15 +31,15 @@ export const locationsAPI = createApi({
             }),
             invalidatesTags: ['Location'],
         }),
-        updateLocation: builder.mutation<void, Partial<TLocation> & { location_id: number }>({
-            query: ({ location_id, ...rest }) => ({
+        updateLocation: builder.mutation<TLocation, { location_id: number; data: Partial<TLocation>  }>({
+            query: ({ location_id, data }) => ({
                 url: `/update-location/${location_id}`,
                 method: 'PUT',
-                body: rest,
+                body: data,
             }),
             invalidatesTags: ['Location'],
         }),
-        deleteLocation: builder.mutation<void, number>({
+        deleteLocation: builder.mutation<TLocation, number>({
             query: (location_id) => ({
                 url: `/delete-location/${location_id}`,
                 method: 'DELETE',

@@ -19,11 +19,12 @@ import { registrationAPI } from "../features/registration/registrationAPI";
 import { authApi } from "../features/registration/loginAPI";
 import { VspecAPI } from "../features/Vspec/vspecAPI";
 import { locationsAPI } from "../features/locations/locationsAPI";
+import { ticketsAPI } from "../features/tickets/ticketsAPI";
 import UserAuthReducer from "../features/registration/userAuthSlice";
 import vehicleReducer from '../features/vehicles/vehiclesSlice';
 import bookingReducer from '../features/bookings/bookingSlice';
 import ticketsReducer from '../features/tickets/ticketSlice';
-import ticketsAPI from "../features/tickets/ticketsAPI";
+import LocationReducer from '../features/locations/locationSlice';
 
 const persistConfig = {
   key: "root",
@@ -51,7 +52,8 @@ const rootReducer = combineReducers({
   tickets: ticketsReducer,
   userAuth: UserAuthReducer,
   vehicles: vehicleReducer,
-  booking: bookingReducer
+  booking: bookingReducer,
+  location: LocationReducer
   // Add other reducers here
 });
 
