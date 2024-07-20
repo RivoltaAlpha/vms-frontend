@@ -70,11 +70,11 @@ export const Header = () => {
             </NavLink>
             <NavLink to="/support" className="text-red-500 hover:text-black
              px-3 py-2">
-              <button className="bg-red-500 hover:bg-red-800 text-white lg:font-bold py-2 px-4 rounded">
+              <button className="bg-red-500 hover:bg-red-800 text-white lg:font-bold py-2 px-4  rounded">
                 Customer Support
               </button>
             </NavLink>
-            <Link to="/register" className="bg-red-500 hover:bg-red-800 text-white lg:font-bold py-2 px-4 lg:w-28 rounded mt-4 lg:mt-0  lg:ml-4">
+            <Link to="/register" className="bg-red-500 hover:bg-red-800 text-white lg:font-bold py-2 px-4 ml-3 lg:w-28 md:w-28 rounded mt-3 lg:mt-0  lg:ml-4">
               Register
             </Link>
           </div>

@@ -12,7 +12,7 @@ export const paymentsAPI = createApi({
         }),
         createPayment: builder.mutation<TPayment, Partial<TPayment>>({
             query: (newPayment) => ({
-                url: 'payments',
+                url: 'payment',
                 method: 'POST',
                 body: newPayment,
             }),
