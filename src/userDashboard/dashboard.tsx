@@ -6,14 +6,24 @@ import { FaCalendarAlt, FaCar, FaCashRegister } from 'react-icons/fa';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import { BookingDetails } from '../types/types';
 import paymentsAPI from '../features/payments/paymentsApi';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setBooking } from '../features/bookings/bookingSlice';
 
 export const DashboardContent = () => {
   const { user }: any = useSelector((state: RootState) => state.userAuth.user?.user_id && state.userAuth);
   const userId = user?.user_id;
   const { data, isLoading, isError } = bookingsAPI.useGetBookingsByUserIdQuery(userId);
   const { data: payments } = paymentsAPI.useGetUserPaymentsQuery(userId);
-  console.log('Payments:',payments);
-  
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleViewDetails = (booking: BookingDetails) => {
+    dispatch(setBooking(booking));
+    localStorage.setItem('selectedBooking', JSON.stringify(booking));
+    navigate(`/booking-details/${booking.booking_id}`);
+  };
+
   const bookings = data?.[0]?.bookings || []; // Access nested bookings array
   // console.log(bookings);
   
@@ -42,6 +52,7 @@ export const DashboardContent = () => {
   // Conditional rendering for loading and error states
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error loading data.</p>;
+
 
 
   // Calculate total bookings and vehicles
@@ -98,6 +109,7 @@ export const DashboardContent = () => {
               <th className="py-2 px-4 border-b-2 border-gray-300">Status</th>
               <th className="py-2 px-4 border-b-2 border-gray-300">Booking Date</th>
               <th className="py-2 px-4 border-b-2 border-gray-300">Return Date</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300">Checkout</th>
             </tr>
           </thead>
           <tbody>
@@ -114,6 +126,7 @@ export const DashboardContent = () => {
                 <td className="py-2 px-4 border-b border-gray-300">{booking?.booking_status}</td>
                 <td className="py-2 px-4 border-b border-gray-300">{new Date(booking?.booking_date).toLocaleString()}</td>
                 <td className="py-2 px-4 border-b border-gray-300">{new Date(booking?.return_date).toLocaleString()}</td>
+                <td className="py-2 px-4 border-b border-gray-300"><button className="px-4 py-2 bg-rose-500 text-white rounded" onClick={() => handleViewDetails(booking)}> Checkout</button></td>
                  </tr>
             ))
             )}
