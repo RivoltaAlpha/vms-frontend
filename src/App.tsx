@@ -6,7 +6,7 @@ import Contact from "./pages/contact";
 import Register from "./pages/register";
 import Footer from "./components/footer";
 import LandingPage from "./pages/landingPage";
-import Fleets from "./pages/fleet";
+// import Fleets from "./pages/fleet";
 import AboutUs from "./pages/about";
 import Explore from "./pages/explore";
 import { BookingForm } from "./userDashboard/bookingForm";
@@ -38,7 +38,7 @@ import CreateTicket from "./userDashboard/ticket";
 import TicketReview from "./adminDashboard/reviewTicket";
 import PaymentHistory from "./userDashboard/userPayments";
 import UpdateLocationForm from "./adminDashboard/updateLocation";
-// import Navigation from "./adminDashboard/navigation";
+import FleetsTable from "./adminDashboard/fleets";
 
 const App = () => {
   return (
@@ -51,7 +51,7 @@ const App = () => {
             <Route path="/home" element={<LandingPage />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/explore" element={<Explore />} />
-            <Route path="/fleets" element={<Fleets />} />
+            {/* <Route path="/fleets" element={<Fleets />} /> */}
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin-login" element={<AdminLogin />} />
@@ -85,6 +85,7 @@ const App = () => {
             <Route path="/user-tickets" element={<UserTickets />} />
             <Route path="/createTicket" element={<CreateTicket />} />
             <Route path="/ticketReview/:ticket_id" element={<TicketReview />} />
+            <Route path="/fleets" element={<FleetsTable />} />
             <Route path="/paymentHistory/:user_id" element={<PaymentHistory />} />
           </Routes>
         </main>

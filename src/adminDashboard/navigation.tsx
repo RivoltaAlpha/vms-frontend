@@ -89,7 +89,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/bookings"
+                to="/fleets"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <TbBrandBooking /> Fleets

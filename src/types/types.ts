@@ -330,3 +330,14 @@ export interface Tickets {
   description: string;
   ticket_status: string;
 }
+export interface TIFleetSpec {
+  fleet_id: number;
+  fleet_name: string;
+  vehicle_id: number;
+  acquisition_date: string; // ISO date string
+  depreciation_rate: number;
+  current_value: number;
+  maintenance_cost: number;
+  fleetManagement_status: string;
+  vehicle: TIVehicleSpec;
+}

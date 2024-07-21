@@ -20,6 +20,7 @@ import { authApi } from "../features/registration/loginAPI";
 import { VspecAPI } from "../features/Vspec/vspecAPI";
 import { locationsAPI } from "../features/locations/locationsAPI";
 import { ticketsAPI } from "../features/tickets/ticketsAPI";
+import { FleetAPI } from "../features/fleets/fleetsAPI";
 import UserAuthReducer from "../features/registration/userAuthSlice";
 import vehicleReducer from '../features/vehicles/vehiclesSlice';
 import bookingReducer from '../features/bookings/bookingSlice';
@@ -49,6 +50,7 @@ const rootReducer = combineReducers({
   [VspecAPI.reducerPath]: VspecAPI.reducer,
   [locationsAPI.reducerPath]: locationsAPI.reducer,
   [ticketsAPI.reducerPath]: ticketsAPI.reducer,
+  [FleetAPI.reducerPath]: FleetAPI.reducer,
   tickets: ticketsReducer,
   userAuth: UserAuthReducer,
   vehicles: vehicleReducer,
@@ -75,7 +77,8 @@ const store = configureStore({
       VspecAPI.middleware,
       authApi.middleware,
       locationsAPI.middleware,
-      ticketsAPI.middleware
+      ticketsAPI.middleware,
+      FleetAPI.middleware
       // Add other middleware here
     ),
 });
