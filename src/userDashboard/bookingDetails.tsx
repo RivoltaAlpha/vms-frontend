@@ -30,12 +30,16 @@ const BookingDetails: React.FC = () => {
           // spread the booking to add user id
           const bookingWithUserId = { ...booking, user_id: user_id };
           console.log('Booking with user ID:', bookingWithUserId);
+          console.log('Booking ID:', booking_id);
+          console.log ('User ID:', user_id);
+          console.log(' Vehicle Availability', booking.vehicle.availability);
+          console.log('Booking Status', booking.booking_status);
 
           // Perform checkout logic here
           const stripe = await stripePromise;
           const header = { 'Content-Type': 'application/json', };
 
-          const checkoutResponse = await axios.post(`http://localhost:8000/payment-checkout/${booking_id}`, JSON.stringify(bookingWithUserId), {
+          const checkoutResponse = await axios.post(`https://anirent.azurewebsites.net/payment-checkout/${booking_id}`, JSON.stringify(bookingWithUserId), {
             headers: header,
           });
 
@@ -43,18 +47,10 @@ const BookingDetails: React.FC = () => {
           console.log('Checkout session:', session);
           await stripe?.redirectToCheckout({ sessionId: session.id });
 
-          // update booking status to "Confirmed"
-          // const updatedBooking = { ...booking, booking_status: 'Confirmed' };
-          // console.log('Updated booking:', updatedBooking);
-          // const updateResponse = await axios.put(`http://localhost:8000/update-booking/${booking_id}`, JSON.stringify(updatedBooking), {
-          //   headers: header,
-          // });
-          // console.log('Update response:', updateResponse.data);
         } catch (error) {
           console.error('Error:', error);
         }
   };
-
 
     const [deleteBooking] = bookingsAPI.useDeleteBookingMutation();
     const handleDelete = async (id: number) => {

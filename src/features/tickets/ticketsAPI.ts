@@ -4,7 +4,7 @@ import type { Tickets } from '../../types/types';
 export const ticketsAPI = createApi({
   reducerPath: 'ticketsAPI',
   baseQuery: fetchBaseQuery({ 
-    baseUrl: 'http://localhost:8000',
+    baseUrl: 'https://anirent.azurewebsites.net/',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -17,7 +17,7 @@ export const ticketsAPI = createApi({
   tagTypes: ['tickets', 'userTickets'],
   endpoints: (builder) => ({
     getTickets: builder.query<Tickets[], void>({
-      query: () => '/tickets',
+      query: () => 'tickets',
       providesTags: ['tickets'],
     }),
     getTicket: builder.query<Tickets, number>({
@@ -25,7 +25,7 @@ export const ticketsAPI = createApi({
     }),
     generateTicket: builder.mutation<Tickets, Partial<Tickets>>({
       query: (newTicket) => ({
-        url: `/ticket`,
+        url: `ticket`,
         method: 'POST',
         body: newTicket,
       }),
@@ -33,7 +33,7 @@ export const ticketsAPI = createApi({
     }),
     reviewTicket: builder.mutation<Tickets, Partial<Tickets>>({
       query: ({ ticket_id, ...data }) => ({
-        url: `/update-ticket/${ticket_id}`,
+        url: `update-ticket/${ticket_id}`,
         method: 'PUT',
         body: data,
       }),
@@ -41,18 +41,18 @@ export const ticketsAPI = createApi({
     }),
     deleteTicket: builder.mutation<Tickets, number>({
       query: (ticket_id) => ({
-        url: `/delete-ticket/${ticket_id}`,
+        url: `delete-ticket/${ticket_id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['tickets'],
     }),
     getUserTickets: builder.query<Tickets[], number>({
-      query: (user_id) => `/user-tickets/${user_id}`,
+      query: (user_id) => `user-tickets/${user_id}`,
       providesTags: ['tickets'],
 
     }),
     getTicketById: builder.query<Tickets, number>({
-      query: (ticket_id) => `/ticket/${ticket_id}`,
+      query: (ticket_id) => `ticket/${ticket_id}`,
       providesTags: ['userTickets'],
     }),
   }),

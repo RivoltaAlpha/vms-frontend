@@ -3,7 +3,7 @@ import type { Booking, BookingDetails, TIBookings } from '../../types/types';
 
 export const bookingsAPI = createApi({
     reducerPath: 'bookingsAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000',
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://anirent.azurewebsites.net/',
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('token');
             if (token) {
@@ -16,17 +16,17 @@ export const bookingsAPI = createApi({
     tagTypes: ['getBookings', 'userBookings'],
     endpoints: (builder) => ({
         getBookings: builder.query<BookingDetails[], void>({
-            query: () => '/bookings',
+            query: () => 'bookings',
             providesTags: ['getBookings'], 
         }),
 
         getBooking: builder.query<BookingDetails, number>({
-            query: (booking_id) => `/booking/${booking_id}`,
+            query: (booking_id) => `booking/${booking_id}`,
         }),
 
         createBooking: builder.mutation<Booking, Partial<TIBookings>>({
             query: (newBooking) => ({
-                url: '/create-booking',
+                url: 'create-booking',
                 method: 'POST',
                 body: newBooking,
             }),
@@ -35,7 +35,7 @@ export const bookingsAPI = createApi({
 
         updateBooking: builder.mutation<Booking, { booking_id: number; data:Partial<Booking>}>({
             query: ({ booking_id, data }: { booking_id: number; data:Partial<Booking>}) => ({
-                url: `/update-booking/${booking_id}`,
+                url: `update-booking/${booking_id}`,
                 method: 'PUT',
                 body: data,
             }),
@@ -44,7 +44,7 @@ export const bookingsAPI = createApi({
 
         deleteBooking: builder.mutation<{ success: boolean; id: number }, number>({
             query: (id) => ({
-                url: `/delete-booking/${id}`,
+                url: `delete-booking/${id}`,
                 method: 'DELETE',
 
             }),
@@ -52,9 +52,17 @@ export const bookingsAPI = createApi({
         }),
         
         getBookingsByUserId: builder.query<BookingDetails[], number>({
-            query: (id) => `/all-user-bookings/${id}`,
+            query: (id) => `all-user-bookings/${id}`,
             providesTags: ['userBookings'],
         }),
+        updateBookingStatus: builder.mutation<Booking, { booking_id: number; data:Partial<Booking>}>({
+            query: ({ booking_id, data }: { booking_id: number; data:Partial<Booking>}) => ({
+                url: `update-booking-status/${booking_id}`,
+                method: 'PUT',
+                body: data,
+            }),
+            invalidatesTags: [ 'getBookings'],
+        })
         }),
 });
 

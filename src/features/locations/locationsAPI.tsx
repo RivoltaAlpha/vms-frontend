@@ -4,7 +4,7 @@ import { TLocation } from '../../types/types';
 export const locationsAPI = createApi({
     reducerPath: 'locationsAPI',
     baseQuery: fetchBaseQuery({ 
-        baseUrl: 'http://localhost:8000',
+        baseUrl: 'https://anirent.azurewebsites.net/',
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('token');
             if (token) {
@@ -16,16 +16,16 @@ export const locationsAPI = createApi({
     tagTypes: ['Location'],
     endpoints: (builder) => ({
         getLocations: builder.query<TLocation[], void>({
-            query: () => '/locations',
+            query: () => 'locations',
             providesTags: ['Location'],
         }),
         getLocation: builder.query<TLocation, number>({
-            query: (location_id) => `/location/${location_id}`,
+            query: (location_id) => `location/${location_id}`,
             providesTags: ['Location'],
         }),
         createLocation: builder.mutation<TLocation, Partial<TLocation>>({
             query: (newLocation) => ({
-                url: '/location',
+                url: 'location',
                 method: 'POST',
                 body: newLocation,
             }),
@@ -33,7 +33,7 @@ export const locationsAPI = createApi({
         }),
         updateLocation: builder.mutation<TLocation, { location_id: number; data: Partial<TLocation>  }>({
             query: ({ location_id, data }) => ({
-                url: `/update-location/${location_id}`,
+                url: `update-location/${location_id}`,
                 method: 'PUT',
                 body: data,
             }),
@@ -41,7 +41,7 @@ export const locationsAPI = createApi({
         }),
         deleteLocation: builder.mutation<TLocation, number>({
             query: (location_id) => ({
-                url: `/delete-location/${location_id}`,
+                url: `delete-location/${location_id}`,
                 method: 'DELETE',
             }),
             invalidatesTags: ['Location'],

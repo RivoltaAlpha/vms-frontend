@@ -3,7 +3,7 @@ import type { TPayment } from '../../types/types';
 
 export const paymentsAPI = createApi({
     reducerPath: 'paymentsAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://anirent.azurewebsites.net/' }),
     tagTypes: ['Payment'],
     endpoints: (builder) => ({
         getPayments: builder.query<TPayment[], void>({
