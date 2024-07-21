@@ -9,9 +9,6 @@ const PaymentHistory: React.FC = () => {
   const { user }: any = useSelector((state: RootState) => state.userAuth.user?.user_id && state.userAuth);
   const user_id = user?.user_id;
   const { data: payments, error, isLoading } = paymentsAPI.useGetUserPaymentsQuery(user_id);
-  console.log ('Payments:', payments);
-
-
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading payments.</p>;
