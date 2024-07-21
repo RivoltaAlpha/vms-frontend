@@ -20,7 +20,7 @@ const VehicleSpec = () => {
       };
    
     if (isLoading) return <p>Loading...</p>;
-    if (isError) return <p>Error loading vehicles.</p>;
+    if (isError) return <p>Error loading vehicle specifications.</p>;
 
     return (
         <div className='flex bg-gray-100  gap-10'>

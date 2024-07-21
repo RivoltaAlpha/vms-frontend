@@ -1,9 +1,11 @@
 import React from 'react';
 import VehiclesAPI from '../features/vehicles/vehicleAPI';
 import { TIVehicleSpec } from '../types/types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { setSelectedVehicle } from '../features/vehicles/vehiclesSlice';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
 
 interface VehicleCardProps {
   vehicle: TIVehicleSpec;
@@ -13,8 +15,7 @@ interface VehicleCardProps {
 const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, handleVehicleClick }) => (
   <div className="bg-white shadow-lg  rounded-lg overflow-hidden">
     <div className="px-6 items-center py-4">
-      <img src='./images/car3.png' className="w-full h-64 object-cover" alt="Car Image" />
-      <p className="text-gray-700">Image URL: {vehicle.vehicleSpec.image_url}</p>
+      <img src={vehicle.vehicleSpec.image_url} className="w-full h-64 object-cover" alt="Car Image" />
       <p className="text-gray-700">Color: {vehicle.vehicleSpec.color}</p>
       <p className="text-gray-700">Engine Capacity: {vehicle.vehicleSpec.engine_capacity}</p>
       <p className="text-gray-700">Fuel Type: {vehicle.vehicleSpec.fuel_type}</p>
@@ -34,11 +35,17 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, handleVehicleClick }
 );
 
 const Explore = () => {
+  const isAuthenticated = useSelector((state: RootState) => state.userAuth.isAuthenticated);
   const { data: vehicles = [] } = VehiclesAPI.useGetVehiclesQuery();
   console.log(vehicles)
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleVehicleClick = (vehicle: TIVehicleSpec) => {
-    dispatch(setSelectedVehicle(vehicle));
+    if (isAuthenticated) {
+      dispatch(setSelectedVehicle(vehicle));
+    }else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -46,7 +53,7 @@ const Explore = () => {
       <h1 className="text-3xl font-bold mb-8 bg-base text-white py-2 px-4">Explore Our Vehicles</h1>
       <div className="grid grid-cols-1 items-center md:grid-cols-2 lg:grid-cols-3 gap-6">
         {vehicles.map((vehicle) => (
-          <VehicleCard key={vehicle.vehicle_id} vehicle={vehicle} handleVehicleClick={handleVehicleClick}/>
+            <VehicleCard key={vehicle.vehicle_id} vehicle={vehicle} handleVehicleClick={handleVehicleClick}/>
         ))}
       </div>
     </div>

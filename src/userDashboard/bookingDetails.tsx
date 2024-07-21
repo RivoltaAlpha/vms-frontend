@@ -61,7 +61,7 @@ const BookingDetails: React.FC = () => {
     if (!booking) return <p>No booking selected</p>;
 
     return (
-      <div className="p-32">
+      <div className="p-32 flex  items-center">
         <Toaster
           toastOptions={{
             classNames: {
@@ -75,9 +75,8 @@ const BookingDetails: React.FC = () => {
         <div className="booking-list items-center gap-3">
           <h2 className="text-2xl font-bold gap-3 mb-5"> Vehicle Details</h2>
           {booking && (
-            <div key={booking.booking_id} className="booking-item bg-secondary rounded shadow-black">
-              <img src="./public/images/car3.png" alt="image" />
-              {/* <img className=" p-2 mb-4 " >Vehicle Name:{booking.vehicle.vehicleSpec.image_url} </img> */}
+            <div key={booking.booking_id} className="booking-item bg-cards w-full rounded shadow-black">
+              <img src={booking.vehicle.vehicleSpec.image_url} className="w-[700px] object-cover" alt="Car Image" />
               <p className=" p-2 mb-4 " >Manufacturer:{booking.vehicle.vehicleSpec.manufacturer}</p>
               <p className=" p-2 mb-4 " >Model:{booking.vehicle.vehicleSpec.model}</p>
               <p className=" p-2 mb-4 " >Color  :{booking.vehicle.vehicleSpec.color}</p>
@@ -91,7 +90,7 @@ const BookingDetails: React.FC = () => {
             </div>
           )}
         </div>
-        <div className="max-w-2xl mx-auto mt-10 p-6 bg-cards mb-6 shadow-lg rounded-lg">
+        <div className="max-w-2xl mx-auto mt-10 p-6 bg-cards w-full mb-6 shadow-lg rounded-lg">
           {booking && (
             <ul className="py">
               <h2 className="text-2xl font-bold mb-5">Booking Details</h2>

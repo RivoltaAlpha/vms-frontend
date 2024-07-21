@@ -47,7 +47,7 @@ const VehiclesTable: React.FC = () => {
               <tr key={vehicle.vehicle_id}>
                 <td className="py-2 px-4 border-b">{vehicle.vehicle_id}</td>
                 <td className="py-2 px-4 border-b">{vehicle.rental_rate}</td>
-                <td className="py-2 px-4 border-b">{vehicle.availability}</td> 
+                <td className="py-2 px-4 border-b">{vehicle.availability  ? 'Available' : 'Not Available'}</td> 
                 <td className="py-2 px-4 border-b">{vehicle.vehicleSpec?.model}</td>
                 <td className="py-2 px-4 border-b">{vehicle.vehicleSpec?.manufacturer}</td>
                 <td className="py-2 px-4 border-b">{vehicle.vehicleSpec?.fuel_type}</td>
