@@ -2,27 +2,30 @@ import React from 'react';
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-4 text-center">About Us</h1>
-      <p className="text-lg mb-8 text-center">
-        Welcome to AniRent, where we offer<br/>
-        <ul className="list-none font-bold list-inside">
-         <li> ✓ highly reliable</li>
-         <li> ✓ affordable</li>
-         <li> ✓ convenient</li>
+    <div className="bg-gray-900 text-white mx-auto px-4 py-8">
+      <h1 className="text-4xl  font-bold mb-4 text-center">About Us</h1>
+      <p className="text-xl mb-8 text-center">
+        <br/>
+      </p>
+      <div className="mb-12 text-center rounded text-white p-8">
+        <p className="text-xl mb-4">
+          At AniRent, we prioritize your satisfaction and strive to provide the best rental experience. Our commitment to quality, affordability, and customer service sets us apart from the rest.
+        </p>       
+        <ul className="list-none  font-bold list-inside">
+         <li> ✓ easy online booking system</li>
+         <li> ✓ wide selection of vehicles</li>
+         <li> ✓ instant confirmation</li>
+         <li> ✓ flexible pick-up and drop-off locations</li>
+         <li> ✓ highly reliable, affordable and efficient</li>
       <h2>...vehicle rental services</h2>
         </ul>
-         <br/>
-         We are committed to providing our customers with the best possible experience. We strive to offer top-quality vehicles at an
-         vehicle rental services tailored to meet all your transportation needs.
-         Discover why AniRent is the preferred choice for customers looking for top-quality vehicles and exceptional service.
-      </p>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex items-center justify-center">
-          <img src="./images/car2.png" alt="Vehicle Booking" className="mb-4 w-[700px] md:mb-0" />
+          <img src="./images/image copy 7.png" alt="Vehicle Booking" className="rounded mb-4 w-[700px] md:mb-0" />
         </div>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col ml-[150px] md:w-1/2 p-8 card justify-center">
           <h2 className="text-2xl font-bold mb-2">Vehicle Booking</h2>
           <p>
             Experience a seamless booking process with AniRent. Choose from a wide range of vehicles to suit your needs and preferences.
@@ -36,7 +39,7 @@ const AboutUs: React.FC = () => {
           </ul>
         </div>
 
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col ml-[150px] md:w-1/2 p-8 card justify-center">
           <h2 className="text-2xl font-bold mb-2">Flexible Rental Plans</h2>
           <p>
             Enjoy flexible rental plans that fit your schedule and budget. Whether you need a vehicle for a day or a month, we have you covered.
@@ -50,14 +53,14 @@ const AboutUs: React.FC = () => {
           </ul>
         </div>
         <div className="flex items-center justify-center">
-          <img src="./images/car3.png" alt="Flexible Rental Plans" className="mb-4 w-[700px] md:mb-0" />
+          <img src="./images/image.png" alt="Flexible Rental Plans" className="rounded mb-4 w-[700px] md:mb-0" />
         </div>
 
         <div className="flex items-center justify-center">
-          <img src="./images/contact.png" alt="Customer Support" className="mb-4 w-[700px] md:mb-0" />
+          <img src="./images/image copy.png" alt="Customer Support" className="rounded mb-4 w-[700px] md:mb-0" />
         </div>
-        <div className="flex flex-col justify-center">
-          <h2 className="text-2xl font-bold mb-2">Customer Support</h2>
+        <div className="flex flex-col ml-[150px] md:w-1/2 p-8 card justify-center">
+          <h2 className="text-2xl  font-bold mb-2">Customer Support</h2>
           <p>
             Our dedicated customer support team is here to assist you 24/7. We are committed to providing excellent service and support.
           </p>
@@ -70,11 +73,28 @@ const AboutUs: React.FC = () => {
           </ul>
         </div>
 
-        <div className="flex flex-col justify-center">
-          <h2 className="text-2xl font-bold mb-2">Reliable Vehicles</h2>
+        <div className="flex flex-col ml-[150px] md:w-1/2 p-8 card justify-center">
+          <h2 className="text-2xl  font-bold mb-2">Reliable Vehicles</h2>
           <p>
-            Choose from a fleet of well-maintained, reliable vehicles. We ensure that every vehicle is in top condition for your safety and comfort.
+            Choose from a fleet of the most, reliable vehicles. We ensure that every vehicle is in top condition for your safety and comfort.
           </p>
+          <br/>
+          <ul className=" list-none list-inside">
+            <li>✓ Latest models with advanced features</li>
+            <li>✓ Clean and sanitized vehicles</li>
+            <li>✓ Roadside assistance included</li>
+          </ul>
+        </div>
+        <div className="flex items-center justify-center">
+          <img src="./images/image copy 5.png" alt="Reliable Vehicles" className="rounded mb-4 w-[700px] md:mb-0" />
+        </div>
+
+        <div className="flex items-center justify-center">
+          <img src="/images/image copy 3.png" alt="Reliable Vehicles" className="rounded mb-4 w-[700px] md:mb-0" />
+        </div>
+        <div className="flex flex-col ml-[150px] md:w-1/2 p-8 card justify-center">
+          <h2 className="text-2xl  font-bold mb-2"> Vehicles Maintenance</h2>
+          <p>We ensure all our vehicles are regularly maintained and in top condition for your safety and comfort.          </p>
           <br/>
           <ul className=" list-none list-inside">
             <li>✓ Regular maintenance and inspections</li>
@@ -83,19 +103,6 @@ const AboutUs: React.FC = () => {
             <li>✓ Roadside assistance included</li>
           </ul>
         </div>
-        <div className="flex items-center justify-center">
-          <img src="./images/car1.png" alt="Reliable Vehicles" className="mb-4 w-[700px] md:mb-0" />
-        </div>
-      </div>
-
-      <div className="mt-12 text-center">
-        <h2 className="text-3xl font-bold mb-4">Why Choose AniRent?</h2>
-        <p className="text-lg mb-4">
-          At AniRent, we prioritize your satisfaction and strive to provide the best rental experience. Our commitment to quality, affordability, and customer service sets us apart from the rest.
-        </p>
-        <p className="text-lg mb-4">
-          Join the countless satisfied customers who trust AniRent for their transportation needs. Book your vehicle today and experience the AniRent difference!
-        </p>
       </div>
     </div>
   );
