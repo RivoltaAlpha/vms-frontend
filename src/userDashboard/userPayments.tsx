@@ -3,6 +3,7 @@ import Navigation from './navigation';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import paymentsAPI from '../features/payments/paymentsApi';
+import { SyncLoader } from 'react-spinners';
 
 
 const PaymentHistory: React.FC = () => {
@@ -10,8 +11,18 @@ const PaymentHistory: React.FC = () => {
   const user_id = user?.user_id;
   const { data: payments, error, isLoading } = paymentsAPI.useGetUserPaymentsQuery(user_id);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading payments.</p>;
+    // Conditional rendering for loading and error states
+    if (isLoading) return <p>
+    <SyncLoader
+      color="#116696"
+      loading={isLoading}
+      size={20}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
+  </p>;
+  if (error) return <p>Error loading data.</p>;
+
   return (
     <div className='flex'>
       <Navigation />

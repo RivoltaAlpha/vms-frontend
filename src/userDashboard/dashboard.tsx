@@ -2,19 +2,23 @@ import { useSelector } from 'react-redux';
 import bookingsAPI from '../features/bookings/bookingsApi';
 import Navigation from './navigation';
 import { RootState } from '../app/store';
-import { FaCalendarAlt, FaCar, FaCashRegister } from 'react-icons/fa';
+import { FaCalendarAlt, FaCar, FaCashRegister, FaTicketAlt } from 'react-icons/fa';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import { BookingDetails } from '../types/types';
 import paymentsAPI from '../features/payments/paymentsApi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBooking } from '../features/bookings/bookingSlice';
+import { SyncLoader  } from "react-spinners";
+import ticketsAPI from '../features/tickets/ticketsAPI';
 
 export const DashboardContent = () => {
   const { user }: any = useSelector((state: RootState) => state.userAuth.user?.user_id && state.userAuth);
   const userId = user?.user_id;
   const { data, isLoading, isError } = bookingsAPI.useGetBookingsByUserIdQuery(userId);
   const { data: payments } = paymentsAPI.useGetUserPaymentsQuery(userId);
+  //tickets
+  const { data: tickets } = ticketsAPI.useGetUserTicketsQuery(userId);
   console.log('Payments:', payments);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -51,7 +55,15 @@ export const DashboardContent = () => {
   }, []) || [];
 
   // Conditional rendering for loading and error states
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>
+    <SyncLoader
+      color="#116696"
+      loading={isLoading}
+      size={20}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
+  </p>;
   if (isError) return <p>Error loading data.</p>;
 
 
@@ -60,13 +72,15 @@ export const DashboardContent = () => {
   const totalBookings = Array.isArray(bookings) ? bookings.length : 0;
   
   const totalPayments = Array.isArray(payments) ? payments.length : 0;
+
+  const totalTickets = Array.isArray(tickets) ? tickets.length : 0;
   
   return (
-    <div className="flex-grow">
+    <div className="flex-grow bg-gray-900 text-white lg:w-2/3 p-10 flex-col">
       <h1 className="text-4xl font-bold mb-4">Hello, {user?.username} ...</h1>
       <h2 className=" mb-5">Here is your Booking Summary</h2>
       <div className="flex justify-center">
-        <div className="mr-4  bg-cyan-600 p-1 items rounded">
+        <div className="mr-4  bg-secondary p-1 items rounded">
           <h2 className="text-2xl ml-10 font-bold mb-5">Bookings Over Time</h2>
           <LineChart
             width={500}
@@ -95,6 +109,10 @@ export const DashboardContent = () => {
           <div className="flex flex-col items-center justify-center bg-secondary text-white hover:bg-cyan-500 py-4 px-4 rounded-lg w-full md:w-[300px]">
             <FaCashRegister size={48} className="mb-2" />
             <p className="text-3xl">Total: {totalPayments} {totalPayments === 1 ? 'Payment' : 'Payments'}</p>
+          </div>
+          <div className="flex flex-col items-center justify-center bg-secondary text-white hover:bg-cyan-500 py-4 px-4 rounded-lg w-full md:w-[300px]">
+            <FaTicketAlt size={48} className="mb-2" />
+            <p className="text-3xl">Total: {totalTickets} {totalTickets === 1 ? 'Ticket' : 'Tickets'}</p>
           </div>
         </div>
       </div>
@@ -127,7 +145,7 @@ export const DashboardContent = () => {
                 <td className="py-2 px-4 border-b border-gray-300">{booking?.booking_status}</td>
                 <td className="py-2 px-4 border-b border-gray-300">{new Date(booking?.booking_date).toLocaleString()}</td>
                 <td className="py-2 px-4 border-b border-gray-300">{new Date(booking?.return_date).toLocaleString()}</td>
-                <td className="py-2 px-4 border-b border-gray-300"><button className="px-4 py-2 bg-rose-500 text-white rounded" onClick={() => handleViewDetails(booking)}> Checkout</button></td>
+                <td className="py-2 px-4 border-b border-gray-300"><button className="px-4 py-2 bg-pink-600 text-white rounded" onClick={() => handleViewDetails(booking)}> Checkout</button></td>
                  </tr>
             ))
             )}

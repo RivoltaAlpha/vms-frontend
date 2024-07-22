@@ -8,6 +8,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBooking } from '../features/bookings/bookingSlice';
 import Navigation from './navigation';
+import { SyncLoader } from 'react-spinners';
 
 const UserBookings: React.FC = () => {
   const navigate = useNavigate();
@@ -70,7 +71,15 @@ const UserBookings: React.FC = () => {
               </thead>
               <tbody>
                 {isLoading ? (
-                  <tr><td colSpan={8}>Loading...</td></tr>
+                  <tr><td colSpan={8}>
+                        <SyncLoader
+                          color="#36d7b7"
+                          loading={isLoading}
+                          size={20}
+                          aria-label="Loading Spinner"
+                          data-testid="loader"
+                        />
+                    </td></tr>
                 ) : isError ? (
                   <tr><td colSpan={8}>Error loading bookings</td></tr>
                 ) : (

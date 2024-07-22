@@ -6,6 +6,7 @@ import { RiApps2AddFill } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { toast } from 'sonner';
+import { SyncLoader } from 'react-spinners';
 
 
 const UserTickets: React.FC = () => {
@@ -26,8 +27,18 @@ const UserTickets: React.FC = () => {
     }
   };
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading tickets.</p>;
+    // Conditional rendering for loading and error states
+    if (isLoading) return <p>
+    <SyncLoader
+      color="#116696"
+      loading={isLoading}
+      size={20}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
+  </p>;
+  if (error) return <p>Error loading data.</p>;
+
 
   return (
     <div className='flex'>
