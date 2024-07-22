@@ -4,11 +4,14 @@ import ticketsAPI from '../features/tickets/ticketsAPI';
 import Navigation from './navigation';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
+import { useDispatch } from 'react-redux';
+import { clearTicket } from '../features/tickets/ticketSlice';
 
 const CreateTicket: React.FC = () => {
   const { user } = useSelector((state: RootState) => state.userAuth);
   const user_id = user?.user_id;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
   const [createTicket] = ticketsAPI.useGenerateTicketMutation();
@@ -18,6 +21,7 @@ const CreateTicket: React.FC = () => {
     try {
       const newTicket = {user_id, subject, description };
       await createTicket(newTicket).unwrap();
+      dispatch(clearTicket());
       navigate('/user-tickets'); // Navigate to tickets page after successful creation
     } catch (error) {
       console.error('Error creating ticket:', error);

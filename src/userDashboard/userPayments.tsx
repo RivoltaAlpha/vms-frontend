@@ -43,13 +43,6 @@ const PaymentHistory: React.FC = () => {
                     <img src={payment.booking.vehicle.vehicleSpec.image_url} alt="Vehicle" className="mt-2 w-64 h-48 object-cover" />
                     <p><strong>Manufacturer:</strong> {payment.booking.vehicle.vehicleSpec.manufacturer}</p>
                     <p><strong>Model:</strong> {payment.booking.vehicle.vehicleSpec.model}</p>
-                    <p><strong>Year:</strong> {payment.booking.vehicle.vehicleSpec.year}</p>
-                    <p><strong>Fuel Type:</strong> {payment.booking.vehicle.vehicleSpec.fuel_type}</p>
-                    <p><strong>Engine Capacity:</strong> {payment.booking.vehicle.vehicleSpec.engine_capacity}</p>
-                    <p><strong>Transmission:</strong> {payment.booking.vehicle.vehicleSpec.transmission}</p>
-                    <p><strong>Seating Capacity:</strong> {payment.booking.vehicle.vehicleSpec.seating_capacity}</p>
-                    <p><strong>Color:</strong> {payment.booking.vehicle.vehicleSpec.color}</p>
-                    <p><strong>Features:</strong> {payment.booking.vehicle.vehicleSpec.features}</p>
                   </div>
                 </div>
               </div>

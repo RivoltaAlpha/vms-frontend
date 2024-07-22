@@ -13,7 +13,7 @@ export const usersAPI = createApi({
             return headers;
           },
      }),
-    tagTypes: ['getUsers','getUser', 'createUser', 'updateUser', 'deleteUser'],
+    tagTypes: ['getUsers'],
     endpoints: (builder) => ({
         getUsers: builder.query<TUser[], void>({
             query: () => '/users',
@@ -21,8 +21,8 @@ export const usersAPI = createApi({
         }),
 
         getUser: builder.query<TUser, number>({
-            query: (id) => `/user/${id}`,
-            providesTags: ['getUser', 'getUsers'],
+            query: (user_id) => `/user/${user_id}`,
+            providesTags: ['getUsers'],
         }),
 
         createUser: builder.mutation<User, Partial<User>>({
@@ -31,7 +31,7 @@ export const usersAPI = createApi({
                 method: 'POST',
                 body: newUser,
             }),
-            invalidatesTags: ['getUsers', 'createUser'],
+            invalidatesTags: ['getUsers'],
         }),
         updateUser: builder.mutation<TUser, { id: number; data: Partial<TIUser> }>({
             query: ({ id, data }) => ({
@@ -39,14 +39,14 @@ export const usersAPI = createApi({
                 method: 'PUT',
                 body: data,
             }),
-            invalidatesTags: ['getUsers', 'updateUser'],
+            invalidatesTags: ['getUsers'],
         }),
         deleteUser: builder.mutation<{ success: boolean; id: number }, number>({
             query: (id) => ({
                 url: `/delete-user/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['getUsers', 'deleteUser'],
+            invalidatesTags: ['getUsers'],
         }),
     }),
 });
