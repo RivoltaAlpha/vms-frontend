@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Slider from 'react-slick';
 
 interface SlideProps {
@@ -22,9 +23,11 @@ const Slide: React.FC<SlideProps> = ({ title, description, imageUrl }) => (
     <div className="relative z-10 flex flex-col justify-center items-center h-full text-white text-center px-4">
       <h1 className="text-5xl font-bold mb-4">{title}</h1>
       <p className="text-xl mb-8 max-w-2xl">{description}</p>
-      <button className="bg-red-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+      <NavLink to={'/explore'}>
+      <button className="bg-red-500 hover:bg-secondary text-white font-bold py-2 px-4 rounded">
         Explore
       </button>
+      </NavLink>
     </div>
   </div>
 );

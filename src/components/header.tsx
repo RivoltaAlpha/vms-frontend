@@ -9,15 +9,16 @@ export const Header = () => {
   };
 
   return (
-    <header className="bg-red-50 text-black">
+    <header className="bg-red-50 ext-cards">
       <nav className="container mx-auto px-6 py-3 flex flex-wrap justify-between items-center">
-        <div className="text-xl font-bold">
+        <div className="text-4xl flex font-bold">
+        <img src="./images/logo.jpg" alt="" className="w-10 h-10 rounded-full" />
         AniRent
         </div>
         <div className="block lg:hidden">
           <button
             onClick={toggleMenu}
-            className="text-Red-500 hover:text-black
+            className="text-cards hover:text-black
              focus:outline-none focus:text-white"
           >
             <svg
@@ -45,36 +46,36 @@ export const Header = () => {
           className={`w-full lg:flex lg:items-center lg:w-auto ${isOpen ? 'block' : 'hidden'}`}
         >
           <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-2">
-            <NavLink to="/" className="text-red-500 hover:text-black
+            <NavLink to="/" className="text-cards hover:text-black
              px-3 py-2">
               Home
             </NavLink>
-            <NavLink to="/about-us" className="text-red-500 hover:text-black
+            <NavLink to="/about-us" className="text-cards hover:text-black
              px-3 py-2">
               About Us
             </NavLink>
-            <NavLink to="Explore" className="text-red-500 hover:text-black
+            <NavLink to="Explore" className="text-cards hover:text-black
              px-3 py-2">
               Explore
             </NavLink>
-            <NavLink to="/login" className="text-red-500 hover:text-black px-3 py-2">Book Now</NavLink>
-            <NavLink to="/Fleets" className="text-red-500 hover:text-black
+            <NavLink to="/login" className="text-cards hover:text-black px-3 py-2">Book Now</NavLink>
+            <NavLink to="/Fleets" className="text-cards hover:text-black
              px-3 py-2">
               Fleets
             </NavLink>
-            <NavLink to="/contact" className="text-red-500 hover:text-black
+            <NavLink to="/contact" className="text-cards hover:text-black
              px-3 py-2">
-              <button className="bg-red-500 hover:bg-red-800 text-white lg:font-bold py-2 px-4 rounded">
+              <button className="bg-cards hover:bg-secondary text-white lg:font-bold py-2 px-4 rounded">
                 Contact Us
               </button>
             </NavLink>
-            <NavLink to="/support" className="text-red-500 hover:text-black
+            <NavLink to="/support" className="text-cards hover:text-black
              px-3 py-2">
-              <button className="bg-red-500 hover:bg-red-800 text-white lg:font-bold py-2 px-4  rounded">
+              <button className="bg-cards hover:bg-secondary text-white lg:font-bold py-2 px-4  rounded">
                 Customer Support
               </button>
             </NavLink>
-            <Link to="/register" className="bg-red-500 hover:bg-red-800 text-white lg:font-bold py-2 px-4 ml-3 lg:w-28 md:w-28 rounded mt-3 lg:mt-0  lg:ml-4">
+            <Link to="/register" className="bg-cards hover:bg-secondary text-white lg:font-bold py-2 px-4 ml-3 lg:w-28 sm:w-28 rounded mt-3 lg:mt-0  lg:ml-4">
               Register
             </Link>
           </div>
