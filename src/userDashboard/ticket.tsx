@@ -36,21 +36,21 @@ const CreateTicket: React.FC = () => {
         <h2 className="text-2xl font-bold mb-5">Create New Ticket</h2>
         <form onSubmit={handleSubmit} className="bg-cards p-4 rounded">
           <div className="mb-4">
-            <label className="block text-gray-700">Subject</label>
+            <label className="block text-black">Subject</label>
             <input
               type="text"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
-              className="mt-1 block w-full rounded border-gray-300"
+              className="mt-1 block w-full text-black rounded border-gray-300"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Description</label>
+            <label className="block text-black">Description</label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="mt-1 block w-full rounded border-gray-300"
+              className="mt-1 block w-full text-black rounded border-gray-300"
               required
             />
           </div>

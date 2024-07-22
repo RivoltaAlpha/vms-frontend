@@ -2,9 +2,12 @@ import { SyncLoader } from 'react-spinners';
 import paymentsAPI from '../features/payments/paymentsApi';
 import { TPayment } from '../types/types';
 import Navigation from './navigation';
+import { RiApps2AddFill } from 'react-icons/ri';
+import { useNavigate } from 'react-router-dom';
 
 const Payments = () => {
     const { data: payments, isLoading, isError } = paymentsAPI.useGetPaymentsQuery();
+    const navigate = useNavigate();
     if (isLoading) return (
       <SyncLoader
             color="#116696"
@@ -32,10 +35,10 @@ const Payments = () => {
       // console.log ("Total amount:", calculateTotalAmount(payments));
 
       return (
-        <div className="flex">
+        <div className="flex bg-gray-100">
           <Navigation />
           <div className="w-full p-6">
-            <h1 className="text-2xl font-bold mb-4">Payments</h1>
+            <h1 className="text-2xl font-bold text-black mb-4">Payments</h1>
     
               <table className=" w-[90%] mx-auto bg-cards rounded p-4 ">
                 <thead>
@@ -72,8 +75,9 @@ const Payments = () => {
                   ))
                 )}
                 </tbody>
-                
-              </table>
+                </table>
+              <button className="bg-secondary mt-10 text-white py-3 gap-2 px-3 flex  rounded hover:bg-blue-600"
+        onClick={() => navigate('/addBranch')} >  <RiApps2AddFill /> Payments Report</button>
           </div>
         </div>
       );

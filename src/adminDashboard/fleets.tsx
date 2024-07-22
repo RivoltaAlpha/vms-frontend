@@ -32,10 +32,10 @@ const FleetsTable: React.FC = () => {
   if (error) return <p>Error loading fleets.</p>;
 
   return (
-    <div className='flex gap-10'>
+    <div className='flex bg-gray-100 gap-10'>
       <Navigation />
       <div className="container mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold mb-5">Fleets Data</h2>
+        <h2 className="text-2xl text-black font-bold mb-5">Fleets Data</h2>
         <table className="min-w-full bg-cards">
           <thead>
             <tr>

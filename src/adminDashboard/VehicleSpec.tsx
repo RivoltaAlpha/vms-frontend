@@ -36,7 +36,7 @@ const VehicleSpec = () => {
         <div className='flex bg-gray-100  gap-10'>
        <Navigation/> 
         <div className="container mx-auto px-4 py-6">
-            <h1 className="text-2xl font-bold mb-4">Vehicle Specifications</h1>
+            <h1 className="text-2xl text-black font-bold mb-4">Vehicle Specifications</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {Vspec?.map((spec) => (
                     <div key={spec.vehicleSpec_id} className="bg-secondary text-white shadow-md rounded-lg p-4 border">

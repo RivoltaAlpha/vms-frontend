@@ -83,7 +83,7 @@ export const BookingForm = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <div className="max-w-2xl mx-auto mt-10 p-6 text-white tecy shadow-lg rounded-lg">
       <Toaster
         toastOptions={{
           classNames: {
@@ -94,9 +94,16 @@ export const BookingForm = () => {
           },
         }}
       />
-      <h2 className="text-2xl font-bold mb-5">
-        {vehicle ? `Book ${vehicle.vehicleSpec.manufacturer}${vehicle.vehicleSpec.model}` : 'Loading vehicle...'}
-      </h2>
+      <div className="text-center bg-slate-900 text-white rounded">   
+        <img src={vehicle?.vehicleSpec.image_url} className="w-[700px] object-cover" alt="Car Image" />
+                <p className=" p-2 mb-4 " >Manufacturer:{vehicle?.vehicleSpec.manufacturer}</p>
+                <p className=" p-2 mb-4 " >Model:{vehicle?.vehicleSpec.model}</p>
+                <p className=" p-2 mb-4 " >Color  :{vehicle?.vehicleSpec.color}</p>
+                <p className=" p-2 mb-4 " >Engine Capacity:{vehicle?.vehicleSpec.engine_capacity}</p>
+                <p className="p-2 mb-4 " >Seating Capacity:{vehicle?.vehicleSpec.seating_capacity}</p>
+                <p className=" p-2 mb-4 " >Features:{vehicle?.vehicleSpec.features}</p> 
+      </div>
+      <h2 className="text-2xl font-bold mb-5">{vehicle ? `Book ${vehicle.vehicleSpec.manufacturer}${vehicle.vehicleSpec.model}` : 'Loading vehicle...'}</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="location_id" className="block mb-2">Pickup Location</label>
@@ -105,7 +112,7 @@ export const BookingForm = () => {
             name="location_id"
             value={formData.location_id}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border text-black rounded"
             required
           >
  <option value="">Select a location</option>
@@ -128,7 +135,7 @@ export const BookingForm = () => {
             name="booking_date"
             value={formData.booking_date}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 text-black border rounded"
             required
           />
         </div>
@@ -140,7 +147,7 @@ export const BookingForm = () => {
             name="return_date"
             value={formData.return_date}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border text-black rounded"
             required
           />
         </div>
@@ -149,7 +156,7 @@ export const BookingForm = () => {
           {isLoading ? 'Booking...' : 'Book Now'}
         </button>
         {vehicle && (
-          <div className="mt-6 bg-gray-100 p-4 rounded-lg">
+          <div className="mt-6 bg-gray-900 text-white p-4 rounded-lg">
             <h3 className="text-lg font-semibold mb-2">Booking Summary</h3>
             <p>Vehicle: {vehicle.vehicleSpec.manufacturer} {vehicle.vehicleSpec.model}</p>
             <p>Rental Rate: ${vehicle.rental_rate}/day</p>

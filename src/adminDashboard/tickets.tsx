@@ -22,10 +22,10 @@ const Tickets: React.FC = () => {
   if (error) return <p>Error loading tickets.</p>;
 
   return (
-    <div className='flex'>
+    <div className='flex bg-gray-100'>
        <Navigation/> 
       <div className="container mt-10  mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold mb-5">Customer Support Tickets </h2>
+        <h2 className="text-2xl text-black font-bold mb-5">Customer Support Tickets </h2>
         <table className="min-w-full bg-cards">
           <thead>
             <tr>

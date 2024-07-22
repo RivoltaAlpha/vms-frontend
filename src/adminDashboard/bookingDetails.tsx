@@ -34,7 +34,7 @@ const ViewDetails: React.FC = () => {
       {booking && (
           <ul className="py">
           <h2 className="text-2xl font-bold mb-5">Booking Details</h2>
-          <img src={booking.vehicle.vehicleSpec.image_url} className="w-[700px] object-cover" alt="Car Image" />
+          <img src={booking.vehicle.vehicleSpec.image_url} className="w-[700px] object-cover " alt="Car Image" />
           UserName:
             <li className="w-full p-2 mb-6 border rounded ">  {booking.user?.username}</li>
            Location:

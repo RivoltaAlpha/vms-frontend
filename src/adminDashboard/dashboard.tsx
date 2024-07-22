@@ -24,7 +24,7 @@ export const Dashboard: React.FC = () => {
   const { user } = useSelector((state: RootState) => state.userAuth);
 
   if (bookingsLoading || usersLoading || vehiclesLoading || paymentsLoading) return <p>
-        <SyncLoader
+      <SyncLoader
       color="#116696"
       loading={bookingsLoading || usersLoading || vehiclesLoading || paymentsLoading}
       size={20}
@@ -65,7 +65,7 @@ export const Dashboard: React.FC = () => {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
   return (
-    <div className="container mx-auto py-8 mr-12">
+    <div className="container text-black mx-auto py-8 mr-12">
           <h1 className="text-4xl font-bold mb-4">Hello, {user?.username} ...</h1>
           <h2 className=" mb-5">Welcome to your Vehicle Management System</h2>
       <div className='flex justify-center font-bold text-2xl gap-10'>

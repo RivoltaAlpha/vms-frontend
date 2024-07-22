@@ -49,7 +49,7 @@ const UserBookings: React.FC = () => {
           },
         }}
       />
-      <div className='flex flex-col lg:flex-row gap-10'>
+      <div className='flex bg-white flex-col lg:flex-row gap-10'>
         <Navigation />
         <div className="overflow-y-auto m-[10px] mb-12 text-base-content bg-cards rounded-lg p-4 w-full">
           <div className='flex flex-wrap justify-between'>
@@ -78,6 +78,7 @@ const UserBookings: React.FC = () => {
                           size={20}
                           aria-label="Loading Spinner"
                           data-testid="loader"
+                          style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
                         />
                     </td></tr>
                 ) : isError ? (

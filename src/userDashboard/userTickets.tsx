@@ -35,6 +35,7 @@ const UserTickets: React.FC = () => {
       size={20}
       aria-label="Loading Spinner"
       data-testid="loader"
+      style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
     />
   </p>;
   if (error) return <p>Error loading data.</p>;

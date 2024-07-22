@@ -62,6 +62,7 @@ export const DashboardContent = () => {
       size={20}
       aria-label="Loading Spinner"
       data-testid="loader"
+      style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
     />
   </p>;
   if (isError) return <p>Error loading data.</p>;
@@ -76,7 +77,7 @@ export const DashboardContent = () => {
   const totalTickets = Array.isArray(tickets) ? tickets.length : 0;
   
   return (
-    <div className="flex-grow  lg:w-2/3 p-10 flex-col">
+    <div className="flex-grow text-black lg:w-2/3 p-10 flex-col">
       <h1 className="text-4xl font-bold mb-4">Hello, {user?.username} ...</h1>
       <h2 className=" mb-5">Here is your Booking Summary</h2>
       <div className="flex justify-center">

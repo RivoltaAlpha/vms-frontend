@@ -35,10 +35,10 @@ const BookingsTable: React.FC = () => {
   if (error) return <p>Error loading bookings.</p>;
 
   return (
-    <div className='flex'>
+    <div className='flex bg-slate-50'>
        <Navigation/> 
       <div className="container mt-10  mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold mb-5">Bookings Data</h2>
+        <h2 className="text-2xl text-black font-bold mb-5">Bookings Data</h2>
         <table className="min-w-full bg-cards">
           <thead>
             <tr>

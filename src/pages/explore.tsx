@@ -65,7 +65,7 @@ const Explore = () => {
 
   return (
     <div className="bg-gray-800  mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8 bg-cards text-white py-2 px-4">Explore Our Vehicles</h1>
+      <h1 className="text-3xl font-bold mb-8 text-cards py-2 px-4">Explore Our Vehicles</h1>
       <div className="grid grid-cols-1 mx-20 items-center md:grid-cols-2 lg:grid-cols-3 gap-6">
         {vehicles.map((vehicle) => (
             <VehicleCard key={vehicle.vehicle_id} vehicle={vehicle} handleVehicleClick={handleVehicleClick}/>

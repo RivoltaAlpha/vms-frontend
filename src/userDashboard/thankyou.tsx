@@ -10,8 +10,8 @@ const ThankYou: React.FC = () => {
   };
 
   return (
-  <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-  <div className="bg-white shadow-lg rounded-lg overflow-hidden w-[1200px] max-w-20xl mx-auto flex">
+  <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
+  <div className="bg-white shadow-lg rounded-lg overflow-hidden w-[1000px] max-w-20xl mx-auto flex">
     <div className="w-3/4 flex items-center justify-center p-8">
       <div className="text-center flex-row text-white">
         <h2 className="text-3xl text-black font-bold mb-4">Payment Complete       <FaCheckDouble/>
@@ -23,7 +23,7 @@ const ThankYou: React.FC = () => {
         />
       </div>
     </div>
-    <div className="w-1/2 bg-white p-8 flex items-center justify-center relative">
+    <div className="w-1/2 bg-cards p-8 flex items-center justify-center relative">
       <div className="absolute top-4 right-4">
       </div>
       <img
