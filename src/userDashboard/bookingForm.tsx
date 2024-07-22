@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BookingFormData } from '../types/types';  
 import { RootState } from '../app/store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { bookingsAPI } from '../features/bookings/bookingsApi';
 import { toast, Toaster } from 'sonner';
 import locationsAPI from '../features/locations/locationsAPI';
+import { removeBooking } from '../features/bookings/bookingSlice';
 
 export const BookingForm = () => {
   const { location_id } = useParams<{ location_id: string }>();
   const { user, isAuthenticated } = useSelector((state: RootState) => state.userAuth);
   const { selectedVehicle: vehicle } = useSelector((state: RootState) => state.vehicles);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [bookVehicle, { isLoading }] = bookingsAPI.useCreateBookingMutation();
   const{ data: locationsData, isLoading: loadingLocations} = locationsAPI.useGetLocationsQuery();
@@ -72,7 +74,7 @@ export const BookingForm = () => {
     try {
       await bookVehicle(formData as any).unwrap();
       toast.success('Booking successful');
-      localStorage.removeItem('selectedVehicle');
+      dispatch(removeBooking());
       navigate('/user-dashboard');
     } catch (error) {
       console.error('Error booking vehicle:', error);

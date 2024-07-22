@@ -13,9 +13,13 @@ import paymentsAPI from '../features/payments/paymentsApi';
 
 export const Dashboard: React.FC = () => {
   const { data: bookings, error: bookingsError, isLoading: bookingsLoading } = bookingsAPI.useGetBookingsQuery();
+  console.log('Bookings:', bookings);
   const { data: users, error: usersError, isLoading: usersLoading } = usersAPI.useGetUsersQuery(); 
+  console.log('Users:', users);
   const { data: vehicles, error: vehiclesError, isLoading: vehiclesLoading } = VehiclesAPI.useGetVehiclesQuery(); 
+  console.log('Vehicles:', vehicles);
   const { data: payments, error: paymentsError, isLoading: paymentsLoading } = paymentsAPI.useGetPaymentsQuery();
+  console.log('Payments:', payments);
   const { user } = useSelector((state: RootState) => state.userAuth);
 
   if (bookingsLoading || usersLoading || vehiclesLoading || paymentsLoading) return <p>Loading...</p>;

@@ -15,6 +15,7 @@ export const DashboardContent = () => {
   const userId = user?.user_id;
   const { data, isLoading, isError } = bookingsAPI.useGetBookingsByUserIdQuery(userId);
   const { data: payments } = paymentsAPI.useGetUserPaymentsQuery(userId);
+  console.log('Payments:', payments);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import locationsAPI from '../features/locations/locationsAPI'; 
 import { toast } from 'sonner';
+import { useDispatch } from 'react-redux';
+import { removeLocation } from '../features/locations/locationSlice';
 
 const UpdateLocationForm: React.FC = () => {
     const navigate = useNavigate();
@@ -16,6 +18,7 @@ const UpdateLocationForm: React.FC = () => {
         address: '',
         contact_phone: '',
     });
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (location) {
@@ -44,6 +47,7 @@ const UpdateLocationForm: React.FC = () => {
             }).unwrap();
             console.log(response);
             toast.success('Location updated successfully');
+            dispatch (removeLocation());
             navigate('/branches'); // Redirect to locations list after successful update
         } catch (error) {
             console.error(error);

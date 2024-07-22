@@ -106,11 +106,8 @@ const BookingDetails: React.FC = () => {
           )}
           <div>
             <NavLink to="/user-bookings/:user_id"  >
-              <button className="px-4 py-2 mr-10 bg-teal-600 m-10 text-white rounded " >Back</button>
+              <button className="px-4 py-2 mr-10 bg-teal-600 m-10 text-white rounded " onClick={() => dispatch(removeBooking())} >Back</button>
             </NavLink>
-            {/* <NavLink to = {`/update-details/${booking?.booking_id}`} >
-            <button className="px-4 py-2 mr-10 bg-teal-500 m-10 text-white rounded " >Update</button>
-          </NavLink> */}
             <button className="px-4 py-2 mr-10 bg-rose-500 m-10 text-white rounded " onClick={() => handleCheckout(booking.booking_id)}>checkout</button>
             <button className="px-4 py-2 mr-10 bg-red-500 m-10 text-white rounded " onClick={() => handleDelete(booking.booking_id)}>Delete</button>
           </div>
