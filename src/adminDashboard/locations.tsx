@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { useDispatch } from 'react-redux';
 import { setLocation } from '../features/locations/locationSlice';
 import { TLocation } from '../types/types';
+import { SyncLoader } from 'react-spinners';
 
 const LocationsTable: React.FC = () => {
   const { data: locations, error, isLoading } = locationsAPI.useGetLocationsQuery();
@@ -33,7 +34,16 @@ const LocationsTable: React.FC = () => {
     };
 
 
-  if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return (
+    <SyncLoader
+          color="#116696"
+          loading={isLoading}
+          size={20}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+        />
+  );
   if (error) return <p>Error loading locations.</p>;
 
   return (

@@ -1,23 +1,35 @@
+import { SyncLoader } from 'react-spinners';
 import paymentsAPI from '../features/payments/paymentsApi';
 import { TPayment } from '../types/types';
 import Navigation from './navigation';
 
 const Payments = () => {
     const { data: payments, isLoading, isError } = paymentsAPI.useGetPaymentsQuery();
-    console.log(payments);
-
-    if (isLoading) {
-        return <p>Loading payments...</p>;
-      }
+    if (isLoading) return (
+      <SyncLoader
+            color="#116696"
+            loading={isLoading}
+            size={20}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+          />
+    );
     
       if (isError) {
         return <p>Error loading payments: {isError}</p>;
       }
 
-      // calculate total amount
+      // // calculate total amount
       // const calculateTotalAmount = (payments: TPayment[]) => {
-      //   return payments.reduce((total, payment) => total + payment.amount, 0);
+      //   let totalAmount = 0;
+      //   payments.forEach((payment) => {
+      //     totalAmount += payment.amount;
+      //     console.log( 'Total amount:', totalAmount);
+      //   });
+      //   return totalAmount;
       // };
+      // console.log ("Total amount:", calculateTotalAmount(payments));
 
       return (
         <div className="flex">
@@ -60,6 +72,7 @@ const Payments = () => {
                   ))
                 )}
                 </tbody>
+                
               </table>
           </div>
         </div>

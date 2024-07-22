@@ -10,6 +10,7 @@ import {
 import { RootState } from '../app/store';
 import { useSelector } from 'react-redux';
 import paymentsAPI from '../features/payments/paymentsApi';
+import { SyncLoader } from 'react-spinners';
 
 export const Dashboard: React.FC = () => {
   const { data: bookings, error: bookingsError, isLoading: bookingsLoading } = bookingsAPI.useGetBookingsQuery();
@@ -22,7 +23,16 @@ export const Dashboard: React.FC = () => {
   console.log('Payments:', payments);
   const { user } = useSelector((state: RootState) => state.userAuth);
 
-  if (bookingsLoading || usersLoading || vehiclesLoading || paymentsLoading) return <p>Loading...</p>;
+  if (bookingsLoading || usersLoading || vehiclesLoading || paymentsLoading) return <p>
+        <SyncLoader
+      color="#116696"
+      loading={bookingsLoading || usersLoading || vehiclesLoading || paymentsLoading}
+      size={20}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+      style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+    />
+    .</p>;
   if (bookingsError || usersError || vehiclesError || paymentsError) return <p>Error loading data.</p>;
 
   const data = [

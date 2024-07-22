@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { RiApps2AddFill } from "react-icons/ri";
 import Navigation from './navigation';
 import { toast } from 'sonner';
+import { SyncLoader } from 'react-spinners';
 
 const FleetsTable: React.FC = () => {
   const { data: fleets, error, isLoading } = FleetsAPI.useGetFleetsQuery();
@@ -18,7 +19,16 @@ const FleetsTable: React.FC = () => {
     }
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return (
+    <SyncLoader
+          color="#116696"
+          loading={isLoading}
+          size={20}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+        />
+  ); 
   if (error) return <p>Error loading fleets.</p>;
 
   return (

@@ -29,8 +29,8 @@ const TicketReview: React.FC = () => {
     const response = await dispatch(updateTicket(updatedTicket as any | null));
     console.log('Response:', response);
     reviewTicket(updatedTicket as any | null);
-    // console.log('Ticket Status:', reviewTicket);
-    dispatch( clearTicket());
+    dispatch(clearTicket());
+    localStorage.removeItem('selectedticket');
     navigate('/tickets');
   }catch (error) {
     console.log('Error updating ticket:', error);

@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import Navigation from './navigation';
 import { RiApps2AddFill } from 'react-icons/ri';
 import { toast } from 'sonner';
+import { SyncLoader } from 'react-spinners';
 
 
 const UsersTable: React.FC = () => {
@@ -20,8 +21,18 @@ const UsersTable: React.FC = () => {
             toast.error('Error deleting user');
         }
     };
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading users.</p>;
+
+  if (isLoading) return <p>
+  <SyncLoader
+        color="#116696"
+        loading={isLoading}
+        size={20}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+      />
+  </p>;
+  if (error) return <p>Error loading Users.</p>;
 
   return (
     <div className='flex  gap-10'>

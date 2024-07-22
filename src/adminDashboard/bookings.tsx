@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { BookingDetails } from '../types/types';
 import { setBooking } from '../features/bookings/bookingSlice';
+import { SyncLoader } from 'react-spinners';
 
 const BookingsTable: React.FC = () => {
   const { data: bookings, error, isLoading } = bookingsAPI.useGetBookingsQuery();
@@ -20,7 +21,17 @@ const BookingsTable: React.FC = () => {
     navigate(`/viewDetails/${booking.booking_id}`);
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  // Conditional rendering for loading and error states
+  if (isLoading) return <p>
+    <SyncLoader
+      color="#116696"
+      loading={isLoading}
+      size={20}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+      style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+    />
+  </p>;
   if (error) return <p>Error loading bookings.</p>;
 
   return (
