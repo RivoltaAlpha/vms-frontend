@@ -4,14 +4,13 @@ import { NavLink } from 'react-router-dom';
 
 export default function Profile() {
     const { user } = useSelector((state: RootState) => state.userAuth);
-
     return (
         <div className="max-w-2xl mx-auto p-8">
             <div className="bg-white shadow-md rounded-lg overflow-hidden">
                 <div className="p-6">
                     <div className="flex items-center justify-center mb-6">
                         <img 
-                            // src={user?.profile_picture || '/path/to/default-profile-picture.jpg'} 
+                            src= {user?.image_url || './images/Social media-cuate.png'} 
                             alt="User Profile" 
                             className="w-32 h-32 rounded-full object-cover"
                         />

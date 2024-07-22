@@ -7,6 +7,8 @@ export interface RUser {
     email: string;
     address: string;
     password: string;
+    role: string;
+    image_url: string;
   }
 
   // create User
@@ -19,6 +21,7 @@ export interface RUser {
     address: string;
     password: string;
     role: string;
+    image_url: string;
 }
 
   // Login User
@@ -27,14 +30,14 @@ export interface RUser {
       password: string;
       role: string;
       token: string;
+      image_url: string;
   }
   export interface LoginResponse {
         username: string;
         role: string;
         password: string;
+        image_url: string;
     }
-
- 
 
   // User
  export type TUser = {
@@ -47,6 +50,7 @@ export interface RUser {
     address: string;
     role: string;
     token: string;
+    image_url: string;
 }
 
 // Inference
@@ -58,6 +62,7 @@ export interface TIUser {
   email: string
   contact_phone: string
   address: string
+  image_url: string;
 } 
 
 
@@ -218,6 +223,7 @@ export interface BookingDetails {
         contact_phone: string
         address: string
         role: string
+        image_url: string
     } | null
     token: string | null
     isAuthenticated: boolean

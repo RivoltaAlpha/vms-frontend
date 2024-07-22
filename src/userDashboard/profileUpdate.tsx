@@ -16,6 +16,7 @@ export  const ProfileEditPage = () => {
     email: user?.email || '',
     contact_phone: user?.contact_phone || '',
     address: user?.address || '',
+    image_url: user?.image_url || '',
   });
 
   const dispatch = useDispatch();
@@ -51,9 +52,19 @@ export  const ProfileEditPage = () => {
         <div className="p-6">
           <div className="flex items-center justify-center mb-6">
           <img 
-                            src={'./images/Social media-cuate.png'} 
+                            src={formData.image_url}
                             alt="User Profile" 
                             className="w-[300px] h-[300px] object-cover"
+                            // onClick={() => {
+                            //   console.log('Image clicked');
+                            //   // Add your image click handler here  
+                            //   // to update image url 
+                            //   setFormData({ ...formData, image_url: 'https://via.placeholder.com/300x300' });
+                            //   console.log('New image url:', formData.image_url);
+                            //   // display an input for putting the new image url
+                            //   // and a button to submit
+                            //   // and a button to cancel
+                            // }}
                         />
           </div>
           <form onSubmit={handleSubmit}>
