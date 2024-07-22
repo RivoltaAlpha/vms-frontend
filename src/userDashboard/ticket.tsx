@@ -24,6 +24,7 @@ const CreateTicket: React.FC = () => {
     }
   };
 
+
   return (
     <div className='flex'>
       <Navigation />

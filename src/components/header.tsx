@@ -10,7 +10,7 @@ export const Header = () => {
 
   return (
     <header className="bg-red-50 ext-cards">
-      <nav className="container mx-auto px-6 py-3 flex flex-wrap justify-between items-center">
+      <nav className=" mx-auto px-6 py-2 flex flex-wrap justify-between items-center">
         <div className="text-4xl flex font-bold">
         <img src="./images/logo.jpg" alt="" className="w-10 h-10 rounded-full" />
         AniRent
@@ -75,7 +75,7 @@ export const Header = () => {
                 Customer Support
               </button>
             </NavLink>
-            <Link to="/register" className="bg-cards hover:bg-secondary text-white lg:font-bold py-2 px-4 ml-3 lg:w-28 sm:w-28 rounded mt-3 lg:mt-0  lg:ml-4">
+            <Link to="/register" className="bg-cards hover:bg-secondary text-white lg:font-bold py-2 px-4 ml-3 lg:w-28 :w-28 rounded mt-3 lg:mt-0  lg:ml-4">
               Register
             </Link>
           </div>

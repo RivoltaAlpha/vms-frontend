@@ -6,6 +6,7 @@ import { setSelectedVehicle } from '../features/vehicles/vehiclesSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
+import { HashLoader  } from "react-spinners";
 
 interface VehicleCardProps {
   vehicle: TIVehicleSpec;
@@ -36,7 +37,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, handleVehicleClick }
 
 const Explore = () => {
   const isAuthenticated = useSelector((state: RootState) => state.userAuth.isAuthenticated);
-  const { data: vehicles = [] } = VehiclesAPI.useGetVehiclesQuery();
+  const { data: vehicles = [], isLoading, isError } = VehiclesAPI.useGetVehiclesQuery();
   console.log(vehicles)
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -47,6 +48,20 @@ const Explore = () => {
       navigate('/login');
     }
   };
+
+    // is loading loader
+    if (isLoading) {
+      return <div><HashLoader 
+        color="#116696"
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+      /></div>;
+    } else if (isError) {
+      return <div>Error</div>;
+    }
+
 
   return (
     <div className="bg-gray-800  mx-auto px-4 py-8">
