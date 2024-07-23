@@ -17,6 +17,8 @@ import toPdf  from 'react-to-pdf';
 
 export const Reports: React.FC = () => {
     const { user } = useSelector((state: RootState) => state.userAuth);
+    const navigate = useNavigate();
+    const reportRef = useRef<HTMLDivElement>(null);
     const { data: bookings, error: bookingsError, isLoading: bookingsLoading } = bookingsAPI.useGetBookingsQuery();
     const { data: users, error: usersError, isLoading: usersLoading } = usersAPI.useGetUsersQuery();
     const { data: vehicles, error: vehiclesError, isLoading: vehiclesLoading } = VehiclesAPI.useGetVehiclesQuery();
@@ -24,11 +26,10 @@ export const Reports: React.FC = () => {
     const { data: locations, error: locationsError, isLoading: locationsLoading } = locationsAPI.useGetLocationsQuery();
     const { data: fleets } = FleetAPI.useGetFleetsQuery();
     const { data: tickets } = ticketsAPI.useGetTicketsQuery();
-    const confirmedBookings = bookings?.filter((booking) => booking.booking_status === 'Confirmed');
-    const pendingBookings = bookings?.filter((booking) => booking.booking_status === 'Pending');
-    const openTickets = tickets?.filter((ticket) => ticket.ticket_status === 'Open');
-    const pendingTickets = tickets?.filter((ticket) => ticket.ticket_status === 'In Progress');
-    const navigate = useNavigate();
+    const confirmedBookings = bookings?.filter((booking) => booking.booking_status === 'Confirmed' || []);
+    const pendingBookings = bookings?.filter((booking) => booking.booking_status === 'Pending' || []);
+    const openTickets = tickets?.filter((ticket) => ticket.ticket_status === 'Open' || []);
+    const pendingTickets = tickets?.filter((ticket) => ticket.ticket_status === 'In Progress ' || []);
 
     if (bookingsLoading || usersLoading || vehiclesLoading || paymentsLoading || locationsLoading) return <p>
         <SyncLoader
@@ -93,7 +94,6 @@ export const Reports: React.FC = () => {
             .reduce((total, booking) => total + parseFloat(String(booking?.total_amount)), 0)
     }));
 
-    const reportRef = useRef<HTMLDivElement>(null);
     const generatePDF = () => {
         toPdf(() => reportRef.current, {
             filename: 'analytics_report.pdf',
@@ -206,12 +206,12 @@ export const Reports: React.FC = () => {
                 {/*  location Analysis */}
             </div>
             <h2 className="text-4xl ml-[40%] p-10 font-bold mb-5"> Branch Perfomance </h2>
-            <div className='flex ml-10'>
+            <div className='flex '>
                 <div className='text-white p-6 rounded mb-10'>
                     <h3 className='text-3xl font-bold ml-[40%] mb-4'>Bookings by Location</h3>
                     <BarChart
-                        width={700}
-                        height={500}
+                        width={800}
+                        height={600}
                         data={locationsData}
                         margin={{ top: 50, right: 30, left: 20, bottom: 5 }}
                     >
@@ -221,7 +221,7 @@ export const Reports: React.FC = () => {
                         <Tooltip />
                         <Legend />
                         <Bar dataKey="value" fill="#0099e6" >
-                            <LabelList dataKey="name" position="top" />
+                            <LabelList dataKey="name" position="top"  />
                         </Bar>
                     </BarChart>
                 </div>
@@ -229,7 +229,7 @@ export const Reports: React.FC = () => {
                     <h3 className='text-2xl ml-[40%] font-bold mb-4'>Revenue by Location</h3>
                     <BarChart
                         width={700}
-                        height={500}
+                        height={600}
                         data={revenueData}
                         margin={{ top: 50, right: 30, left: 20, bottom: 5 }}
                     >
