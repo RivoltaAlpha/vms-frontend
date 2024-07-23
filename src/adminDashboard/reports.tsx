@@ -153,7 +153,7 @@ export const Reports: React.FC = () => {
                     {fleets?.length} {fleets?.length === 1 ? 'Fleet' : 'Fleets'}
                 </div>
             </div>
-            <h2 className="text-4xl ml-[40%] p-10 font-bold mb-5">Revenue Generated</h2>
+            <h2 className="text-4xl p-10 font-bold mb-5">Revenue Generated</h2>
             <div className='flex ml-20'>
                 <div>
                     <h2 className="text-2xl ml-[40%] font-bold mb-5">Recent Payments Made</h2>
