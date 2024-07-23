@@ -140,6 +140,14 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
+                to="/admin/reports"
+                className="text-white font-bold  flex gap-3 hover:text-gray-200"
+              >
+                <FaStripe /> Reports
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/admin/profile"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >

@@ -40,6 +40,7 @@ import PaymentHistory from "./userDashboard/userPayments";
 import UpdateLocationForm from "./adminDashboard/updateLocation";
 import FleetsTable from "./adminDashboard/fleets";
 import AdminProfileEdit from "./adminDashboard/editProfile";
+import Reports from "./adminDashboard/reports";
 
 const App = () => {
   return (
@@ -96,6 +97,7 @@ const App = () => {
               <Route path="tickets" element={<Tickets />} />
               <Route path="ticketReview/:ticket_id" element={<TicketReview />} />
               <Route path="fleets" element={<FleetsTable />} />
+              <Route path="reports" element={<Reports />} />
             </Route>
           </Routes>
         </main>

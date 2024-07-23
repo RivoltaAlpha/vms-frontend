@@ -15,6 +15,7 @@ const CreateVspecForm = () => {
         transmission: '',
         features: [],
         year: 0,
+        image_url: '',
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -41,6 +42,7 @@ const CreateVspecForm = () => {
                 transmission: '',
                 features: [],
                 year: 0,
+                image_url: '',
             });
         } catch (error) {
             console.error(error);
@@ -155,6 +157,18 @@ const CreateVspecForm = () => {
                         id="year"
                         name="year"
                         value={formData.year}
+                        onChange={handleChange}
+                        className="w-full text-black p-2 border rounded"
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="image" className="block mb-2">Image</label>
+                    <input
+                        type="text"
+                        id="image"
+                        name="image_url"
+                        value={formData.image_url}
                         onChange={handleChange}
                         className="w-full text-black p-2 border rounded"
                         required

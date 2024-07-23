@@ -14,10 +14,10 @@ const ThankYou: React.FC = () => {
   <div className="bg-white shadow-lg rounded-lg overflow-hidden w-[1000px] max-w-20xl mx-auto flex">
     <div className="w-3/4 flex items-center justify-center p-8">
       <div className="text-center flex-row text-white">
-        <h2 className="text-3xl text-black font-bold mb-4">Payment Complete       <FaCheckDouble/>
+        <h2 className="text-3xl text-black font-bold mb-4">Payment Complete<FaCheckDouble/>
         </h2> 
         <img
-          src="./images/thanks.png" 
+          src="/images/thanks.png" 
           alt="Thank You"
           className="max-w-full h-auto"
         />
@@ -27,7 +27,7 @@ const ThankYou: React.FC = () => {
       <div className="absolute top-4 right-4">
       </div>
       <img
-        src="./images/payment.png" 
+        src="/images/payment.png" 
         alt="Payment Success"
         className="max-w-full h-auto"
       />

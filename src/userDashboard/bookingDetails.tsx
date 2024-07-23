@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Toaster } from 'sonner';
+import { toast, Toaster } from 'sonner';
 import bookingsAPI from '../features/bookings/bookingsApi';
 import { removeBooking } from '../features/bookings/bookingSlice';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 import { RootState } from '../app/store';
@@ -13,6 +13,7 @@ const stripePromise = loadStripe('pk_test_51PZNFqC2i6Qs2Q6ajp8zHmlssmFAd3WyX85dV
 
 const BookingDetails: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const selectedBookingString = localStorage.getItem('selectedBooking');
   const { user }: any = useSelector((state: RootState) => state.userAuth.user?.user_id && state.userAuth);
   const user_id = user?.user_id;
@@ -56,6 +57,8 @@ const BookingDetails: React.FC = () => {
     const handleDelete = async (id: number) => {
       await deleteBooking(id);
       dispatch(removeBooking());
+      toast.success('Booking deleted successfully');
+      navigate('/users/bookings/:user_id');
     };
 
     if (!booking) return <p>No booking selected</p>;

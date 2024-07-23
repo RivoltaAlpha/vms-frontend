@@ -120,7 +120,7 @@ const UpdateLocationForm: React.FC = () => {
                     <button
                         type="button"
                         className="bg-base text-white py-2 px-4 rounded hover:bg-blue-600"
-                        onClick={() => navigate('/admin/locations')}
+                        onClick={() => navigate('/admin/branches')}
                     >
                         Cancel
                     </button>
