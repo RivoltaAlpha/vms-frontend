@@ -31,7 +31,7 @@ export const Login = () => {
       if (user.role === "admin") {
         navigate("/admin-dashboard");
       } else {
-        navigate("/user-dashboard");
+        navigate("/users/dashboard");
       }
     }
   }, [isAuthenticated, navigate]);
@@ -58,7 +58,7 @@ export const Login = () => {
             if (response.user.role === "admin") {
               navigate("/admin-dashboard");
             } else {
-              navigate("/user-dashboard");
+              navigate("/users-dashboard");
             }
     } catch (error) {
       console.error("Error logging in:", error);

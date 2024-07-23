@@ -12,7 +12,7 @@ export const Header = () => {
     <header className="bg-red-50 ext-cards">
       <nav className=" mx-auto px-6 py-2 flex flex-wrap justify-between items-center">
         <div className="text-4xl text-cards flex font-bold">
-        <img src="./images/logo.jpg" alt="" className="w-10 h-10 rounded-full" />
+        <img src="/images/logo.jpg" alt="" className="w-10 h-10 rounded-full" />
         AniRent
         </div>
         <div className="block lg:hidden">
@@ -54,7 +54,7 @@ export const Header = () => {
              px-3 py-2">
               About Us
             </NavLink>
-            <NavLink to="Explore" className="text-cards hover:text-black
+            <NavLink to="/explore" className="text-cards hover:text-black
              px-3 py-2">
               Explore
             </NavLink>

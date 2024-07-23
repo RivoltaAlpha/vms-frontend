@@ -28,7 +28,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, handleVehicleClick }
       <p className="text-white   mb-2">Availability: {vehicle.availability ? 'Available' : 'Not Available'}</p>
       <p className="text-white ">Rental Rate: ${vehicle.rental_rate}</p>
     </div>
-    <Link to={`/book/${vehicle.vehicle_id}`}>
+    <Link to={`/user/book/${vehicle.vehicle_id}`}>
     <button className="bg-cards text-white px-4 py-2 mb-4 ml-40 mt-10 rounded hover:bg-blue-800 transition duration-300 " onClick={() => handleVehicleClick(vehicle)}>
       {vehicle.availability ? 'Book Now' : 'Not Available'}
     </button></Link>
