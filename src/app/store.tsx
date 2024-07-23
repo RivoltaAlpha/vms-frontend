@@ -36,8 +36,13 @@ const persistConfig = {
     paymentsAPI.reducerPath,
     VehiclesAPI.reducerPath,
     locationsAPI.reducerPath,
+    registrationAPI.reducerPath,
+    authApi.reducerPath,
+    VspecAPI.reducerPath,
+    ticketsAPI.reducerPath,
+    FleetAPI.reducerPath
   ],
-  // whitelist: [authApi.reducerPath],
+  whitelist: [authApi.reducerPath],
 };
 
 const rootReducer = combineReducers({

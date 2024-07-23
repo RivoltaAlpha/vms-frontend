@@ -5,22 +5,21 @@ import usersAPI from '../features/users/usersAPI';
 import VehiclesAPI from '../features/vehicles/vehicleAPI';
 import { FaUsers, FaCar, FaCalendarAlt, FaCashRegister } from "react-icons/fa";
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, LineChart, Line
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line
 } from 'recharts';
 import { RootState } from '../app/store';
 import { useSelector } from 'react-redux';
 import paymentsAPI from '../features/payments/paymentsApi';
 import { SyncLoader } from 'react-spinners';
+import ticketsAPI from '../features/tickets/ticketsAPI';
 
 export const Dashboard: React.FC = () => {
   const { data: bookings, error: bookingsError, isLoading: bookingsLoading } = bookingsAPI.useGetBookingsQuery();
-  console.log('Bookings:', bookings);
   const { data: users, error: usersError, isLoading: usersLoading } = usersAPI.useGetUsersQuery(); 
-  console.log('Users:', users);
   const { data: vehicles, error: vehiclesError, isLoading: vehiclesLoading } = VehiclesAPI.useGetVehiclesQuery(); 
-  console.log('Vehicles:', vehicles);
   const { data: payments, error: paymentsError, isLoading: paymentsLoading } = paymentsAPI.useGetPaymentsQuery();
-  console.log('Payments:', payments);
+  const { data: tickets } = ticketsAPI.useGetTicketsQuery();
+
   const { user } = useSelector((state: RootState) => state.userAuth);
 
   if (bookingsLoading || usersLoading || vehiclesLoading || paymentsLoading) return <p>
@@ -40,29 +39,28 @@ export const Dashboard: React.FC = () => {
     { name: 'Users', value: users?.length || 0 },
     { name: 'Vehicles', value: vehicles?.length || 0 },
     { name: 'Payments', value: payments?.length || 0 },
+    { name: 'Tickets', value: tickets?.length || 0 },
   ];
 
 // Prepare data for the line chart
-  interface BookingData {
-    date: string;
-    count: number;
+interface BookingData {
+  month: string;
+  count: number;
+}
+
+const bookingsData: BookingData[] = bookings?.reduce((acc, booking) => {
+  const bookingDate = new Date(booking.booking_date);
+  const monthYear = `${bookingDate.getMonth() + 1}-${bookingDate.getFullYear()}`;
+  
+  const existing = acc.find(item => item.month === monthYear);
+  if (existing) {
+    existing.count += 1;
+  } else {
+    acc.push({ month: monthYear, count: 1 });
   }
-  const bookingsData: BookingData[] = bookings?.map(booking => ({
-    date: new Date(booking.booking_date).toLocaleDateString(),
-    count: 1,
-  })).reduce<BookingData[]>((acc, current) => {
-    const existing = acc.find(item => item.date === current.date);
-    if (existing) {
-      existing.count += 1;
-    } else {
-      acc.push(current);
-    }
-    return acc;
-  }, []).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()) || [];
+  return acc;
+}, [] as BookingData[]).sort((a, b) => new Date(`01-${a.month}`).getTime() - new Date(`01-${b.month}`).getTime()) || [];
 
-
-
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
   return (
     <div className="container text-black mx-auto py-8 mr-12">
@@ -91,10 +89,10 @@ export const Dashboard: React.FC = () => {
       
       <div className="flex justify-center ">
         <div>
-          <h2 className="text-2xl font-bold mb-5">Bar Chart</h2>
+          <h2 className="text-2xl ml-[30%] font-bold mb-5">System Overview</h2>
           <BarChart
-            width={400}
-            height={300}
+            width={500}
+            height={400}
             data={data}
             margin={{
               top: 5, right: 30, left: 20, bottom: 5,
@@ -105,46 +103,26 @@ export const Dashboard: React.FC = () => {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="value" fill="#8884d8" />
+            <Bar dataKey="value" fill="#cc0052" />
           </BarChart>
         </div>
+        {/* Booking Trend Line Chart */}
         <div>
-          <h2 className="text-2xl font-bold ">Pie Chart</h2>
-          <PieChart width={400} height={400}>
-            <Pie
-              data={data}
-              cx={200}
-              cy={200}
-              labelLine={false}
-              label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {data.map((_, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-          </PieChart>
-        </div>
-        <div className=" mr-2">
-        <h2 className="text-2xl font-bold mb-5">Bookings Over Time</h2>
-        <LineChart
-          width={500}
-          height={400}
-          data={bookingsData}
-          margin={{
-            top: 5, right: 30, left: 20, bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="count" stroke="#8884d8" />
-        </LineChart>
-      </div>
+                <h2 className="text-2xl ml-20 font-bold mb-5">Booking Trend</h2>
+                <LineChart
+                  width={500}
+                  height={400}
+                  data={bookingsData}
+                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="count" stroke="#99003d" />
+                </LineChart>
+              </div>
       </div>
       <div>
         <h2 className="text-2xl font-bold mb-5">Bookings Data</h2>
