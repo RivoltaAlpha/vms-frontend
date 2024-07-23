@@ -39,10 +39,10 @@ export const AdminLogin = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitting form data:", user); // Debugging step
+    // console.log("Submitting form data:", user); // Debugging step
     try {
       const response = await loginUser(user).unwrap();
-      console.log("Backend response:", response); // Debugging step
+      // console.log("Backend response:", response); // Debugging step
 
       dispatch(setUserData({ user: response.user, token: response.token }));
       // Display the success message before navigation
