@@ -97,7 +97,7 @@ const BookingDetails: React.FC = () => {
             
             {/* Action Buttons */}
             <div className="flex justify-between">
-              <NavLink to="/user-bookings/:user_id">
+              <NavLink to="/users/bookings/:user_id">
                 <button className="px-4 py-2 bg-teal-600 text-white rounded" onClick={() => dispatch(removeBooking())}>Back</button>
               </NavLink>
               <button className="px-4 py-2 bg-rose-500 text-white rounded" onClick={() => handleCheckout(booking.booking_id)}>Checkout</button>

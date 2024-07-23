@@ -6,7 +6,7 @@ const ThankYou: React.FC = () => {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
-    navigate('/user-dashboard');
+    navigate('/users/dashboard');
   };
 
   return (

@@ -4,7 +4,7 @@ import { RootState } from '../app/store';
 import { usersAPI } from '../features/users/usersAPI';
 import { setUserDetails } from "../features/registration/userAuthSlice";
 import { toast } from 'sonner';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export  const ProfileEditPage = () => {
   const { user } = useSelector((state: RootState) => state.userAuth);
@@ -20,6 +20,7 @@ export  const ProfileEditPage = () => {
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [updateUser, { isLoading }] = usersAPI.useUpdateUserMutation();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +36,7 @@ export  const ProfileEditPage = () => {
         console.log('API response:', updatedUser);
         dispatch(setUserDetails(updatedUser));
         toast.success('Profile updated successfully');
+        navigate('/users/profile');
       } catch (error) {
         console.error(error);
         toast.error('Error updating profile');
@@ -119,7 +121,7 @@ export  const ProfileEditPage = () => {
               />
             </div>
             <div className="mt-6 flex justify-end space-x-4">
-              <NavLink to="/user-profile" type="button"  className="px-4 py-2 bg-secondary text-white rounded">Back</NavLink>
+              <NavLink to="/users/profile" type="button"  className="px-4 py-2 bg-secondary text-white rounded">Back</NavLink>
               <button type="submit" disabled={isLoading} className="px-4 py-2 bg-base text-white rounded" >
                 {isLoading ? 'Saving...' : 'Save'}
                 </button>

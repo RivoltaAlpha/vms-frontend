@@ -75,7 +75,7 @@ export const BookingForm = () => {
       await bookVehicle(formData as any).unwrap();
       toast.success('Booking successful');
       dispatch(removeBooking());
-      navigate('/user-dashboard');
+      navigate('/users/dashboard');
     } catch (error) {
       console.error('Error booking vehicle:', error);
       toast.error('Failed to book vehicle');

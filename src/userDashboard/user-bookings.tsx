@@ -34,7 +34,7 @@ const UserBookings: React.FC = () => {
   const handleViewDetails = (booking: BookingDetails) => {
     dispatch(setBooking(booking));
     localStorage.setItem('selectedBooking', JSON.stringify(booking));
-    navigate(`/booking-details/${booking.booking_id}`);
+    navigate(`/users/booking-details/${booking.booking_id}`);
   };
 
   return (
@@ -97,7 +97,7 @@ const UserBookings: React.FC = () => {
                         <NavLink
                           className='btn px-6 py-3 bg-teal-400 btn-sm rounded btn-outline btn-success'
                           onClick={() => handleViewDetails(booking)}
-                          to={`/booking-details/${booking?.booking_id}`}
+                          to={`/users/booking-details/${booking?.booking_id}`}
                         >
                           View Details
                         </NavLink>

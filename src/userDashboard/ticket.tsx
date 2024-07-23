@@ -22,7 +22,7 @@ const CreateTicket: React.FC = () => {
       const newTicket = {user_id, subject, description };
       await createTicket(newTicket).unwrap();
       dispatch(clearTicket());
-      navigate('/user-tickets'); // Navigate to tickets page after successful creation
+      navigate('/users/tickets'); // Navigate to tickets page after successful creation
     } catch (error) {
       console.error('Error creating ticket:', error);
     }

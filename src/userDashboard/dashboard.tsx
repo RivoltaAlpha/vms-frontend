@@ -26,7 +26,7 @@ export const DashboardContent = () => {
   const handleViewDetails = (booking: BookingDetails) => {
     dispatch(setBooking(booking));
     localStorage.setItem('selectedBooking', JSON.stringify(booking));
-    navigate(`/booking-details/${booking.booking_id}`);
+    navigate(`/users/booking-details/${booking.booking_id}`);
   };
 
   const bookings = data?.[0]?.bookings || []; // Access nested bookings array

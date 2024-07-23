@@ -66,7 +66,7 @@ export const Navigation: React.FC = () => {
           <ul className="pt-4 text-pretty text-rose-800 lg:flex flex-col gap-12 lg:justify-between lg:pt-0">
             <li>
               <Link
-                to="/user-dashboard"
+                to="/users/dashboard"
                 className="text-white flex gap-3 font-bold hover:text-gray-200 "
               >
                 <MdDashboardCustomize />
@@ -75,7 +75,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
             <Link className="text-white font-bold  flex gap-3 hover:text-gray-200"
-                to={`/user-bookings/${user?.user_id}`}>
+                to={`/users/bookings/${user?.user_id}`}>
                 <TbBrandBooking /> Bookings
               </Link>
             </li>
@@ -90,7 +90,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to= {`/paymentHistory/${user?.user_id}`}
+                to= {`/users/paymentHistory/${user?.user_id}`}
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <FaStripe /> Payment History
@@ -98,7 +98,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/user-tickets"
+                to="/users/tickets"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <FaTicket /> Tickets
@@ -106,7 +106,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/user-profile"
+                to="/users/profile"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 {" "}

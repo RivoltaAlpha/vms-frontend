@@ -32,10 +32,10 @@ export default function Profile() {
                     </div>
                     <div className="mt-6 flex flex-row justify-between" >
                         <div className="mt-6 flex ">
-                            <NavLink to="/user-dashboard" className="px-4 py-2 bg-cards text-white rounded mr-2">Dashboard</NavLink>
+                            <NavLink to="/users/dashboard" className="px-4 py-2 bg-cards text-white rounded mr-2">Dashboard</NavLink>
                         </div>
                         <div className="mt-6 ">
-                            <NavLink to="/edit-profile" className="px-4 py-2 bg-red-400 text-white rounded mr-2">Edit Profile</NavLink>
+                            <NavLink to="/users/edit-profile" className="px-4 py-2 bg-red-400 text-white rounded mr-2">Edit Profile</NavLink>
                         </div>
                     </div>
                 </div>

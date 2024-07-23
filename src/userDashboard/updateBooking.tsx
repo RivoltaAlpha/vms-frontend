@@ -61,7 +61,7 @@ const UpdateBooking: React.FC = () => {
 
   const handleCancel = () => {
     dispatch(removeBooking());
-    navigate(`/user-bookings/${bookingData.user_id}`);
+    navigate(`/users/bookings/${bookingData.user_id}`);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -95,7 +95,7 @@ const UpdateBooking: React.FC = () => {
       await updateBooking({ booking_id: bookingData.booking_id, data: formattedData }).unwrap();
       toast.success('Booking updated successfully');
       localStorage.removeItem('selectedBooking');
-      navigate('/user-bookings');
+      navigate('/users/bookings');
     } catch (error) {
       console.error('Error updating booking:', error);
       toast.error('Error updating booking');

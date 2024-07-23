@@ -66,7 +66,7 @@ const UserTickets: React.FC = () => {
           )}
         </div>
       <div className=" mt-10 flex ">
-        <NavLink to ="/createTicket" className="bg-secondary text-white py-2 px-4 rounded-md hover:bg-blue-600 ">  <RiApps2AddFill /> New Ticket</NavLink>
+        <NavLink to ="/users/createTicket" className="bg-secondary text-white py-2 px-4 rounded-md hover:bg-blue-600 ">  <RiApps2AddFill /> New Ticket</NavLink>
         </div>
       </div>
 
