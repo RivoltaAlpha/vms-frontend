@@ -18,7 +18,7 @@ const BookingsTable: React.FC = () => {
   const handleViewDetails = (booking: BookingDetails) => {
     dispatch(setBooking(booking));
     localStorage.setItem('selectedBooking', JSON.stringify(booking));
-    navigate(`/viewDetails/${booking.booking_id}`);
+    navigate(`/admin/viewDetails/${booking.booking_id}`);
   };
 
   // Conditional rendering for loading and error states

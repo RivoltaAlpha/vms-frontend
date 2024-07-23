@@ -31,7 +31,7 @@ const TicketReview: React.FC = () => {
     reviewTicket(updatedTicket as any | null);
     dispatch(clearTicket());
     localStorage.removeItem('selectedticket');
-    navigate('/tickets');
+    navigate('/admin/tickets');
   }catch (error) {
     console.log('Error updating ticket:', error);
   }

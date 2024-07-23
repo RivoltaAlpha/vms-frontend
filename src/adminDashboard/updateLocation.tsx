@@ -48,7 +48,7 @@ const UpdateLocationForm: React.FC = () => {
             console.log(response);
             toast.success('Location updated successfully');
             dispatch (removeLocation());
-            navigate('/branches'); // Redirect to locations list after successful update
+            navigate('/admin/branches'); // Redirect to locations list after successful update
         } catch (error) {
             console.error(error);
             toast.error('Failed to update location');
@@ -120,7 +120,7 @@ const UpdateLocationForm: React.FC = () => {
                     <button
                         type="button"
                         className="bg-base text-white py-2 px-4 rounded hover:bg-blue-600"
-                        onClick={() => navigate('/locations')}
+                        onClick={() => navigate('/admin/locations')}
                     >
                         Cancel
                     </button>

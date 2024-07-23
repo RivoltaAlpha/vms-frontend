@@ -19,7 +19,7 @@ const LocationsTable: React.FC = () => {
   const handleUpdate = (location: TLocation) => {
     dispatch (setLocation( location as any));
     localStorage.setItem('selectedlocation', JSON.stringify(location));
-    navigate(`/updateBranch/${location.location_id}`);
+    navigate(`/admin/updateBranch/${location.location_id}`);
   };
 
   // handle delete location
@@ -97,7 +97,7 @@ const LocationsTable: React.FC = () => {
           </tfoot>
         </table>
         <button className="bg-secondary mt-10 text-white py-3 gap-2 px-3 flex  rounded hover:bg-blue-600"
-        onClick={() => navigate('/addBranch')} >  <RiApps2AddFill /> New branch</button>
+        onClick={() => navigate('/admin/addBranch')} >  <RiApps2AddFill /> New branch</button>
       </div>
     </div>
   );

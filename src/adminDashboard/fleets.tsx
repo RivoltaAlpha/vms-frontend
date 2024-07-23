@@ -78,7 +78,7 @@ const FleetsTable: React.FC = () => {
           </tfoot>
         </table>
         <div className="mt-10 flex">
-          <NavLink to="/create-fleet" className="bg-secondary text-white py-2 px-4 rounded-md hover:bg-blue-600">
+          <NavLink to="/admin/create-fleet" className="bg-secondary text-white py-2 px-4 rounded-md hover:bg-blue-600">
             <RiApps2AddFill /> Add Fleet
           </NavLink>
         </div>

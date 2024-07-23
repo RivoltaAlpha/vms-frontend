@@ -81,7 +81,7 @@ const UsersTable: React.FC = () => {
           </tfoot>
         </table>
         <div className=" mt-10 flex ">
-        <NavLink to ="/addAdmin" className="bg-secondary text-white py-2 px-4 rounded-md hover:bg-blue-600 ">  <RiApps2AddFill /> Create Admin</NavLink>
+        <NavLink to ="/admin/addAdmin" className="bg-secondary text-white py-2 px-4 rounded-md hover:bg-blue-600 ">  <RiApps2AddFill /> Create Admin</NavLink>
         </div>
       </div>
       </div>

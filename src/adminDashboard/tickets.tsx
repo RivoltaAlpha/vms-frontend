@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import type { Tickets } from '../types/types';
 import { setTicket } from '../features/tickets/ticketSlice';
+import { SyncLoader } from 'react-spinners';
 
 const Tickets: React.FC = () => {
   const { data: tickets, error, isLoading } = ticketsAPI.useGetTicketsQuery();
@@ -15,10 +16,19 @@ const Tickets: React.FC = () => {
   const handleReview = (ticket: Tickets) => {
     dispatch(setTicket(ticket));
     localStorage.setItem('selectedticket', JSON.stringify(ticket));
-    navigate(`/ticketReview/${ticket.ticket_id}`);
+    navigate(`/admin/ticketReview/${ticket.ticket_id}`);
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return  <p>
+  <SyncLoader
+  color="#116696"
+  loading={isLoading}
+  size={20}
+  aria-label="Loading Spinner"
+  data-testid="loader"
+  style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+/>
+.</p>;
   if (error) return <p>Error loading tickets.</p>;
 
   return (

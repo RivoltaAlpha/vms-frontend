@@ -58,7 +58,7 @@ const VehicleSpec = () => {
                 ))}
             </div>
             <div className="flex mt-10">
-            <NavLink to ="/addVspec" className="bg-secondary text-white py-2 px-4 rounded-md hover:bg-blue-600 "> 
+            <NavLink to ="/admin/addVspec" className="bg-secondary text-white py-2 px-4 rounded-md hover:bg-blue-600 "> 
              <RiApps2AddFill /> Create Specification</NavLink>
             </div>
         </div>

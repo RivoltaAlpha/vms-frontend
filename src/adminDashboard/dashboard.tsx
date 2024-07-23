@@ -171,10 +171,6 @@ export const Dashboard: React.FC = () => {
                 <td className="py-2 border-b">{booking.booking_status}</td>
                 <td className="py-2 border-b">{booking.vehicle?.vehicleSpec?.model}</td>
                 <td className="py-2 border-b">{booking.vehicle?.vehicleSpec?.manufacturer}</td>
-                
-                {/* <td className="py-2 px-4 border-b">
-                  <button className="bg-blue-100 text-black py-1 px-3 rounded hover:bg-blue-600">View Details</button>
-                </td> */}
               </tr>
             ))}
           </tbody>

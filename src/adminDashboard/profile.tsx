@@ -7,9 +7,9 @@ export default function AdminProfile() {
     const { user } = useSelector((state: RootState) => state.userAuth);
 
     return (
-    <div className='flex bg-gray-100 text-black gap-10'>
+    <div className='flex bg-gray-900 text-black gap-10'>
        <Navigation/> 
-        <div className="max-w-2xl mx-auto p-8">
+        <div className="max-w-2xl mt-[100px] mx-auto p-8">
             <div className="bg-white shadow-md rounded-lg overflow-hidden">
                 <div className="p-6 w-[600px]">
                     <div className="flex items-center justify-center mb-6">
@@ -21,23 +21,23 @@ export default function AdminProfile() {
                     </div>
                     <h2 className="text-2xl font-bold mb-4 text-center">User Details</h2>
                     <div className="space-y-4">
-                        <div className="bg-gray-100 p-3 rounded">
+                        <div className="bg-gray-900  text-white p-3 rounded">
                             <span className="font-semibold">Name:</span> {user?.first_name} {user?.last_name}
                         </div>
-                        <div className="bg-gray-100 p-3 rounded">
+                        <div className="bg-gray-900  text-white p-3 rounded">
                             <span className="font-semibold">Email:</span> {user?.email}
                         </div>
 
-                        <div className="bg-gray-100 p-3 rounded">
+                        <div className="bg-gray-900  text-white p-3 rounded">
                             <span className="font-semibold">Phone:</span> {user?.contact_phone}
                         </div>
-                        <div className="bg-gray-100 p-3 rounded">
-                            <span className="font-semibold">Address:</span> {user?.address}
+                        <div className="bg-gray-900  text-white p-3 rounded">
+                            <span className=" text-white font-semibold">Address:</span> {user?.address}
                         </div>
                     </div>
                     <div className="mt-6 flex flex-row justify-between" >
                         <div className="mt-6 ">
-                            <NavLink to="/edit-profile" className="px-4 py-2 bg-secondary text-white rounded mr-2">Edit Profile</NavLink>
+                            <NavLink to="/admin/editProfile" className="px-4 py-2 bg-secondary text-white rounded mr-2">Edit Profile</NavLink>
                         </div>
                     </div>
                 </div>

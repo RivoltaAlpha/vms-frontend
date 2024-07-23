@@ -28,7 +28,7 @@ export const AdminLogin = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/admin-dashboard");
+      navigate("/admin/dashboard");
     }
   }, [isAuthenticated, navigate]);
 
@@ -53,10 +53,10 @@ export const AdminLogin = () => {
       // Redirect based on user role
 
       if (user.role === "admin") {
-        navigate("/admin-dashboard");
+        navigate("/admin/dashboard");
       }
       if (user.role === "user") {
-        navigate("/user-dashboard");
+        navigate("/users/dashboard");
       }
     } catch (error) {
       console.error("Error logging in:", error);

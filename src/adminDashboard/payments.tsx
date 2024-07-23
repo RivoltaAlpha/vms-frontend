@@ -77,7 +77,7 @@ const Payments = () => {
                 </tbody>
                 </table>
               <button className="bg-secondary mt-10 text-white py-3 gap-2 px-3 flex  rounded hover:bg-blue-600"
-        onClick={() => navigate('/addBranch')} >  <RiApps2AddFill /> Payments Report</button>
+        onClick={() => navigate('/admin/addBranch')} >  <RiApps2AddFill /> Payments Report</button>
           </div>
         </div>
       );

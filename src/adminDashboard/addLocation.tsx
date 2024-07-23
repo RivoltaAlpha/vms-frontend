@@ -33,7 +33,7 @@ const CreateLocationForm: React.FC = () => {
                 address: '',
                 contact_phone: '',
             });
-            navigate('/branches');
+            navigate('/admin/branches');
         } catch (error) {
             console.error(error);
             toast.error('Failed to create location');
@@ -99,7 +99,7 @@ const CreateLocationForm: React.FC = () => {
                     >
                         Create
                     </button>
-                    <NavLink to="/branches">
+                    <NavLink to="/users/branches">
                         <button
                             type="button"
                             className="bg-base text-white py-2 px-4 rounded hover:bg-blue-600"

@@ -93,7 +93,7 @@ const CreateVehicleForm = () => {
                     <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
                         Create
                     </button>
-                    <NavLink to="/vehicles">
+                    <NavLink to="/admin/vehicles">
                         <button type="button" className="bg-base text-white py-2 px-4 rounded hover:bg-blue-600">
                             Back
                         </button>

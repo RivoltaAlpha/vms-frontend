@@ -64,7 +64,7 @@ export const Navigation: React.FC = () => {
           <ul className="pt-4 text-pretty text-rose-800 lg:flex flex-col gap-14 lg:justify-between lg:pt-0">
             <li>
               <Link
-                to="/admin-dashboard"
+                to="/admin/dashboard"
                 className="text-white flex gap-3 font-bold hover:text-gray-200 "
               >
                 <MdDashboardCustomize />
@@ -73,7 +73,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/bookings"
+                to="/admin/bookings"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <TbBrandBooking /> Bookings
@@ -81,7 +81,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/users"
+                to="/admin/users"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <TbBrandBooking /> Users
@@ -89,7 +89,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/fleets"
+                to="/admin/fleets"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <TbBrandBooking /> Fleets
@@ -97,7 +97,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/vehicles"
+                to="/admin/vehicles"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <MdOutlineEventAvailable />
@@ -106,7 +106,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/vspec"
+                to="/admin/vspec"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <MdOutlineEventAvailable />
@@ -115,7 +115,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/branches"
+                to="/admin/branches"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <MdOutlineEventAvailable />
@@ -124,7 +124,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/payments"
+                to="/admin/payments"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <FaStripe /> Payments
@@ -132,7 +132,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/tickets"
+                to="/admin/tickets"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 <FaStripe /> Tickets
@@ -140,7 +140,7 @@ export const Navigation: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/admin-profile"
+                to="/admin/profile"
                 className="text-white font-bold  flex gap-3 hover:text-gray-200"
               >
                 {" "}

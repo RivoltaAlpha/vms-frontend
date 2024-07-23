@@ -61,7 +61,7 @@ const ViewDetails: React.FC = () => {
         
       )}
       <div>
-          <NavLink to="/bookings"  >
+          <NavLink to="/admin/bookings"  >
             <button className="px-4 py-2 mr-10 bg-teal-600 m-10 text-white rounded " >Back</button>
           </NavLink>
             <button className="px-4 py-2 mr-10 bg-red-500 m-10 text-white rounded " onClick={() => handleDelete(booking.booking_id)}> Cancel </button>

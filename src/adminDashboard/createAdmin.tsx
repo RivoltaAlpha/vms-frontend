@@ -18,6 +18,7 @@ const CreateUserForm = () => {
         address: '',
         password: '',
         role: 'admin',
+        image_url: '',
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +44,7 @@ const CreateUserForm = () => {
                 address: '',
                 password: '',
                 role: 'admin',
+                image_url: '',
             });
         } catch (error) {
             console.error(error);
@@ -142,7 +144,7 @@ const CreateUserForm = () => {
                     <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
                         Create
                     </button>
-                    <NavLink to="/users">
+                    <NavLink to="/admin/users">
                         <button type="button" className="bg-base text-white py-2 px-4 rounded hover:bg-blue-600">
                             Back
                         </button>

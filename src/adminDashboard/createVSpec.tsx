@@ -164,7 +164,7 @@ const CreateVspecForm = () => {
                 <button type="submit" className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
                     Create
                 </button>
-                <NavLink to="/vspec">
+                <NavLink to="/admin/vspec">
                 <button type="submit" className=" bg-base text-white py-2 px-4 rounded hover:bg-blue-600">
                     Back
                 </button>

@@ -80,7 +80,7 @@ const VehiclesTable: React.FC = () => {
           </tfoot>
         </table>
         <div className=" mt-10 flex ">
-        <NavLink to ="/addVehicle" className="bg-secondary text-white py-2 px-4 rounded-md hover:bg-blue-600 ">  <RiApps2AddFill /> Add Vehicle</NavLink>
+        <NavLink to ="/admin/addVehicle" className="bg-secondary text-white py-2 px-4 rounded-md hover:bg-blue-600 ">  <RiApps2AddFill /> Add Vehicle</NavLink>
         </div>
       </div>
     </div>
