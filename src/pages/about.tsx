@@ -1,6 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const AboutUs: React.FC = () => {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('translate-x-0', 'opacity-100');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card').forEach((card) => {
+      observer.observe(card);
+      card.classList.add('-translate-x-full', 'opacity-0', 'transition', 'duration-1000');
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
  return (
     <div className="bg-gray-900 text-white mx-auto px-4 py-8">
       <h1 className="text-4xl  font-bold mb-4 text-center">About Us</h1>
