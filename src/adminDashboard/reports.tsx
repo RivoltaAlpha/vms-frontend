@@ -2,6 +2,7 @@ import VehiclesAPI from '../features/vehicles/vehicleAPI';
 import { FaUsers, FaCar, FaCashRegister, FaTicketAlt, FaTruck, FaDollarSign, FaBackward } from "react-icons/fa";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList } from 'recharts';
 import { RootState } from '../app/store';
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import paymentsAPI from '../features/payments/paymentsApi';
 import { SyncLoader } from 'react-spinners';
@@ -12,6 +13,7 @@ import { FaLocationDot } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 import ticketsAPI from '../features/tickets/ticketsAPI';
 import FleetAPI from '../features/fleets/fleetsAPI';
+import toPdf  from 'react-to-pdf';
 
 export const Reports: React.FC = () => {
     const { user } = useSelector((state: RootState) => state.userAuth);
@@ -91,7 +93,16 @@ export const Reports: React.FC = () => {
             .reduce((total, booking) => total + parseFloat(String(booking?.total_amount)), 0)
     }));
 
+    const reportRef = useRef<HTMLDivElement>(null);
+    const generatePDF = () => {
+        toPdf(() => reportRef.current, {
+            filename: 'analytics_report.pdf',
+            page: { margin: 10 }
+        });
+    };
+
     return (
+
         <div className=" m-10 text-white mx-[20] py-8 mr-12">
             <div className="flex justify-between">
                 <div>
@@ -109,7 +120,9 @@ export const Reports: React.FC = () => {
                     </button>
                 </div>
             </div>
-
+            
+            <div ref={reportRef}>
+            {/* Your charts and data here */}
             {/* Cards Section */}
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-10'>
                 <div className='flex flex-col items-center bg-cards text-white hover:bg-cyan-500 py-10 px-4 rounded' onClick={() => navigate('/admin/payments')}>
@@ -232,6 +245,13 @@ export const Reports: React.FC = () => {
                 </div>
             </div>
         </div>
+            <button
+                onClick={() => generatePDF()}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
+                >
+                Generate PDF Report
+                </button>
+    </div>
     );
 }
 
