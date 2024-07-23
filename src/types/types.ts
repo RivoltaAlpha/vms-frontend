@@ -29,15 +29,11 @@ export interface RUser {
       username: string;
       password: string;
       role: string;
-      token: string;
-      image_url: string;
-  }
+      token: string;  }
   export interface LoginResponse {
         username: string;
         role: string;
-        password: string;
-        image_url: string;
-    }
+        password: string;    }
 
   // User
  export type TUser = {
