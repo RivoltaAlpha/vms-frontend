@@ -1,16 +1,16 @@
+import { useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import VehiclesAPI from '../features/vehicles/vehicleAPI';
 import { FaUsers, FaCar, FaCashRegister, FaTicketAlt, FaTruck, FaDollarSign, FaBackward } from "react-icons/fa";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList } from 'recharts';
 import { RootState } from '../app/store';
-import { useRef } from 'react';
-import { useSelector } from 'react-redux';
 import paymentsAPI from '../features/payments/paymentsApi';
 import { SyncLoader } from 'react-spinners';
 import bookingsAPI from '../features/bookings/bookingsApi';
 import usersAPI from '../features/users/usersAPI';
 import locationsAPI from '../features/locations/locationsAPI';
 import { FaLocationDot } from 'react-icons/fa6';
-import { useNavigate } from 'react-router-dom';
 import ticketsAPI from '../features/tickets/ticketsAPI';
 import FleetAPI from '../features/fleets/fleetsAPI';
 import toPdf  from 'react-to-pdf';
@@ -127,7 +127,7 @@ export const Reports: React.FC = () => {
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-10'>
                 <div className='flex flex-col items-center bg-cards text-white hover:bg-cyan-500 py-10 px-4 rounded' onClick={() => navigate('/admin/payments')}>
                     <FaDollarSign /> <br />
-                    {totalRevenue} {totalRevenue === 1 ? 'Total' : 'Total Amount'}
+                    {totalRevenue} {totalRevenue === 1 ? 'Revenue Generated' : 'Revenue Generated'}
                 </div>
                 <div className='flex flex-col items-center bg-cards text-white hover:bg-cyan-500 py-10 px-4 rounded' onClick={() => navigate('/admin/bookings')}>
                     <FaUsers /> <br />
