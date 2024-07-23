@@ -48,17 +48,17 @@ const HeroSection = () => {
       <Slide
         title="Welcome to Our Vehicle Rental Service"
         description="Discover the best vehicles for your needs with our top-notch rental service. Convenient, affordable, and reliable."
-        imageUrl='./images/car1.png'
+        imageUrl='/images/car1.png'
       />
       <Slide
         title="Book Your Ride Easily"
         description="Effortlessly book your preferred vehicle online and enjoy a smooth and hassle-free rental experience."
-        imageUrl='./images/car2.png'
+        imageUrl='/images/car2.png'
       />
       <Slide
         title="Explore Our Fleet"
         description="Choose from a wide range of vehicles, from economy cars to luxury SUVs, all maintained to the highest standards."
-        imageUrl='./images/car3.png'
+        imageUrl='/images/car3.png'
       />
     </Slider>
   );

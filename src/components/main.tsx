@@ -27,7 +27,7 @@ const CardsSection = () => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex items-center justify-center">
-          <img src="./images/image copy 4.png" alt="Vehicle Booking" className="rounded mb-4 w-[700px] md:mb-0" />
+          <img src="/images/image copy 4.png" alt="Vehicle Booking" className="rounded mb-4 w-[700px] md:mb-0" />
         </div>
         <div className="flex flex-col  md:w-1/2 p-8 card justify-center">
           <h2 className="text-4xl font-bold mb-2">Vehicle Booking</h2>
@@ -42,11 +42,11 @@ const CardsSection = () => {
           </p>
         </div>
         <div className="flex items-center justify-center">
-          <img src="./images/image.png" alt="Flexible Rental Plans" className="rounded mb-4 w-[700px] md:mb-0" />
+          <img src="/images/image.png" alt="Flexible Rental Plans" className="rounded mb-4 w-[700px] md:mb-0" />
         </div>
 
         <div className="flex items-center justify-center">
-          <img src="./images/image copy.png" alt="Customer Support" className="rounded mb-4 w-[700px] md:mb-0" />
+          <img src="/images/image copy.png" alt="Customer Support" className="rounded mb-4 w-[700px] md:mb-0" />
         </div>
         <div className="flex flex-col ml-[150px] md:w-1/2 p-8 card justify-center">
           <h2 className="text-4xl  font-bold mb-2">Customer Support</h2>

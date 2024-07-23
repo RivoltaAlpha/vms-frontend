@@ -10,7 +10,7 @@ export default function Profile() {
                 <div className="p-6">
                     <div className="flex items-center justify-center mb-6">
                         <img 
-                            src= {user?.image_url || './images/Social media-cuate.png'} 
+                            src= {user?.image_url || '/images/Social media-cuate.png'} 
                             alt="User Profile" 
                             className="w-32 h-32 rounded-full object-cover"
                         />
