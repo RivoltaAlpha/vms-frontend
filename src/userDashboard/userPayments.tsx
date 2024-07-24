@@ -35,7 +35,7 @@ const PaymentHistory: React.FC = () => {
               <div key={payment.payment_id} className="bg-cards flex justify-center items-center text-white flex-col mb-4 p-1 border rounded">
                 <div className="mt-4">
                   <h3 className="text-lg font-bold">Booked Vehicle</h3>
-                  <div className="mt-2 w-[700px] h-[200px]">
+                  <div className="mt-2 w-[400px] h-[200px]">
                     <img src={payment.booking.vehicle.vehicleSpec.image_url} alt="Vehicle" className="mt-2 w-full h-full object-cover" />
                   </div>
                 </div>
