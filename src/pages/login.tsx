@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import loginPic from "../../public/images/Login-cuate.png";
+import loginPic from "/images/Login-cuate.png";
 import { Toaster, toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { RootState } from "../app/store";
